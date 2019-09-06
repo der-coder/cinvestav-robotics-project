@@ -1,2 +1,6 @@
-# cinvestav-robotics-project
-Project files for the Fall 2019 - Robotics I course at CINVESTAV RYMA
+# Robótica I - Proyecto: Simulación de un robot paralelo
+
+Autores: Enrique Benavides, Isaac Ayala y  
+Neftali Jonatán González.
+
+
