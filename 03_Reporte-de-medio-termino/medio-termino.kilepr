@@ -8,7 +8,7 @@ img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=3
 kileversion=2.9.92
 masterDocument=
-name=plan-de-trabajo
+name=medio-termino
 pkg_extIsRegExp=false
 pkg_extensions=.cls .sty .bbx .cbx .lbx
 src_extIsRegExp=false
@@ -20,24 +20,12 @@ QuickBuild=
 
 [item:main.tex]
 archive=true
-encoding=UTF-8
-highlight=LaTeX
-mode=LaTeX
-
-[item:plan-de-trabajo.kilepr]
-archive=true
 encoding=
 highlight=
 mode=
 
-[item:tex/acuerdo.tex]
+[item:medio-termino.kilepr]
 archive=true
-encoding=UTF-8
-highlight=LaTeX
-mode=LaTeX
-
-[item:tex/propuesta.tex]
-archive=true
-encoding=UTF-8
-highlight=LaTeX
-mode=LaTeX
+encoding=
+highlight=
+mode=
