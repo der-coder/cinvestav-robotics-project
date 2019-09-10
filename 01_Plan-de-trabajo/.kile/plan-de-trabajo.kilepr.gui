@@ -1,6 +1,6 @@
 [General]
 kile_livePreviewEnabled=true
-kile_livePreviewStatusUserSpecified=false
+kile_livePreviewStatusUserSpecified=true
 kile_livePreviewTool=LivePreview-PDFLaTeX
 lastDocument=tex/propuesta.tex
 
@@ -9,7 +9,7 @@ Bookmarks=
 Encoding=UTF-8
 Highlighting=LaTeX
 Highlighting Set By User=false
-Indentation Mode=normal
+Indentation Mode=latex
 Mode=LaTeX
 Mode Set By User=false
 
@@ -32,7 +32,7 @@ Mode=LaTeX
 Mode Set By User=false
 
 [item:main.tex]
-open=true
+open=false
 order=0
 
 [item:plan-de-trabajo.kilepr]
@@ -40,20 +40,20 @@ open=false
 order=-1
 
 [item:tex/acuerdo.tex]
-open=true
+open=false
 order=1
 
 [item:tex/propuesta.tex]
-open=true
-order=2
+open=false
+order=1
 
 [view-settings,view=0,item:main.tex]
-CursorColumn=0
-CursorLine=4
+CursorColumn=32
+CursorLine=8
 Dynamic Word Wrap=false
 JumpList=
 TextFolding=[]
-ViMarks=
+ViMarks=.,4,10,[,4,10,],4,10
 
 [view-settings,view=0,item:tex/acuerdo.tex]
 CursorColumn=13
@@ -64,9 +64,9 @@ TextFolding=[]
 ViMarks=.,8,12,[,8,6,],8,12
 
 [view-settings,view=0,item:tex/propuesta.tex]
-CursorColumn=9
-CursorLine=38
+CursorColumn=53
+CursorLine=13
 Dynamic Word Wrap=false
 JumpList=
 TextFolding=[]
-ViMarks=.,38,9,[,38,9,],38,9
+ViMarks=.,10,0,[,10,0,],10,0
