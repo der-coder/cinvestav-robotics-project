@@ -8,7 +8,7 @@ img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=3
 kileversion=2.9.92
 masterDocument=
-name=medio-termino
+name=Reporte_GoughStewart
 pkg_extIsRegExp=false
 pkg_extensions=.cls .sty .bbx .cbx .lbx
 src_extIsRegExp=false
@@ -24,7 +24,7 @@ encoding=
 highlight=
 mode=
 
-[item:medio-termino.kilepr]
+[item:reporte_goughstewart.kilepr]
 archive=true
 encoding=
 highlight=

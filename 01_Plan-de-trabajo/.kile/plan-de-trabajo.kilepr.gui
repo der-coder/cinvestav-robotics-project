@@ -40,11 +40,11 @@ open=false
 order=-1
 
 [item:tex/acuerdo.tex]
-open=false
-order=1
+open=true
+order=0
 
 [item:tex/propuesta.tex]
-open=false
+open=true
 order=1
 
 [view-settings,view=0,item:main.tex]
@@ -64,9 +64,9 @@ TextFolding=[]
 ViMarks=.,8,12,[,8,6,],8,12
 
 [view-settings,view=0,item:tex/propuesta.tex]
-CursorColumn=53
-CursorLine=13
+CursorColumn=46
+CursorLine=4
 Dynamic Word Wrap=false
 JumpList=
 TextFolding=[]
-ViMarks=.,10,0,[,10,0,],10,0
+ViMarks=.,4,46,[,4,46,],4,46
