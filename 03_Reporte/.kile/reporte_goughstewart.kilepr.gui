@@ -40,20 +40,56 @@ Indentation Mode=normal
 Mode=LaTeX
 Mode Set By User=false
 
+[document-settings,item:tex/desarrollo.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:tex/discusion.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:tex/introduccion.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:tex/resultados.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
 [item:main.tex]
 open=true
-order=1
+order=0
 
 [item:reporte_goughstewart.kilepr]
 open=false
 order=-1
 
 [item:tex/bibliografia.bib]
-open=true
+open=false
 order=0
 
 [item:tex/bibliografia.tex]
-open=true
+open=false
 order=2
 
 [item:tex/conclusiones.tex]
@@ -77,20 +113,20 @@ open=false
 order=-1
 
 [view-settings,view=0,item:main.tex]
-CursorColumn=0
-CursorLine=64
+CursorColumn=43
+CursorLine=50
 Dynamic Word Wrap=true
 JumpList=
 TextFolding=[]
-ViMarks=.,68,0,[,68,0,],68,0
+ViMarks=.,51,12,[,51,0,],51,12
 
 [view-settings,view=0,item:tex/bibliografia.bib]
-CursorColumn=8
-CursorLine=4
+CursorColumn=0
+CursorLine=0
 Dynamic Word Wrap=false
 JumpList=
 TextFolding=[]
-ViMarks=.,4,8,[,4,8,],4,8
+ViMarks=.,-1,-1,[,-1,-1,],-1,-1
 
 [view-settings,view=0,item:tex/bibliografia.tex]
 CursorColumn=0
@@ -106,4 +142,36 @@ CursorLine=0
 Dynamic Word Wrap=false
 JumpList=
 TextFolding=[]
-ViMarks=
+ViMarks=.,0,0,[,0,0,],0,0
+
+[view-settings,view=0,item:tex/desarrollo.tex]
+CursorColumn=0
+CursorLine=9
+Dynamic Word Wrap=false
+JumpList=
+TextFolding=[]
+ViMarks=.,7,59,[,7,59,],7,59
+
+[view-settings,view=0,item:tex/discusion.tex]
+CursorColumn=0
+CursorLine=0
+Dynamic Word Wrap=false
+JumpList=
+TextFolding=[]
+ViMarks=.,0,0,[,0,0,],0,0
+
+[view-settings,view=0,item:tex/introduccion.tex]
+CursorColumn=0
+CursorLine=0
+Dynamic Word Wrap=false
+JumpList=
+TextFolding=[]
+ViMarks=.,0,0,[,0,0,],0,0
+
+[view-settings,view=0,item:tex/resultados.tex]
+CursorColumn=0
+CursorLine=0
+Dynamic Word Wrap=false
+JumpList=
+TextFolding=[]
+ViMarks=.,0,0,[,0,0,],0,0
