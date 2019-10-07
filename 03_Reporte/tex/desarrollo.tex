@@ -1,9 +1,69 @@
-\subsection{Ecuaiones}
+La PGS puede ser modelada en un inicio por medio de su cinemática inversa. Observando el modelo en la figura (insertar figura de la plataforma) se puede formular lo siguiente:
+\begin{equation} \label{plat_grl}
+p_i = d + Ra_i = b_i + l_i
+\end{equation}
+Siendo $p_i$ el lugar donde el actuador de la plataforma es colocado, el actuador es un piston el cual es controlado por el largo del mismo. Tomando en cuenta que el valor del actuador es $l_i$, podemos reescribir la ecuación \ref{plat_grl} de la siguiente manera.
+\begin{equation}
+l_i = d + Ra_i - b_i
+\end{equation}
+Sin embargo el valor $l_i$ es un vector en coordenadas $[x y z]^T$ al cual le debemos aplicar la norma para obtener el valor de dimensión del actuador y ese valor será la coordenada generalizada de la plataforma.
+\begin{equation}\label{eq_coordgral}
+q_i = ||l_i|| = \sqrt{l_i^Tl_i}
+\end{equation}
+Con esto se tiene el valor de las coordenadas generalizadas de un punto y orientación deseada. De esta ecuación se obtendrá el jacobiano para despejar el twist y poder utilizar los valores de velocidad lineal y angular de la plataforma para el desarroollo del control por fuerzas. Para obtener el jacobiano se plantea la siguiente ecuación
+\begin{equation} \label{equgral_q}
+J\dot{q}=\nu
+\end{equation}
+La ecuación \ref{eq_coordgral} al ser derivada respecto al tiempo se parece a la ecuacion del jacobiano en la solución de las velocidades de las coordenadas generalizadas.
+\begin{equation}
+\frac{d}{dt}(q = ||l_i||) = \sqrt{l_i^Tl_i} 
+\end{equation}
+La ecuación anterior se desarrolla para tener la forma del jacobiano inverso:
+\begin{equation}
+\dot{q}=J^{-1} \nu = A \begin{bmatrix}
+\dot{v_p}\\
+\omega
+\end{bmatrix} \Rightarrow A = J^{-1}
+\end{equation}
 
+Desarrollamos la derivada de $||l_||i$:
+\begin{equation}
+\dot{q} = \frac{1}{2||l_i||} \dot{l_i} \cdot l_i + l_i \cdot \dot{l_i} = \frac{1}{||l_i||} \dot{l_i} \cdot l_i \\ \bigskip
+\end{equation}
 
+\begin{equation}
+\dot{q}=\frac{1}{||l_i||}(\dot{d} + [\omega \times] Ra_i)\cdot(d + Ra_i -b_i) 
+\end{equation}
+\begin{equation*}
+= \frac{1}{||l_i||}(v_p - [(Ra_i)\times]\omega)(l_i)
+\end{equation*}
 
-\subsection{Simulador}
+\begin{equation}
+\dot{q} = v_p \cdot l_i - [(Ra_i)\times]\omega \cdot l_i 
+\end{equation}
+\begin{equation*}
+= v_p \cdot l_i + [(Ra_i)\times]l_i \cdot \omega
+\end{equation*}
 
-Empleando las ecuaciones de \cite{li} se desarrolló el 
-modelo en Matlab. El código completo se incluye en el Anexo.
-%  TODO crear Anexo - Código matlab
+\begin{equation}
+\dot{q} = \frac{1}{||l_i||} v_p \cdot l_i + [(Ra_i)\times]l_i \cdot \omega
+\end{equation}
+\begin{equation} \label{jac_inv}
+\dot{q} = \frac{1}{||l_i||} [l_i^T , [(Ra_i)\times]l_i^T] \begin{bmatrix}
+\dot{v_p}\\
+\omega
+\end{bmatrix}
+\end{equation}
+Con el desarrollo se encuentra que la jacobiana inversa parte de la ecuacion \ref{jac_inv} y se define como:
+\begin{equation}\label{jac_A}
+A = J^{-1} = \begin{bmatrix}
+\vec{u_i}^T & [(Ra_i)\times]\vec{u_i}^T
+\end{bmatrix}
+\end{equation}
+Al invertir la matriz $A$ de la ecuacion \ref{jac_A} se obtiene la jacobiana de la PGS, con la cual se obtendran las velocidades lineales y angulares de la PGS.
+\begin{equation*}
+J = \begin{bmatrix}
+\vec{u_i}^T & [(Ra_i)\times]\vec{u_i}^T
+\end{bmatrix}^{-1}
+\end{equation*}
+Utilizando la Jacobiana y desarrollando la ecuacion \ref{equgral_q} se obtienen las velocidades lineales y angulares de la PGS. Con estos parametros se define la energía cinética de la plataforma.
