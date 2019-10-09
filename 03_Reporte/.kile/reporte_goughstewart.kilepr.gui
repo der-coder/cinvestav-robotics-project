@@ -127,6 +127,7 @@ order=-1
 
 [view-settings,view=0,item:main.tex]
 CursorColumn=0
+<<<<<<< HEAD
 CursorLine=64
 Dynamic Word Wrap=true
 JumpList=
@@ -140,6 +141,13 @@ Dynamic Word Wrap=false
 JumpList=
 TextFolding=[]
 ViMarks=.,1,7,[,1,3,],1,7
+=======
+CursorLine=8
+Dynamic Word Wrap=true
+JumpList=
+TextFolding=[]
+ViMarks=.,28,28,[,28,28,],28,28
+>>>>>>> Added groundwork for instruction manual.
 
 [view-settings,view=0,item:tex/bibliografia.bib]
 CursorColumn=0
