@@ -113,12 +113,21 @@ open=false
 order=-1
 
 [view-settings,view=0,item:main.tex]
+<<<<<<< HEAD
 CursorColumn=43
 CursorLine=50
 Dynamic Word Wrap=true
 JumpList=
 TextFolding=[]
 ViMarks=.,51,12,[,51,0,],51,12
+=======
+CursorColumn=0
+CursorLine=8
+Dynamic Word Wrap=true
+JumpList=
+TextFolding=[]
+ViMarks=.,28,28,[,28,28,],28,28
+>>>>>>> quique
 
 [view-settings,view=0,item:tex/bibliografia.bib]
 CursorColumn=0
