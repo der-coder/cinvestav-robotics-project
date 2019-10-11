@@ -97,37 +97,28 @@ open=false
 order=-1
 
 [item:tex/desarrollo.tex]
-open=false
-order=-1
+open=true
+order=3
 
 [item:tex/discusion.tex]
-open=false
-order=-1
+open=true
+order=1
 
 [item:tex/introduccion.tex]
-open=false
-order=-1
+open=true
+order=2
 
 [item:tex/resultados.tex]
 open=false
 order=-1
 
 [view-settings,view=0,item:main.tex]
-<<<<<<< HEAD
-CursorColumn=43
-CursorLine=50
+CursorColumn=18
+CursorLine=28
 Dynamic Word Wrap=true
 JumpList=
 TextFolding=[]
-ViMarks=.,51,12,[,51,0,],51,12
-=======
-CursorColumn=0
-CursorLine=8
-Dynamic Word Wrap=true
-JumpList=
-TextFolding=[]
-ViMarks=.,28,28,[,28,28,],28,28
->>>>>>> quique
+ViMarks=.,28,29,[,28,29,],28,29
 
 [view-settings,view=0,item:tex/bibliografia.bib]
 CursorColumn=0
@@ -154,12 +145,12 @@ TextFolding=[]
 ViMarks=.,0,0,[,0,0,],0,0
 
 [view-settings,view=0,item:tex/desarrollo.tex]
-CursorColumn=0
-CursorLine=9
+CursorColumn=15
+CursorLine=126
 Dynamic Word Wrap=false
 JumpList=
 TextFolding=[]
-ViMarks=.,7,59,[,7,59,],7,59
+ViMarks=.,128,14,[,128,14,],128,14
 
 [view-settings,view=0,item:tex/discusion.tex]
 CursorColumn=0
@@ -171,11 +162,11 @@ ViMarks=.,0,0,[,0,0,],0,0
 
 [view-settings,view=0,item:tex/introduccion.tex]
 CursorColumn=0
-CursorLine=0
+CursorLine=9
 Dynamic Word Wrap=false
 JumpList=
 TextFolding=[]
-ViMarks=.,0,0,[,0,0,],0,0
+ViMarks=.,9,0,[,9,0,],9,0
 
 [view-settings,view=0,item:tex/resultados.tex]
 CursorColumn=0
