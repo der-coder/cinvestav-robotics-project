@@ -1,4 +1,4 @@
-\documentclass[conference]{IEEEtran}
+\documentclass[article]{IEEEtran}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -9,40 +9,37 @@
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+    
 \begin{document}
 
-\title{Plataforma Gough-Stewart | Análisis, simulación y comparación\\
+\title{
+Análisis, simulación y comparación de gastos energéticos de la plataforma Gough-Stewart con distintos modelos de control\\
 }
 
 
-\author{\IEEEauthorblockN{Enrique Benavides Téllez}
-\IEEEauthorblockA{\textit{Robótica y Manufactura Avanzada} \\
-\textit{CINVESTAV}\\
-Ramos Arizpe, México \\
-email address}
-\and
-\IEEEauthorblockN{Isaac Ayala Lozano}
-\IEEEauthorblockA{\textit{Robótica y Manufactura Avanzada} \\
-\textit{CINVESTAV}\\
-Ramos Arizpe, México \\
-email address}
-\and
-\IEEEauthorblockN{Neftali Jonatán González}
-\IEEEauthorblockA{\textit{Robótica y Manufactura Avanzada} \\
-\textit{CINVESTAV}\\
-Ramos Arizpe, México \\
-email address}
+\author{
+    \IEEEauthorblockN{
+    Enrique Benavides Téllez, 
+    Isaac Ayala Lozano y 
+    Neftali Jonatán González\\
+    }
+    \IEEEauthorblockA{
+    \textit{Robótica y Manufactura Avanzada} \\
+    \textit{CINVESTAV}\\
+        Ramos Arizpe, México}
 }
 
 \maketitle
 
 \begin{abstract}
+El análisis de la dinámica y la validaci de la plataforma Gough-Stewart 
+continua siendo un tema importante para el diseño y control de cualquier implementación de dicho mecanismo.
+Este document
 
 \end{abstract}
 
-\begin{IEEEkeywords}
-
-\end{IEEEkeywords}
+% % \begin{IEEEkeywords}
+% \end{IEEEkeywords}
 
 \section{Introducción}
 \input{./tex/introduccion.tex}
@@ -59,12 +56,8 @@ email address}
 \section{Conclusiones}
 \input{./tex/conclusiones.tex}
 
+here \cite{bingul} and \cite{leonov}.
 
-
-\input{./tex/bibliografia.tex}
-
-% \section*{Referencias}
-
-
-
+\bibliographystyle{IEEEtran}
+\bibliography{bibliografia.bib}
 \end{document}
