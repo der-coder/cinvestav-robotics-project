@@ -2,12 +2,96 @@
 kile_livePreviewEnabled=true
 kile_livePreviewStatusUserSpecified=false
 kile_livePreviewTool=LivePreview-PDFLaTeX
-lastDocument=
+lastDocument=GSP_Toolbox_Manual.tex
+
+[document-settings,item:GSP_Toolbox_Manual.tex]
+Bookmarks=
+Encoding=
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:tex/installation.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:tex/introduction.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:tex/tutorial.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
 
 [item:GSP_Toolbox_Manual.tex]
 open=true
-order=-1
+order=0
 
 [item:gsptoolboxmanual.kilepr]
 open=false
 order=-1
+
+[item:tex/installation.tex]
+open=true
+order=1
+
+[item:tex/introduction.tex]
+open=false
+order=-1
+
+[item:tex/tour.tex]
+open=false
+order=-1
+
+[item:tex/tutorial.tex]
+open=false
+order=-1
+
+[view-settings,view=0,item:GSP_Toolbox_Manual.tex]
+CursorColumn=1
+CursorLine=25
+Dynamic Word Wrap=true
+JumpList=
+TextFolding=[]
+ViMarks=.,22,31,[,22,14,],22,31
+
+[view-settings,view=0,item:tex/installation.tex]
+CursorColumn=63
+CursorLine=15
+Dynamic Word Wrap=false
+JumpList=
+TextFolding=[]
+ViMarks=.,13,13,[,13,13,],13,13
+
+[view-settings,view=0,item:tex/introduction.tex]
+CursorColumn=0
+CursorLine=25
+Dynamic Word Wrap=false
+JumpList=
+TextFolding=[]
+ViMarks=.,23,40,[,23,40,],23,40
+
+[view-settings,view=0,item:tex/tutorial.tex]
+CursorColumn=0
+CursorLine=0
+Dynamic Word Wrap=false
+JumpList=
+TextFolding=[]
+ViMarks=
