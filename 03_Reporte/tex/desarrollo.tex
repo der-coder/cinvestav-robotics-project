@@ -2,19 +2,23 @@ La PGS puede ser modelada en un inicio por medio de su cinemática inversa. Obse
 \begin{equation} \label{plat_grl}
 p_i = d + Ra_i = b_i + l_i
 \end{equation}
-Siendo $p_i$ el lugar donde el actuador de la plataforma es colocado, el actuador es un piston el cual es controlado por el largo. Tomando en cuenta que el valor del actuador es $l_i$, podemos reescribir la ecuación \ref{plat_grl} de la siguiente manera.
+Siendo $Ra_i$ el lugar donde un extremo del actuador en la plataforma es colocado, el valor $b_i$ es el lugar donde el otro extremo del actuador es colocado en la base y $d$ es la distancia que debe de moverse la plataforma respecto de la base. Definimos $R$ como la matriz de rotación extrínseca de la plataforma respecto a la base. 
+\begin{equation}
+R = R_zR_yR_x = R_{xyz}
+\end{equation}
+El actuador es un pistón controlado por el largo y tomando en cuenta que el valor del actuador es $l_i$, podemos reescribir la ecuación \ref{plat_grl} de la siguiente manera.
 \begin{equation}
 l_i = d + Ra_i - b_i
 \end{equation}
-Sin embargo el valor $l_i$ es un vector en coordenadas $[x y z]^T$ al cual le debemos aplicar la norma para obtener el valor de dimensión del actuador y ese valor será la coordenada generalizada de la plataforma.
+El vector $l_i$ se obtiene como coordenadas $[x\ y\ z]^T$ al cual se debe aplicar la norma para obtener la dimensión del actuador y será la coordenada generalizada del pistón i-ésimo de la plataforma.
 \begin{equation}\label{eq_coordgral}
 q_i = ||l_i|| = \sqrt{l_i^Tl_i}
 \end{equation}
-Con esto se tiene el valor de las coordenadas generalizadas de un punto y orientación deseada. De esta ecuación se obtendrá el jacobiano para despejar el twist y poder utilizar los valores de velocidad lineal y angular de la plataforma para el desarroollo del control por fuerzas. Para obtener el jacobiano se plantea la siguiente ecuación
+De la ecuación (\ref{eq_coordgral}) se obtendrá el jacobiano para después despejar el twist y utilizar los valores de velocidad lineal y angular de la plataforma para el desarrollo del control por fuerzas. Para obtener el jacobiano se plantea la siguiente ecuación
 \begin{equation} \label{equgral_q}
 J\dot{q}=\nu
 \end{equation}
-La ecuación \ref{eq_coordgral} al ser derivada respecto al tiempo se parece a la ecuacion del jacobiano en la solución de las velocidades de las coordenadas generalizadas.
+La ecuación \ref{eq_coordgral} al ser derivada respecto al tiempo es parecido a la ecuación del jacobiano en la solución de las velocidades de las coordenadas generalizadas.
 \begin{equation}
 \frac{d}{dt}q = \frac{d}{dt}||l_i|| = \frac{d}{dt}\sqrt{l_i^Tl_i} 
 \end{equation}
@@ -92,15 +96,15 @@ En la ecuación \ref{equ_tr0-1} se identifica que al multiplicar las velocidades
 \begin{equation}
 M = \begin{bmatrix}
 I & 0_{3x3} \\
-0_{3x3} & E_{3x3}
+0_{3x3} & R^T
 \end{bmatrix}
 \end{equation}
-Donde el primer bloque es la matriz identidad debido a que las velocidades lineales tanto de la base como de la plataforma son iguales, la matriz $E$ es la transformacion de las velocidades angulares y tiene la siguiente forma:
+Donde el primer bloque es la matriz identidad debido a que las velocidades lineales tanto de la base como de la plataforma son iguales, la matriz $E$ es la transformación de las velocidades angulares y tiene la siguiente forma:
 \begin{equation*}
-E = \begin{bmatrix}
-0 & 0 & 0\\
-0 & 0 & 0\\
-0 & 0 & 0
+R^T = \begin{bmatrix}
+R_{11} & R_{21} & R_{31}\\
+R_{12} & R_{22} & R_{32}\\
+R_{13} & R_{23} & R_{33}
 \end{bmatrix}
 \end{equation*}
 Con la obtención del twist respecto a la plataforma del robot se pueden desarrollar las ecuaciones de energía. Se obtiene la energía potencial por medio de la altura del disco parabólico $dp$ sobre la plataforma del robot.
