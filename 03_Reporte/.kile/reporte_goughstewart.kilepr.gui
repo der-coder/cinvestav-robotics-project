@@ -13,6 +13,15 @@ Indentation Mode=normal
 Mode=LaTeX
 Mode Set By User=false
 
+[document-settings,item:tex/apendice_codigo_matlab.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
 [document-settings,item:tex/bibliografia.bib]
 Bookmarks=
 Encoding=UTF-8
@@ -84,6 +93,10 @@ order=0
 open=false
 order=-1
 
+[item:tex/apendice_codigo_matlab.tex]
+open=true
+order=3
+
 [item:tex/bibliografia.bib]
 open=false
 order=0
@@ -98,14 +111,14 @@ order=-1
 
 [item:tex/desarrollo.tex]
 open=true
-order=3
+order=2
 
 [item:tex/discusion.tex]
 open=true
 order=1
 
 [item:tex/introduccion.tex]
-open=true
+open=false
 order=2
 
 [item:tex/resultados.tex]
@@ -113,12 +126,20 @@ open=false
 order=-1
 
 [view-settings,view=0,item:main.tex]
-CursorColumn=18
-CursorLine=28
+CursorColumn=0
+CursorLine=64
 Dynamic Word Wrap=true
 JumpList=
 TextFolding=[]
-ViMarks=.,28,29,[,28,29,],28,29
+ViMarks=.,0,21,[,0,15,],0,21
+
+[view-settings,view=0,item:tex/apendice_codigo_matlab.tex]
+CursorColumn=8
+CursorLine=1
+Dynamic Word Wrap=false
+JumpList=
+TextFolding=[]
+ViMarks=.,1,7,[,1,3,],1,7
 
 [view-settings,view=0,item:tex/bibliografia.bib]
 CursorColumn=0
@@ -145,8 +166,8 @@ TextFolding=[]
 ViMarks=.,0,0,[,0,0,],0,0
 
 [view-settings,view=0,item:tex/desarrollo.tex]
-CursorColumn=15
-CursorLine=126
+CursorColumn=50
+CursorLine=94
 Dynamic Word Wrap=false
 JumpList=
 TextFolding=[]
