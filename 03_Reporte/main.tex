@@ -8,6 +8,12 @@
 \usepackage{listings}
 \usepackage[spanish,mexico]{babel}
 
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     
@@ -48,6 +54,9 @@ Este trabajo presenta el análisis de la cinemática y dinámica del la platafor
 \section{Desarrollo}
 \input{./tex/desarrollo.tex}
 
+\section{Simulación}
+\input{./tex/simulacion.tex}
+
 \section{Resultados}
 \input{./tex/resultados.tex}
 
@@ -57,12 +66,10 @@ Este trabajo presenta el análisis de la cinemática y dinámica del la platafor
 \section{Conclusiones}
 \input{./tex/conclusiones.tex}
 
-here \cite{bingul} and \cite{leonov}.
-
 \bibliographystyle{IEEEtran}
 \bibliography{bibliografia.bib}
 
-\appendix
+% \appendix
 % \input{./tex/apendice_codigo_matlab.tex}
 
 
