@@ -20,7 +20,7 @@ QuickBuild=
 
 [item:GSP_Toolbox_Manual.tex]
 archive=true
-encoding=
+encoding=UTF-8
 highlight=LaTeX
 mode=LaTeX
 
@@ -44,9 +44,15 @@ mode=LaTeX
 
 [item:tex/tour.tex]
 archive=true
-encoding=
-highlight=
-mode=
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
+
+[item:tex/troubleshooting.tex]
+archive=true
+encoding=UTF-8
+highlight=LaTeX
+mode=LaTeX
 
 [item:tex/tutorial.tex]
 archive=true
