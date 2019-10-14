@@ -139,9 +139,30 @@ v_p\\
 
 \subsection{Dinámica de la PGS}
 
+La dinámica del robot será desarrollada
+con la siguiente implementación. 
+La posición y orientación de una
+antena parabólica (especificaciones en anexos)
+de 250 lb (113.4 kg) será controlada con la 
+plataforma Gough Stewart. 
+La figura \ref{fig: antenna} muestra una vista simplificada
+de la implementación.
+
 Para el desarrollo de la dinámica del robot, se conoce que 
 soportará en la plataforma un disco parabólico con masa de 
-250 lb. Para obtener el modelo dinámico de la PGS con el 
+
+
+
+\begin{figure}
+ \centering
+ \includegraphics[scale=0.6]{img/implementation.png}
+ % implementation.png: 495x490 px, 96dpi, 13.10x12.96 cm, bb=0 0 371 367
+ \caption{Geometría simplificada de la implementación de la plataforma Gough Stewart.}
+ \label{fig: antenna}
+\end{figure}
+
+
+Para obtener el modelo dinámico de la PGS con el 
 disco se necesitan los valores de velocidad lineal y 
 angular con respecto de la plataforma, se plantea la 
 siguiente transformación.
