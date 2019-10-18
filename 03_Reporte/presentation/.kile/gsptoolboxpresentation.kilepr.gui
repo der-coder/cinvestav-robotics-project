@@ -1,0 +1,13 @@
+[General]
+kile_livePreviewEnabled=true
+kile_livePreviewStatusUserSpecified=false
+kile_livePreviewTool=LivePreview-PDFLaTeX
+lastDocument=
+
+[item:gsptoolboxpresentation.kilepr]
+open=false
+order=-1
+
+[item:presentation.tex]
+open=true
+order=-1
