@@ -5,7 +5,14 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{listings}
 \usepackage[spanish,mexico]{babel}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -32,9 +39,9 @@ Análisis, simulación y comparación de gastos energéticos de la plataforma Go
 \maketitle
 
 \begin{abstract}
-El análisis de la dinámica y la validaci de la plataforma Gough-Stewart 
-continua siendo un tema importante para el diseño y control de cualquier implementación de dicho mecanismo.
-Este document
+El estudio de la dinámica de la plataforma Gough-Stewart y su respectiva simulación continúan siendo un pilar en el diseño y control de este tipo de robot.
+Este trabajo presenta el análisis de la cinemática y dinámica del la plataforma Gough Stewart mediante el método de D'Alembert-Lagrange y su simulación para el caso de estudio de una antena parabólica y su posicionamiento.
+
 
 \end{abstract}
 
@@ -47,6 +54,9 @@ Este document
 \section{Desarrollo}
 \input{./tex/desarrollo.tex}
 
+\section{Simulación}
+\input{./tex/simulacion.tex}
+
 \section{Resultados}
 \input{./tex/resultados.tex}
 
@@ -56,8 +66,23 @@ Este document
 \section{Conclusiones}
 \input{./tex/conclusiones.tex}
 
-here \cite{bingul} and \cite{leonov}.
-
 \bibliographystyle{IEEEtran}
 \bibliography{bibliografia.bib}
+
+
+\appendix
+
+Se incluye como anexo los planos de la antena parabólica empleados para el 
+estudio de la dinámica
+de plataforma Gough Stewart, cortesía de la compañía \emph{radiowaves}\footnote{www.radiowaves.com}.
+
+
+
+\includepdf[pagecommand={}, scale=1.0, pages={1,2,3}]{specs.pdf}
+
+
+% \appendix
+% \input{./tex/apendice_codigo_matlab.tex}
+
+
 \end{document}
