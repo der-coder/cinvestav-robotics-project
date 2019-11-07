@@ -1,0 +1,10 @@
+function (pistonCOM) = getPistonCenterMass(masses, points)
+    tempMass = 0;
+    tempCOM = zeros(3,1);
+    centerMass = zeros(3,1);
+    for i = 2:size(points,2)
+        tempMass = tempMass + masses(i-1);
+        if 
+        
+    end
+end
