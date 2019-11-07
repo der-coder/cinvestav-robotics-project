@@ -1,8 +1,30 @@
 [General]
-kile_livePreviewEnabled=true
-kile_livePreviewStatusUserSpecified=false
+kile_livePreviewEnabled=false
+kile_livePreviewStatusUserSpecified=true
 kile_livePreviewTool=LivePreview-PDFLaTeX
-lastDocument=
+lastDocument=../../../SystemModeling_Project/presentation/presentation.tex
+
+[document-settings,item:../../../SystemModeling_Project/presentation/presentation.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[document-settings,item:presentation.tex]
+Bookmarks=
+Encoding=UTF-8
+Highlighting=LaTeX
+Highlighting Set By User=false
+Indentation Mode=normal
+Mode=LaTeX
+Mode Set By User=false
+
+[item:../../../SystemModeling_Project/presentation/presentation.tex]
+open=true
+order=0
 
 [item:gsptoolboxpresentation.kilepr]
 open=false
@@ -10,4 +32,20 @@ order=-1
 
 [item:presentation.tex]
 open=true
-order=-1
+order=0
+
+[view-settings,view=0,item:../../../SystemModeling_Project/presentation/presentation.tex]
+CursorColumn=0
+CursorLine=155
+Dynamic Word Wrap=true
+JumpList=
+TextFolding=[{"endColumn":0,"endLine":145,"flags":2,"startColumn":0,"startLine":145}]
+ViMarks=.,158,106,[,158,104,],158,106
+
+[view-settings,view=0,item:presentation.tex]
+CursorColumn=0
+CursorLine=287
+Dynamic Word Wrap=true
+JumpList=
+TextFolding=[]
+ViMarks=.,265,13,[,265,13,],265,13

@@ -95,7 +95,7 @@ Mode=LaTeX
 Mode Set By User=false
 
 [item:main.tex]
-open=true
+open=false
 order=0
 
 [item:reporte_goughstewart.kilepr]
@@ -119,8 +119,8 @@ open=false
 order=-1
 
 [item:tex/desarrollo.tex]
-open=true
-order=2
+open=false
+order=1
 
 [item:tex/discusion.tex]
 open=false
@@ -131,7 +131,7 @@ open=false
 order=2
 
 [item:tex/resultados.tex]
-open=true
+open=false
 order=1
 
 [item:tex/simulacion.tex]
@@ -139,8 +139,8 @@ open=false
 order=-1
 
 [view-settings,view=0,item:main.tex]
-CursorColumn=25
-CursorLine=0
+CursorColumn=0
+CursorLine=9
 Dynamic Word Wrap=true
 JumpList=
 TextFolding=[]
@@ -179,8 +179,8 @@ TextFolding=[]
 ViMarks=.,41,25,[,41,22,],41,25
 
 [view-settings,view=0,item:tex/desarrollo.tex]
-CursorColumn=21
-CursorLine=148
+CursorColumn=14
+CursorLine=227
 Dynamic Word Wrap=false
 JumpList=
 TextFolding=[]
