@@ -1,0 +1,72 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="29,1" id="srcline1"> 1</a></span><span class="line">function R = M_Rot(ang,eje,tipo)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">%Se obtiene la matriz de rotacion en el eje x, y o z según se especifique</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">%tanto en grados como en radianes.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">%   R = M_Rot(ang,ejer,tipo)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">% </span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">%   ang  - ángulo de rotación</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,8" id="srcline8"> 8</a></span><span class="line"><span class="comment">%   eje  - eje de la rotación 'x','y' o 'z'</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,9" id="srcline9"> 9</a></span><span class="line"><span class="comment">%   tipo - tipo de dato del ángulo 'g' -&gt; grados 'r' -&gt; radianes</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,10" id="srcline10">10</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="29,11" id="srcline11">11</a></span><span class="line">switch nargin</span></span>
+<span class="srcline"><span class="lineno"><a href="29,12" id="srcline12">12</a></span><span class="line">  case 1</span></span>
+<span class="srcline"><span class="lineno"><a href="29,13" id="srcline13">13</a></span><span class="line">    disp("Faltan datos")</span></span>
+<span class="srcline"><span class="lineno"><a href="29,14" id="srcline14">14</a></span><span class="line">  case 2</span></span>
+<span class="srcline"><span class="lineno"><a href="29,15" id="srcline15">15</a></span><span class="line">    if strcmp(eje,'x')</span></span>
+<span class="srcline"><span class="lineno"><a href="29,16" id="srcline16">16</a></span><span class="line">      R = rotx(ang);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,17" id="srcline17">17</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="29,18" id="srcline18">18</a></span><span class="line">    if strcmp(eje,'y')</span></span>
+<span class="srcline"><span class="lineno"><a href="29,19" id="srcline19">19</a></span><span class="line">      R = roty(ang);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,20" id="srcline20">20</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="29,21" id="srcline21">21</a></span><span class="line">    if strcmp(eje,'z')</span></span>
+<span class="srcline"><span class="lineno"><a href="29,22" id="srcline22">22</a></span><span class="line">      R = rotz(ang);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,23" id="srcline23">23</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="29,24" id="srcline24">24</a></span><span class="line">  case 3</span></span>
+<span class="srcline"><span class="lineno"><a href="29,25" id="srcline25">25</a></span><span class="line">    if strcmp(tipo,'g')</span></span>
+<span class="srcline"><span class="lineno"><a href="29,26" id="srcline26">26</a></span><span class="line">      ang = deg2rad(ang);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,27" id="srcline27">27</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="29,28" id="srcline28">28</a></span><span class="line">    if strcmp(eje,'x')</span></span>
+<span class="srcline"><span class="lineno"><a href="29,29" id="srcline29">29</a></span><span class="line">      R = rotx(ang);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,30" id="srcline30">30</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="29,31" id="srcline31">31</a></span><span class="line">    if strcmp(eje,'y')</span></span>
+<span class="srcline"><span class="lineno"><a href="29,32" id="srcline32">32</a></span><span class="line">      R = roty(ang);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,33" id="srcline33">33</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="29,34" id="srcline34">34</a></span><span class="line">    if strcmp(eje,'z')</span></span>
+<span class="srcline"><span class="lineno"><a href="29,35" id="srcline35">35</a></span><span class="line">      R = rotz(ang);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,36" id="srcline36">36</a></span><span class="line">    end</span></span>
+<span class="srcline"><span class="lineno"><a href="29,37" id="srcline37">37</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="29,38" id="srcline38">38</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="29,39" id="srcline39">39</a></span><span class="line">  function Rx = rotx(theta)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,40" id="srcline40">40</a></span><span class="line">    Rx = [1,0,0;</span></span>
+<span class="srcline"><span class="lineno"><a href="29,41" id="srcline41">41</a></span><span class="line">      0,cos(theta),-sin(theta);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,42" id="srcline42">42</a></span><span class="line">      0,sin(theta),cos(theta)];</span></span>
+<span class="srcline"><span class="lineno"><a href="29,43" id="srcline43">43</a></span><span class="line">  end</span></span>
+</pre>
+</div>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="29,44" id="srcline44">44</a></span><span class="line">  <span class="keyword">function</span> <span class="var type1" id="S17T26U139">Ry</span> = roty(<span class="var type1" id="S18T3U142">theta</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,45" id="srcline45">45</a></span><span class="line">    <span class="mxinfo " id="T26:U3"><span class="var type1" id="S17T26U145">Ry</span> = <span class="mxinfo " id="T26:U5">[<span class="mxinfo " id="T28:U6"><span class="mxinfo " id="T3:U7">cos(<span class="var type1" id="S18T3U150">theta</span>)</span>,<span class="mxinfo " id="T3:U9">0</span>,<span class="mxinfo " id="T3:U10">sin(<span class="var type1" id="S18T3U154">theta</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="29,46" id="srcline46">46</a></span><span class="line">      <span class="mxinfo " id="T28:U12">0,1,0</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="29,47" id="srcline47">47</a></span><span class="line">      <span class="mxinfo " id="T28:U13"><span class="mxinfo " id="T3:U14">-<span class="mxinfo " id="T3:U15">sin(<span class="var type1" id="S18T3U163">theta</span>)</span></span>,<span class="mxinfo " id="T3:U17">0</span>,<span class="mxinfo " id="T3:U18">cos(<span class="var type1" id="S18T3U167">theta</span>)</span></span>]</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="29,48" id="srcline48">48</a></span><span class="line">  <span class="keyword">end</span></span></span>
+</pre>
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="29,49" id="srcline49">49</a></span><span class="line">  function Rz = rotz(theta)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,50" id="srcline50">50</a></span><span class="line">    Rz = [cos(theta),-sin(theta),0;</span></span>
+<span class="srcline"><span class="lineno"><a href="29,51" id="srcline51">51</a></span><span class="line">      sin(theta),cos(theta),0;</span></span>
+<span class="srcline"><span class="lineno"><a href="29,52" id="srcline52">52</a></span><span class="line">      0,0,1];</span></span>
+<span class="srcline"><span class="lineno"><a href="29,53" id="srcline53">53</a></span><span class="line">  end</span></span>
+<span class="srcline"><span class="lineno"><a href="29,54" id="srcline54">54</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="29,55" id="srcline55">55</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="29,56" id="srcline56">56</a></span><span class="line"> </span></span>
+</pre>
+</div>
+</body>
+</html>
