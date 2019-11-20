@@ -1,7 +1,7 @@
 function [anga,angb,a,b,lmin] = plat_prop()
 rb = .5;                        % Radio de la junta en la base
 ra = .3;                        % Radio de la junta en la plataforma
-lmin = 2;                       % Extensión minima del piston/actuador
+lmin = 1;                       % Extensión minima del piston/actuador
 hb = .1;                        % Separación lineal entre juntas en la base
 ha = .1;                        % Separacion lineal entre juntas en la plataforma
 % Iniciar los valores de la plataforma

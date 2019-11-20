@@ -83,8 +83,8 @@ for i = 1:6
     A(i,4:6) = cc';
 end
 Gp = zeros(6,1);
-Gp(1:3,1) = (R_rpy'*[0;0;-9.81]);
+Gp(1:3,1) = (R_rpy'*[0;0;9.81]);
 R = [R_rpy,zeros(3,3);zeros(3,3),R_rpy];
 
-twist_dot = Hv_inv*(R'*A'*tau - hv) + Gp;
+twist_dot = Hv_inv*(R'*A'*tau - hv) - Gp;
 end
