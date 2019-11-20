@@ -278,6 +278,7 @@ TSWLatexianTemp*
 03_Reporte/presentation/.kile/*
 04_Manual/.kile/*
 *kilepr.gui
+*.kilepr
 
 
 
