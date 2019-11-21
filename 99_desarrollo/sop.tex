@@ -1,3 +1,15 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage[spanish]{babel}
+
+\usepackage[margin = .5in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{float}
+\usepackage{import}
+
+\begin{document}
 \section{Desarrollo}
 \subsection{Restricciones}
 La PGS al ser un robot de cadena cerrada obtiene limitaciones 
@@ -13,7 +25,7 @@ parametros de diseño:
 \centering
 \begin{tabular}{|ll|}
 \hline
-\multicolumn{2}{|l|}{Parametros diseño} \\ \hline
+\multicolumn{2}{|l|}{\cellcolor[HTML]{EFEFEF}Parametros diseño} \\ \hline
 Radio base & m ($r_b$)\\ \hline
 Radio plataforma & m ($r_a$)\\ \hline
 Separacion entre juntas (base) & m ($k_b$)\\ \hline
@@ -340,3 +352,5 @@ Al realizar la igualación de la ecuacion \ref{equ:jac_g} y \ref{equ:jac_a} se e
 \end{equation}
 
 \subsubsection{pseudo-Cinemática de velocidad}
+
+\end{document}
