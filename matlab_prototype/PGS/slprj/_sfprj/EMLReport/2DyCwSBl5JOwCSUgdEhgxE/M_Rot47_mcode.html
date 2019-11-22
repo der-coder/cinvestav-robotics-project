@@ -1,0 +1,63 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="29,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S2T26U3">R</span> = M_Rot(<span class="var type1" id="S3T3U6">ang</span>,<span class="var type2" id="S4T27V3U7">eje</span>,<span class="var type2" id="S5T27V2U8">tipo</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">%Se obtiene la matriz de rotacion en el eje x, y o z según se especifique</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">%tanto en grados como en radianes.</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">%   R = M_Rot(ang,ejer,tipo)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">% </span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">%   ang  - ángulo de rotación</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,8" id="srcline8"> 8</a></span><span class="line"><span class="comment">%   eje  - eje de la rotación 'x','y' o 'z'</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,9" id="srcline9"> 9</a></span><span class="line"><span class="comment">%   tipo - tipo de dato del ángulo 'g' -&gt; grados 'r' -&gt; radianes</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,10" id="srcline10">10</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="29,11" id="srcline11">11</a></span><span class="line"><span class="keyword">switch</span> nargin</span></span>
+<span class="srcline"><span class="lineno"><a href="29,12" id="srcline12">12</a></span><span class="line">  <span class="keyword">case</span> 1</span></span>
+<span class="srcline"><span class="lineno"><a href="29,13" id="srcline13">13</a></span><span class="line">    disp(<span class="string">"Faltan datos"</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,14" id="srcline14">14</a></span><span class="line">  <span class="keyword">case</span> 2</span></span>
+<span class="srcline"><span class="lineno"><a href="29,15" id="srcline15">15</a></span><span class="line">    <span class="keyword">if</span> strcmp(<span class="var type0" id="S4T0U24">eje</span>,<span class="string">'x'</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,16" id="srcline16">16</a></span><span class="line">      <span class="var type0" id="S2T0U28">R</span> = rotx(<span class="var type0" id="S3T0U31">ang</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,17" id="srcline17">17</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,18" id="srcline18">18</a></span><span class="line">    <span class="keyword">if</span> strcmp(<span class="var type0" id="S4T0U36">eje</span>,<span class="string">'y'</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,19" id="srcline19">19</a></span><span class="line">      <span class="var type0" id="S2T0U40">R</span> = roty(<span class="var type0" id="S3T0U43">ang</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,20" id="srcline20">20</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,21" id="srcline21">21</a></span><span class="line">    <span class="keyword">if</span> strcmp(<span class="var type0" id="S4T0U48">eje</span>,<span class="string">'z'</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,22" id="srcline22">22</a></span><span class="line">      <span class="var type0" id="S2T0U52">R</span> = rotz(<span class="var type0" id="S3T0U55">ang</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,23" id="srcline23">23</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,24" id="srcline24">24</a></span><span class="line">  <span class="keyword">case</span> 3</span></span>
+<span class="srcline"><span class="lineno"><a href="29,25" id="srcline25">25</a></span><span class="line">    <span class="keyword">if</span> strcmp(<span class="var type1" id="S5T27U62">tipo</span>,<span class="string">'g'</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,26" id="srcline26">26</a></span><span class="line">      <span class="var type0" id="S3T0U66">ang</span> = deg2rad(<span class="var type0" id="S3T0U69">ang</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,27" id="srcline27">27</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,28" id="srcline28">28</a></span><span class="line">    <span class="keyword">if</span> strcmp(<span class="var type1" id="S4T27U74">eje</span>,<span class="string">'x'</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,29" id="srcline29">29</a></span><span class="line">      <span class="var type0" id="S2T0U78">R</span> = rotx(<span class="var type0" id="S3T0U81">ang</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,30" id="srcline30">30</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,31" id="srcline31">31</a></span><span class="line">    <span class="keyword">if</span> strcmp(<span class="var type1" id="S4T27U86">eje</span>,<span class="string">'y'</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,32" id="srcline32">32</a></span><span class="line">      <span class="mxinfo " id="T26:U8"><span class="var type1" id="S2T26U90">R</span> = <span class="mxinfo " id="T26:U10"><span class="fcn" id="F48N4:B92">roty</span>(<span class="var type1" id="S3T3U93">ang</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="29,33" id="srcline33">33</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,34" id="srcline34">34</a></span><span class="line">    <span class="keyword">if</span> strcmp(<span class="var type1" id="S4T27U98">eje</span>,<span class="string">'z'</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,35" id="srcline35">35</a></span><span class="line">      <span class="var type0" id="S2T0U102">R</span> = rotz(<span class="var type0" id="S3T0U105">ang</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,36" id="srcline36">36</a></span><span class="line">    <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,37" id="srcline37">37</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,38" id="srcline38">38</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="29,39" id="srcline39">39</a></span><span class="line">  <span class="keyword">function</span> <span class="var type0" id="S13T0U108">Rx</span> = rotx(<span class="var type0" id="S14T0U111">theta</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,40" id="srcline40">40</a></span><span class="line">    <span class="var type0" id="S13T0U114">Rx</span> = [1,0,0;</span></span>
+<span class="srcline"><span class="lineno"><a href="29,41" id="srcline41">41</a></span><span class="line">      0,cos(<span class="var type0" id="S14T0U124">theta</span>),-sin(<span class="var type0" id="S14T0U128">theta</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,42" id="srcline42">42</a></span><span class="line">      0,sin(<span class="var type0" id="S14T0U133">theta</span>),cos(<span class="var type0" id="S14T0U136">theta</span>)];</span></span>
+<span class="srcline"><span class="lineno"><a href="29,43" id="srcline43">43</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,44" id="srcline44">44</a></span><span class="line">  <span class="keyword">function</span> <span class="var type0" id="S17T0U139">Ry</span> = roty(<span class="var type0" id="S18T0U142">theta</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,45" id="srcline45">45</a></span><span class="line">    <span class="var type0" id="S17T0U145">Ry</span> = [cos(<span class="var type0" id="S18T0U150">theta</span>),0,sin(<span class="var type0" id="S18T0U154">theta</span>);</span></span>
+<span class="srcline"><span class="lineno"><a href="29,46" id="srcline46">46</a></span><span class="line">      0,1,0;</span></span>
+<span class="srcline"><span class="lineno"><a href="29,47" id="srcline47">47</a></span><span class="line">      -sin(<span class="var type0" id="S18T0U163">theta</span>),0,cos(<span class="var type0" id="S18T0U167">theta</span>)];</span></span>
+<span class="srcline"><span class="lineno"><a href="29,48" id="srcline48">48</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,49" id="srcline49">49</a></span><span class="line">  <span class="keyword">function</span> <span class="var type0" id="S21T0U170">Rz</span> = rotz(<span class="var type0" id="S22T0U173">theta</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="29,50" id="srcline50">50</a></span><span class="line">    <span class="var type0" id="S21T0U176">Rz</span> = [cos(<span class="var type0" id="S22T0U181">theta</span>),-sin(<span class="var type0" id="S22T0U185">theta</span>),0;</span></span>
+<span class="srcline"><span class="lineno"><a href="29,51" id="srcline51">51</a></span><span class="line">      sin(<span class="var type0" id="S22T0U190">theta</span>),cos(<span class="var type0" id="S22T0U193">theta</span>),0;</span></span>
+<span class="srcline"><span class="lineno"><a href="29,52" id="srcline52">52</a></span><span class="line">      0,0,1];</span></span>
+<span class="srcline"><span class="lineno"><a href="29,53" id="srcline53">53</a></span><span class="line">  <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="29,54" id="srcline54">54</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="29,55" id="srcline55">55</a></span><span class="line"><span class="keyword">end</span></span></span>
+</pre>
+</body>
+</html>
