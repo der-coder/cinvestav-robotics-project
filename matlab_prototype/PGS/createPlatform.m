@@ -4,6 +4,8 @@ function [mass, distanceCenterMass, inertiaTensorCenterMass, massTensor] = creat
 mass = 0.001 * 115537.66; % mass converted to kilograms
 distanceCenterMass = 0.001 * [0; 0; 111.45]; % distance vector in meters
 
+r = distanceCenterMass;
+
 convertGramMM2toKgM2 = (1/1000)*(1/(1000^2)); 
 
 
@@ -19,11 +21,14 @@ I=abs(Px*Ix)+abs(Py*Iy)+abs(Pz*Iz);
 
 r_cpo = CPO(r);
 
+inertiaTensorCenterMass = diag(I);
+
 M1 = mass*eye(3);
 M2 = -mass*r_cpo;
-M3 = m*r_cpo;
+M3 = mass*r_cpo;
 M4 = diag(I)-(mass*((r_cpo)^2));
-M_j=[M1 M2;
+massTensor=[M1 M2;
      M3 M4];
+
 
 end
