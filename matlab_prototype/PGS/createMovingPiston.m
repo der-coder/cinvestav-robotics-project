@@ -21,11 +21,13 @@ I=abs(Px*Ix)+abs(Py*Iy)+abs(Pz*Iz);
 
 r_cpo = CPO(r);
 
+inertiaTensorCenterMass = diag(I);
+
 M1 = mass*eye(3);
 M2 = -mass*r_cpo;
-M3 = m*r_cpo;
+M3 = mass*r_cpo;
 M4 = diag(I)-(mass*((r_cpo)^2));
-M_j=[M1 M2;
+massTensor=[M1 M2;
      M3 M4];
 
 end
