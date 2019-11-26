@@ -300,7 +300,7 @@ La cinemática inversa de velocidad se puede obtener desarrollando la derivada d
 \frac{d}{dt}q_i = \frac{d}{dt}\sqrt{l_i^Tl_i} 
 \end{equation}
 
-Desarrollamos la derivada de $||l_||i$:
+Desarrollamos la derivada de $q_i$:
 \begin{equation}
 \dot{q_i} = \frac{1}{2q_i} (\dot{l_i} \cdot l_i + l_i \cdot \dot{l_i}) = \frac{1}{q_i} (\dot{l_i} \cdot l_i)
 \end{equation}
@@ -327,30 +327,122 @@ v_p\\
 \end{bmatrix}
 \end{equation}
 
-Con la expresion de la ecuación \ref{equ:jac_inv} se encuentra que la forma corresponde a la forma
+Con la expresion de la ecuación \ref{equ:jac_inv} se encuentra que la ecuación que 
+corresponde a la forma
 \begin{equation} \label{equ:jac_g}
 \dot{q} = A(d,R) \nu_p
 \end{equation}
 
-Donde la matriz $A$ es el jacobiano geométrico inverso $J_g^{(0)}$ de la plataforma desde el referencial inercial. Y mapea las velocidades de las coordenadas generalizadas al twist de la plataforma.\\
+Donde la matriz $A$ es el jacobiano geométrico inverso $J_g^{(0)}$ de la plataforma visto desde el referencial inercial. Y mapea las velocidades de las coordenadas generalizadas al twist de la plataforma.\\
 
-Al derivar la pose de la plataforma, se obtiene que el jacobiano geometrico es el que mapea los cambios de las coordenadas geeralizadas en los cambios de la pose y se define como:
+Al derivar la pose de la plataforma, se obtiene que el jacobiano geometrico es el que mapea los cambios de las coordenadas generalizadas en los cambios de la pose y se define como:
 
 \begin{equation} \label{equ:jac_a}
 \dot{z} = J_a(\cdot)\dot{q}
 \end{equation}
 
-Existe una relacion entre la derivada de la pose y el twist, se encuentra que la relación entre estos dos es un operador cinemático ($J_z$) el cual se obtiene dependiendo de la configuración de orientación utilizada.\\
+Existe una relacion entre la derivada de la pose y el twist, se encuentra que la relación entre estos dos es un operador cinemático ($J_z$) el obtenido de la configuración de orientación utilizada en el sistema.\\
 \begin{equation}
 \nu_p^{(0)} = J_z\dot{z}
+\end{equation}
+El operador cinemático de la plataforma que sigue el formato de ángulos de alabeo, cabezeo y guiñada:
+
+\begin{equation}
+ecuacion de operador cinematico
 \end{equation}
 
 Al realizar la igualación de la ecuacion \ref{equ:jac_g} y \ref{equ:jac_a} se encuentra:
 
-\begin{equation}
+\begin{equation} \label{equ:q_twist}
 \dot{q} = A(d,R)^0J_z(\theta) \dot{z}
 \end{equation}
 
-\subsubsection{pseudo-Cinemática de velocidad}
+\subsubsection{pseudo-Cinemática Directa de velocidad}
+
+Observando la transformación de Plücker la cual traslada y rota el \emph{twist} de un referencial padre a un hijo y tiene la siguiente forma:
+
+\begin{equation} \label{equ:plucker}
+X(\cdot) = R^T(R_{i-1}^i)T(d_{i/i-1}^{i-1})
+\end{equation}
+
+Con la transformación de Plücker y conociendo las condiciones iniciales de la cadena serial de la plataforma se puede mapear de manera recursiva el \emph{twist} de la plataforma de manera recursiva. El movimiento de manera local $\nu_{i/i-1}^{i}$ depende unicamente de $\theta_i$ en cada referencial asignado y utilizando la condición \emph{screw} se puede definir $\nu_{i/i-1}^{i} = s_i \dot{\theta}_i$. Se define el calculo del \emph{twist} de manera recursiva de la siguiente manera:
+
+\begin{equation} \label{equ:tiwst_rec}
+\nu_i = X_i(\theta_i)\nu_i + s_i\dot{\theta_i}
+\end{equation}
+
+Y siguiendo el concepto de la traslacion y rotacion del \emph{twist} asi como $\nu_i = J_{i}(\theta_i)\dot{\theta_i}$ se puede encontrar el jacobiano de manera recursiva como:
+
+\begin{equation}
+J_i(\theta_i) = X(\theta_i) J_{i-1} + S_i
+\end{equation}
+
+Donde $S_i$ es una matriz de ceros ($S_i \in R^{6\times n}$) en donde la columna $i$ de la junta debe de tener el vector $s_i$ correspondiente del movimiento. Al realizar la recursion, se encuentra que el jacobiano de inicio es una matriz nula $J_0 = 0$.
+
+La aceleración de la cadena serial puede encontrarse derivando la expresion de la ecuacion \ref{equ:tiwst_rec}.
+
+\begin{equation}
+a_i = \frac{d}{dt} (X_i(\theta_i)\nu_i + s_i\dot{\theta_i})
+\end{equation}
+
+Donde se define la derivada de la transformación de Plücker como:
+\begin{equation}
+\dot{X_i} = -\theta_i \Omega(s_i)X_i
+\end{equation}
+
+Lo cual nos deja la ecuacion de aceleracion como:
+
+\begin{equation}
+a_i = X_i(\theta_i)\dot{\nu}_i - \theta_i \Omega(s_i)\nu_i+ s_i\ddot{\theta_i}
+\end{equation}
+
+Con el valor inicial de la aceleración $a_0 = G_0$ se reduce la expresión anterior a la siguiente manera:
+\begin{equation}
+a_i = X_i(\theta_i)a_{i-1} - \dot{\theta_i}\Omega(s_i)\nu_i
+\end{equation}
+
+\subsubsection{Dinámica}
+
+Del modelo lagrangiano se observa que la dinámica del sistema se observa como:
+
+\begin{equation}\label{equ:lagrangiano_modelo}
+H(q)\ddot{q} + C(q,\dot{q})\dot{q} +g(q) - \tau_D = \tau_e
+\end{equation}
+
+Y bajo los conceptos del BDA los términos inerciales y de gravedad adopta la siguiente forma:
+
+\begin{equation}
+\Sigma_{i=1}^N J_i^T(q)F_i = \tau_e
+\end{equation}
+
+El cual utiliza los jacobianos locales para mapear las velocidades generalizadas locales al \emph{twist} en coordenadas locales de cada referencial asignado al igual que las fuerzas.
+\begin{equation} \label{equ:twist_loc}
+\nu_i = J_i(q)\dot{q}
+\end{equation}
+\begin{equation}
+F_i = M_i(\dot{\nu_i} - G_i) - \Omega^T(\nu_i)M_i\nu_i - F_{f_{i}}
+\end{equation}
+Las fuerzas del sistema utilizando la formulación de Kirchoff para cuerpos rígidos.[REFERENCIA A FORMULACION DE KIRCHOFF]
+
+Sin embargo para el desarrollo de la PGS la dinámica directa necesita de los valores del jacobiano y su derivada. Pero utilizando la ecuacion \ref{equ:q_twist} en la \ref{equ:twist_loc} se encuentra que:
+\begin{equation}
+\nu_i = J_i(q) A(d,R) R(R) \nu_p = T_i(d,R) \nu_p
+\end{equation}
+
+Y permite general la formulación quasi-Lagrangiana la cual nos evita tener que utilizar las coordenadas y velocidades generalizadas del sistema para encontrar la dinámica. Este modelo se expresa de la siguiente manera:
+\begin{equation}
+H_v(z)\dot{\nu_p}+h_v(z,\nu_p) = R^T(R) A^T(d,R)\tau
+\end{equation}
+
+En donde el modelo dinámico depende de los valores de la pose y \emph{twist} de la plataforma la cual no necesita de las coordenadas y velocidades generalizadas. Volviendo este modelo independiente a la cinemática directa de la plataforma del modelo Lagrangiano.
+
+Se define:
+\begin{equation}
+H_v(z) = \Sigma_{i=1}^N T_i^T(z)M_iT_i(z) > 0
+\end{equation}
+
+\begin{equation}
+h_v(z,\nu_p) = \Sigma_{i=1}^N T_i^T(z) \left( M_i\left(\dot{T}_i(z,\dot{z}) - G_i\right) - \Omega^T(\nu_i)M_i\nu_i - F_{e_{i}} \right)
+\end{equation}
 
 \end{document}
