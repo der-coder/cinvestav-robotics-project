@@ -54,8 +54,12 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{goughStewart.pdf}}%
-    \put(0.75554964,0.12036964){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_{i}$\end{tabular}}}}%
-    \put(0.58552132,0.41538528){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$Ra_{i}$\end{tabular}}}}%
-    \put(0.62993194,0.23560762){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}d\end{tabular}}}}%
+    \put(0.75554964,0.12036964){\color[rgb]{1,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_{i}$\end{tabular}}}}%
+    \put(0.42581996,0.50854439){\color[rgb]{1,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$Ra_{i}$\end{tabular}}}}%
+    \put(0.39432104,0.25512573){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}d\end{tabular}}}}%
+    \put(0.66199757,0.27743213){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$l_{i}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{goughStewart.pdf}}%
+    \put(0.58403041,0.42352778){\color[rgb]{0,0,0.50196078}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_{i}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{goughStewart.pdf}}%
   \end{picture}%
 \endgroup%

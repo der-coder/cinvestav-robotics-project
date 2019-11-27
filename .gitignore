@@ -272,4 +272,15 @@ TSWLatexianTemp*
 # glossaries
 *.glstex
 
+*/.kile
+
+03_Reporte/.kile/*
+03_Reporte/presentation/.kile/*
+04_Manual/.kile/*
+*kilepr.gui
+*.kilepr
+
+
+
 # End of https://www.gitignore.io/api/latex
+
