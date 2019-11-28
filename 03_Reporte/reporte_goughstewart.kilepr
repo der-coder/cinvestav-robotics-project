@@ -6,7 +6,7 @@ def_graphic_ext=png
 img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=3
-kileversion=2.9.92
+kileversion=2.9.93
 masterDocument=
 name=Reporte_GoughStewart
 pkg_extIsRegExp=false
@@ -26,15 +26,9 @@ mode=LaTeX
 
 [item:reporte_goughstewart.kilepr]
 archive=true
-encoding=
-highlight=
-mode=
-
-[item:tex/apendice_codigo_matlab.tex]
-archive=true
 encoding=UTF-8
-highlight=LaTeX
-mode=LaTeX
+highlight=None
+mode=Normal
 
 [item:tex/bibliografia.bib]
 archive=true
