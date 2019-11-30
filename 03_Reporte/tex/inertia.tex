@@ -2,12 +2,22 @@
 
 Los momentos de inercia del sistema fueron obtenidos
 empleando la herramienta de Solidworks. 
-Las propiedades de densidad de los componentes fueron asignados de acuerdo al material de manufactura\footnote{El motor se asume como una masa uniformemente distribuida.}
+Las propiedades de densidad de los componentes 
+fueron asignados de acuerdo al material de manufactura
+\footnote{El motor se asume como una masa uniformemente distribuida.}.
+
 El tensor de inercia de cada objeto fue medido respecto a su centro de masa.
 Empleando el teorema de ejes paralelos (\textbf REFERENCIA) se trasladó el efecto de los tensores de inercia necesarios al marco referencial local.
 A continuación se presentan los valores correspondientes a cada objeto de interés para la simulación.
 
+El tensor de inercia se obtiene de la combinación lineal 
+de los componentes $P_x$, $P_y$ y $P_z$ y los vectores $\mathbf I_x$, $\mathbf I_y$, e $\mathbf I_z]$.
+Se realiza también la conversión adecuada de unidades al
+sistema internacional.
 
+\begin{equation*}
+ I = abs(P_x \mathbf I_x) + abs(P_y \mathbf I_y) +abs(P_z \mathbf I_z)
+\end{equation*}
 
 \subsection{Plataforma móvil}
 
@@ -22,12 +32,14 @@ A continuación se presentan los valores correspondientes a cada objeto de inter
 \begin{table}[hb!]
  \begin{center}
 \begin{tabular}{lclc}
+ & & & $[g/mm^2]$\\
  $ I_x $ & $ [1 \ 0 \ 0]^T $ & $ P_x $ & 7246289714.88\\
  $ I_y $ & $ [0 \ 1 \ 0]^T $ & $ P_y $ & 7246289714.88\\
  $ I_z $ & $ [0 \ 0 \ 1]^T $ & $ P_z $ & 13887070726.86
 \end{tabular}
 \end{center}
 \caption{Datos de inercia de la plataforma móvil.}
+\label{tab: inertia table platform}
 \end{table}
 
 
@@ -45,36 +57,63 @@ A continuación se presentan los valores correspondientes a cada objeto de inter
  \begin{center}
 \begin{tabular}{lclc}
 % \begin{multicolumn}{2}{c}{Vector} & \begin{multicolumn}{2}{c}{Inertia [$g/mm^2$]} \\
- $ I_x $ & $ [1 \ 0 \ 0]^T $ & $ P_x $ & 348997674.08\\
- $ I_y $ & $ [0 \ 1 \ 0]^T $ & $ P_y $ & 7246289714.88\\
- $ I_z $ & $ [0 \ 0 \ 1]^T $ & $ P_z $ & 13887070726.86
+ & & & $[g/mm^2]$\\
+ $ I_x $ & $ [0.73\ -0.68\ 0]^T $ & $ P_x $ & 348997674.08\\
+ $ I_y $ & $ [0.68\ 0.73\ 0]^T $ & $ P_y $ & 349004086.28\\
+ $ I_z $ & $ [0 \ 0 \ 1]^T $ & $ P_z $ & 696714510.70
 \end{tabular}
 \end{center}
-\caption{Datos de inercia de la plataforma móvil.}
+\caption{Datos de inercia de la base.}
+\label{tab: inertia table base}
 \end{table}
 
 \subsection{Actuador prismático con motor}
 \begin{table}[hb!]
  \begin{center}
 \begin{tabular}{lclc}
+
+
+% Px = convertGramMM2toKgM2 * 2079848.97;
+% Py = convertGramMM2toKgM2 * 703671034.55;
+% Pz = convertGramMM2toKgM2 * 703687095.26;
+% 
+% Ix = [0; 0; 1];
+% Iy = [0; -1; 0];
+% Iz = [1; 0; 0];
+
+
 % \begin{multicolumn}{2}{c}{Vector} & \begin{multicolumn}{2}{c}{Inertia [$g/mm^2$]} \\
- $ I_x $ & $ [1 \ 0 \ 0]^T $ & $ P_x $ & 7246289714.88\\
- $ I_y $ & $ [0 \ 1 \ 0]^T $ & $ P_y $ & 7246289714.88\\
- $ I_z $ & $ [0 \ 0 \ 1]^T $ & $ P_z $ & 13887070726.86
+ & & & $[g/mm^2]$\\
+ $ I_x $ & $ [0 \ 0 \ 1]^T $ & $ P_x $ & 2079848.97\\
+ $ I_y $ & $ [0 \ -1 \ 0]^T $ & $ P_y $ & 703671034.55\\
+ $ I_z $ & $ [1 \ 0 \ 0]^T $ & $ P_z $ & 703687095.26
 \end{tabular}
 \end{center}
-\caption{Datos de inercia de la plataforma móvil.}
+\caption{Datos de inercia del actuador con motor.}
+\label{tab: inertia table motor}
 \end{table}
 
 \subsection{Junta esférica con tornillo}
 \begin{table}[hb!]
  \begin{center}
 \begin{tabular}{lclc}
+
+
+% Px = convertGramMM2toKgM2 * 297124.48;
+% Py = convertGramMM2toKgM2 * 205340128.62;
+% Pz = convertGramMM2toKgM2 * 205340128.62;
+% 
+% Ix = [0; 0; 1];
+% Iy = [0.71; -0.71; 0];
+% Iz = [0.71; 0.71; 0];
+
 % \begin{multicolumn}{2}{c}{Vector} & \begin{multicolumn}{2}{c}{Inertia [$g/mm^2$]} \\
- $ I_x $ & $ [1 \ 0 \ 0]^T $ & $ P_x $ & 7246289714.88\\
- $ I_y $ & $ [0 \ 1 \ 0]^T $ & $ P_y $ & 7246289714.88\\
- $ I_z $ & $ [0 \ 0 \ 1]^T $ & $ P_z $ & 13887070726.86
+ & & & $[g/mm^2]$\\
+ $ I_x $ & $ [0 \ 0 \ 1]^T $ & $ P_x $ & 297124.48\\
+ $ I_y $ & $ [0.71 \ -0.71 \ 0]^T $ & $ P_y $ & 205340128.62\\
+ $ I_z $ & $ [0.71 \ 0.71 \ 0]^T $ & $ P_z $ & 205340128.62
 \end{tabular}
 \end{center}
-\caption{Datos de inercia de la plataforma móvil.}
+\caption{Datos de inercia de la junta esférica con tornillo.}
+\label{tab: inertia table joint}
 \end{table}

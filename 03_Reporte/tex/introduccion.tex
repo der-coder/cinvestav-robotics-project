@@ -1,111 +1,51 @@
-La plataforma Gough Stewart (PGS), dotada de seis grados de 
-libertad (gdl), es uno de los manipuladores paralelos más 
-populares. Propuesto en 1954 por Eric Gough \cite{pretoria} 
-como una herramienta para pruebas en llantas de 
-vehículos\cite{gough}, fue redescubierto una década después 
-por D. Stewart en su publicación describiendo un sistema de 
-seis grados de libertad diseñado como un simulador de vuelo 
-\cite{stewart}.
+\section{Introducción}
 
-Dentro del trabajo de Stewart, el sistema se distinguió de 
-otros simuladores de vuelo por la ausencia de un eje fijo 
-con respecto al suelo \cite{stewart}. Esta característica le 
-ha permitido al mecanismo simular, hasta cierto límite, 
-condiciones de vuelo y aterrizaje que otros sistemas fueron 
-incapaces de realizar.
+La plataforma Gough-Cappel es un robot paralelo de seis grados de libertad.
+Está compuesto por seis actuadores prismáticos que conectan una plataforma
+móvil con una base mediante cardanes en un extremo de los actuadores y por
+juntas esféricas o cardanes en el extremo contrario. 
 
-La plataforma Gough Stewart no se vió limitada en cuanto a 
-sus aplicaciones. Múltiples ideas han sido propuestas por la 
-comunidad científica y la industria. Ejemplos de esto 
-incluye su uso como mesa estabilizadora \cite{pretoria}, 
-robot para cirugía, e incluso su implementación como sistema 
-universal de pruebas para llantas \cite{gough2}.
+% TODO image here
 
-Los elementos que en conjunto forman la plataforma Gough 
-Stewart pueden agruparse en tres grupos: elementos de 
-control, elementos de movimiento y elementos fijos. Los 
-elementos de control consideran todo componente empleado en 
-el robot que permita la medición de las condiciones del 
-sistema y aquellos que están dedicados a procesar dicha 
-información y enviar instrucciones al resto del sistema para 
-asegurar un funcionamiento adecuado. Los elementos de 
-movimiento incluyen todos los componentes responsables de 
-efectuar el desplazamiento de la plataforma superior del 
-sistema. En esta categoría se encuentran los actuadores 
-lineales que al operar en conjunto permiten a la plataforma
-hacer uso de un rango de movimiento y precisión 
-que distinguen al mecanismo. Los elementos fijos consideran
-al resto de los elementos del sistema que no son responsables
-del movimiento o del control del mismo. El más importante de
-estos es la plataforma inferior, que permanece fija con 
-el suelo y provee el soporte necesario al resto del sistema
-para operar.
+Conocido en la literatura como la 
+plataforma Gough-Stewart, su origen se remonta a mediados del sigo XIX.
+Su invención está documentada en 1954 por Eric Gough 
+\cite{gough} en Inglaterra como una máquina para 
+evaluar la respuesta de llantas de aviones a diferentes 
+condiciones de aterrizaje (figura). 
+De manera independiente, Klaus Cappel inventó un simulador de vuelo (figura )
+con la misma arquitectura y una solicitud de patente 
+fue sometida en 1964.
+La popularización de este diseño de robot es debido a D. Stewart 
+por su publicación en 1965, que sorprendentemente presenta el
+diseño de un simulador de vuelo que no asemeja a la 
+plataforma Gough Stewart (figura ).
 
-A diferencia de otros robots, la plataforma Gough Stewart 
-es una estructura de naturaleza paralela. 
-Esto indica que el movimiento del elemento de interés se
-ve afectado simultáneamente por cada elemento impulsor 
-del sistema y que estas aportaciones no son estudiadas en
-secuencia. Una estructura paralela es considerada una cadena 
-cinemática cerrada. Cada actuador conecta al efector final
-con el origen con conexiones paralelas. 
-El estudio y análisis de este comportamiento resulta más 
-complejo que en mecanismos de naturaleza secuencial.
+% http://www.parallemic.org/Reviews/Review007.html
 
-El estudio cinemático de un robot cualquiera se divide
-en el estudio de la cinemática directa o el estudio de 
-la cinemática inversa del mismo.
-El estudio de la cinemática directa de un robot
-emplea el conocimiento de las dimensiones de sus
-elementos de movimiento para así predecir 
-la posición y orientación
-que el efector final exhibirá. 
-Por el contrario, la cinemática inversa hace uso de 
-una posición y orientación conocida del efector
-final para determinar las dimensiones de los elementos 
-de movimiento.
-Para el caso de la plataforma Gough Stewart, 
-el estudio de la cinemática directa resulta
-ser un reto pues las ecuaciones de movimiento
-no representan un sistema lineal. 
-Esta característica reduce considerablemente
-las herramientas disponibles para el análisis
-cinemático del sistema.
-Aunado a esta limitación, el estudio de la 
-cinemática inversa del sistema es mucho más preferible.
+% TODO Insert 3 images for the designs by Gough, Cappel, and Stewart
 
-De la misma forma, es necesario conocer el modelo dinámico 
-del sistema. 
-Éste define la manera en que las fuerzas y energías
-presentes en el sistema se comportan.
-La obtención de un modelo dinámico de la 
-plataforma Gough Stewart
-cuenta también con sus propias complicaciones
-debido a su naturaleza como estructura de ciclo cerrado.
+\begin{figure}[hb!]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+%         \includegraphics[width=\textwidth]{case03_phase_r_d_r}
+        \caption{Máquina universal diseñada por Gough.}
+        \label{fig: gough robot}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.3\textwidth}
+%         \includegraphics[width=\textwidth]{case03_phase_theta_d_theta}
+        \caption{Simulador de vuelo patentado por Cappel.}
+        \label{fig: cappel robot}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+    %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.3\textwidth}
+%         \includegraphics[width=\textwidth]{case03_phase_theta_d_theta}
+        \caption{Simulador de vuelo propuesto por Stewart.}
+        \label{fig: stewart robot}
+    \end{subfigure}
+    \caption{Iteraciones del robot paralelo.}\label{fig: parallel robots}
+\end{figure}
 
-El modelo dinámico puede ser obtenido 
-por medio de alguno de los siguientes métodos: 
-\emph{Euler-Lagrange, principio de trabajo virtual, 
-D'Alembert-Lagrange}. 
-Este trabajo empleará el método de D'Alembert-Lagrange
-para obtener el modelo dinámico de la plataforma 
-Gough Stewart.
-
-El objetivo de implementar una platafora Gough Stewart es
-aprovechar la precisión de sus movimientos para 
-controlar de esta manera el movimiento de un objeto de 
-interés. El control del  movimiento requiere también
-que el sistema sea capaz de rechazar perturbaciones
-y la habilidad de mantener la estabilidad de la 
-plataforma superior aún cuando la posición de referencia
-esté cambiando. La teoría de control 
-propone diferentes maneras de llegar a la estabilidad por 
-medio de la aplicación de gradientes de energía suficientes 
-para mantener la estabilidad en la referencia deseada.
-
-Este trabajo presentará el estudio de la cinemática
- y la dinámica de la plataforma Gough Stewart. 
- Se presentará también una comparación de diferentes 
- estrategias de control del sistema a manera 
- de determinar la estrategia que sea más 
- eficiente en términos de energía.
