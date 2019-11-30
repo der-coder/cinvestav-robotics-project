@@ -1,10 +1,41 @@
 \section{Discusión}
+Se describen algunos de los sucesos del proyecto.
+Se detallan las observaciones hechas sobre los eventos ocurridos y
+el análisis de las situaciones.
 
 \subsection{Entendimiento del problema}
 
+
 \subsection{Simulador en lazo abierto}
+La implementación de las ecuaciones del robot paralelo en 
+MATLAB tuvo varios sucesos.
+La primer implementación del código hacía uso de tensores de 
+inercia $I$ que no correspondían a los tensores reales del sistema.
+Esto se debió a que solamente se estaban probando las
+rutinas desarrolladas y su correcta ejecución.
+El comportamiento de la plataforma en esta etapa difería 
+de manera exorbitante de lo esperado.
+La prueba de caída libre del sistema llevaba al sistema a caer en 
+una dirección diferente a una línea recta colinear con el eje z.
+
+Se asumió que este comportamiento errático se debía al uso de 
+valores incorrectos en el simulador.
+Por ello, se implementaron nuevas rutinas para 
+crear los componentes generales del sistema.
+Estas nuevas rutinas hacen uso de los valores obtenidos de la
+geometría del robot diseñado (vea apéndice \ref{sec: inertia})
+para proveer al simulador de datos adecuados para
+el cálculo de las coordenadas generalizadas.
+
+Una vez incluidos estos datos en el simulador, 
+las rutinas fueron capaces de 
+presentar resultados confiables.
+A partir de este momento fue posible el desarrollo
+de las estrategias de control y 
+linearización del sistema.
 
 \subsection{Implementación de estrategias de control}
+
 
 
 

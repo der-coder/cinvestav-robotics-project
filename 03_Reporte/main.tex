@@ -17,6 +17,8 @@
 % \usepackage{multicol}
 % \usepackage{transparent}
 
+\graphicspath{{img/}}
+
 \DeclareMathOperator{\atantwo}{atan2}
 
 \DeclareMathOperator{\arctantwo}{arctan2}
@@ -65,10 +67,16 @@ Se describe el desarrollo matemático del sistema y la implementación del mismo
 \bibliographystyle{IEEEtran}
 \bibliography{bibliografia.bib}
 
+\pagebreak
 
-\appendix
+\begin{appendices}
+\input{./tex/inertia.tex} 
 
-\input{./tex/inertia.tex}
+\end{appendices}
+
+
+
+
 
 % Se incluye como anexo los planos de la antena parabólica empleados para el 
 % estudio de la dinámica
