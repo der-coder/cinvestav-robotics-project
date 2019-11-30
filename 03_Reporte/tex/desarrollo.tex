@@ -135,7 +135,7 @@ r_a\sen(\Psi_{ai})\\
 La cinemática del robot paralelo es obtenida del conocimiento de una posición $\mathbf d$
 y una orientación $\mathbf \theta_p$ deseada del efector final.
 La posición de la plataforma móvil está dada por el vector $\mathbf p = [x \ y \ z]^T$
-La orientación es el vector $\mathbf \theta_p = [\psi \ \theta \ \phi]^T$, 
+La orientación es el vector $\boldsymbol \theta_p = [\psi \ \theta \ \phi]^T$, 
 cuyos elementos son los ángulos de la plataforma medidos respect al marco referencial inercial.
 
 \begin{figure}[htb!]
@@ -157,7 +157,7 @@ medido respecto al referencial inercial y el producto de
 la matriz de rotación extrínseca $\mathbf R$ y el vector de posición 
 de la junta $\mathbf a_i$. 
  \item La suma del vector de posición $\mathbf l_i$ medido respecto 
- al referencial local de la junta y el vector de posición $\mathbf b_i$
+ al referencial local de la junta y el vector de posición $\mathbf b_i$.
 \end{itemize}
 
 \begin{subequations} \label{eq: plat_grl}
@@ -167,7 +167,10 @@ de la junta $\mathbf a_i$.
  \end{align}
 \end{subequations}
 
-La matriz de rotación $\mathbf R$ se expresa de la siguiente manera:
+
+Los elementos de la matriz de rotación 
+extrínseca $\mathbf R$ está en función del vector $\mathbf \theta_p$.
+La matriz se representa de la siguiente manera:
 
 \begin{equation} \label{eq: Mrot-P}
 \mathbf R = \begin{bmatrix}
@@ -177,101 +180,132 @@ S_\psi C_\theta & C_\psi C_\phi + S_\psi S_\theta S_\phi & -C_\psi S_\phi + S_\p
 \end{bmatrix}
 \end{equation}
 
-Los movimientos de la plataforma se realizan por medio de actuadores lineales controlados 
-por el largo del mismo. El largo del piston se define como la coordenada generalizada del 
-sistema $q_i$ el cual se obtiene por medio de la norma euclideana del vector de largo 
-$l_i$ obtenido al despejar $l_i$ de la ecuacion \ref{eq: plat_grl}.
+El movimiento de la plataforma es determinado por el cambio de longitud
+de los actuadores prismáticos $||\mathbf l_i||$.
+Esta característica del sistema permite establecer
+a las longitudes de los actuadores como las coordenadas 
+generalizadas $q_i$ del sistema.
+Cada coordenada generaliza se define entonces como la norma euclidiana
+del vector $\mathbf l_i$ correspondiente.
+A su vez, el vector $\mathbf l_i$ se obtiene al resolver 
+\eqref{eq: plat_grl}.
+
 \begin{equation} \label{eq: coord_grl}
-q_i = \sqrt{<l_i,l_i>}
-\end{equation}
-\begin{equation} \label{eq: largo_act}
-l_i = d + Ra_i - b_i
+    q_i = ||\mathbf l_i||
 \end{equation}
 
-Utilizando las ecuaciones \ref{eq: coord_grl} y \ref{eq: largo_act} se encuentra el vector unitario como:
+\begin{equation} \label{eq: l}
+    ||\mathbf l_i|| = \sqrt{<\mathbf l_i, \mathbf l_i>} 
+\end{equation}
+
+\begin{equation} \label{eq: largo_act}
+\mathbf l_i = \mathbf d + \mathbf R \mathbf a_i - \mathbf b_i
+\end{equation}
+
+Utilizando las ecuaciones \ref{eq: coord_grl} y 
+\ref{eq: largo_act} se obtiene el vector unitario 
+$\boldsymbol \lambda_i$.
 
 \begin{equation} \label{eq: vec_U}
-\lambda_i = \frac{l_i}{q_i}
+\boldsymbol \lambda_i = \frac{\mathbf l_i}{q_i}
 \end{equation}
 
-\subsubsection{pseudo-Cinemática Directa}
-Debido a la complejidad en la cinemática directa de manera tradicional, se propone 
-dividir cada una de las cadenas paralelas partiendo del referencial inercial al referencial 
-local de la plataforma tomando cada cadena como un robot serial. Se asignan a cada una de 
-las juntas referenciales de movimiento rotacionales en su respectivo eje, lo cual permite 
-desarrollar una cadena serial que puede ser definida por medio de transformaciones 
-homogeneas.\\
+\subsection{Pseudocinemática directa}
 
-INSERTAR IMAGEN DE LOS REFERENCIALES DE UNA PATA\\
+Para la obtención de la cinemática directas se propone la división de cada cadena paralela en 
+cadenas seriales partiendo del marco referencial inercial.
+A cada junta se asignan referenciales de movimiento rotacional  en sus
+respectivos ejes.
+Esto permite el cálculo de cada cadena serial mediante 
+transformaciones homogéneas (figura \ref{fig: cadena serial}).
+Esta propuesta permite obtener un resultado fiable a pesar de la 
+complejidad que presenta la obtención de la 
+cinemática directa del sistema.
 
-\begin{equation}
-\sum_0^1 = \begin{bmatrix}
+\begin{figure}[htb!]
+ \centering
+ \caption{Referenciales de la cadena serial.}
+ \label{fig: cadena serial}
+\end{figure}
+
+Las transformaciones homogéneas $H_{ij}$ se presentan a
+continuación:
+
+\begin{subequations}
+ \begin{align}
+%   \sum_0^1 
+  H_{i0} & = \begin{bmatrix}
 R_z(\Psi_{bi} + \pi/2) & b_i\\
 0 & 1
-\end{bmatrix}
-\end{equation}
-
-\begin{equation}
-\sum_1^2 = \begin{bmatrix}
+\end{bmatrix} \\
+% \sum_1^2 
+H_{i1} & = \begin{bmatrix}
 R_y(\theta_{1i}) & 0\\
 0 & 1
-\end{bmatrix}
-\end{equation}
-
-\begin{equation}
-\sum_2^3 = \begin{bmatrix}
+\end{bmatrix} \\
+% \sum_2^3
+H_{i2} & = \begin{bmatrix}
 R_x(\theta_{2i}) & 0\\
 0 & 1
-\end{bmatrix}
-\end{equation}
-
-\begin{equation}
-\sum_3^4 = \begin{bmatrix}
+\end{bmatrix} \\
+% \sum_3^4 
+H_{i3} & = \begin{bmatrix}
 I_3 & q_{min}\\
 0 & 1
-\end{bmatrix}
-\end{equation}
-
-\begin{equation}
-\sum_4^5 = \begin{bmatrix}
+\end{bmatrix}\\
+% \sum_4^5
+H_{i4} & = \begin{bmatrix}
 R_z(\theta_{4i}) & l_i\\
 0 & 1
-\end{bmatrix}
-\end{equation}
-
-\begin{equation}
-\sum_4^5 = \begin{bmatrix}
+\end{bmatrix} \\
+% \sum_4^5 
+H_{i5} & = \begin{bmatrix}
 R_x(\theta_{5i}) & 0\\
 0 & 1
-\end{bmatrix}
-\end{equation}
-
-\begin{equation}
-\sum_5^6 = \begin{bmatrix}
+\end{bmatrix} \\
+% \sum_5^6 
+H_{i6} & = \begin{bmatrix}
 R_y(\theta_{6i}) & 0\\
 0 & 1
-\end{bmatrix}
-\end{equation}
-
-\begin{equation}
-\sum_6^7 = \begin{bmatrix}
+\end{bmatrix} \\
+% \sum_6^7
+H_{i7} & = \begin{bmatrix}
 R_z(\Psi_{ai} - \pi/2) & -Ra_i\\
 0 & 1
 \end{bmatrix}
-\end{equation}
+ \end{align}
+\end{subequations}
 
-\subsubsection{pseudo-Cinemática inversa}
-Al asignar los referenciales a las cadenas paralelas, se definen variables que dependen de 
-valores angulares así como del valor $q_i$. Para el funcionamiento de esta metodología se 
+\subsection{Pseudocinemática inversa}
+
+Habiendo asignado los referenciales a cada cadena serial
+se definen variables $\theta_{ij}$ que describen el estado
+de la cadena serial en función de los ángulos de orientación
+y la coordenada generalizada $q_i$.
+
+
+
+Al asignar los referenciales a las cadenas paralelas, 
+se definen variables que dependen de 
+valores angulares así como del valor $q_i$. 
+Para el funcionamiento de esta metodología se 
 deben de mantener las siguientes restricciones.
 
 \begin{itemize}
   \item Todas las cadenas paralelas deben converger en el mismo punto.
-  \item Las cadenas al converger en el punto también deben converger en orientación.
+  \item Las cadenas al converger en el punto también 
+  deben converger en orientación.
   \item El único valor activo de la cadena es $q_i = \theta_{3i}$.
 \end{itemize}
 
-Para encontrar los valores articulares de las juntas, se conoce el valor de $q_i$ y $\lambda_i$ de las ecuaciones \ref{eq: coord_grl} y \ref{eq: vec_U} de la cinemática inversa de la plataforma. El vector unitario $\lambda_i$ se encuentra a lo largo del eje $z$ del referencial $\sum_1$ y del referencial $\sum_4$. La cadena serial en orientación se puede escribir como:
+Para encontrar los valores articulares de las juntas, 
+se conoce el valor de $q_i$ y $\lambda_i$ de las ecuaciones 
+\ref{eq: coord_grl} y \ref{eq: vec_U} de la 
+cinemática inversa de la plataforma. 
+El vector unitario $\lambda_i$ se encuentra a lo 
+largo del eje $z$ del referencial $\sum_1$ y del 
+referencial $\sum_4$. La cadena serial en orientación 
+se puede escribir como:
 
 \begin{equation} \label{eq: th_12-46}
 R(\theta_i) = R(\psi_{bi}+\pi/2)R(\theta_{1i},\theta_{2i})R(\theta_{4i},\theta_{5i},\theta_{6i})R(\psi_{ai}-\pi/2)
