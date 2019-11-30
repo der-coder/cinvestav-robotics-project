@@ -1,0 +1,51 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage[spanish]{babel}
+
+\usepackage[margin = .5in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{float}
+\usepackage{import}
+
+\begin{document}
+\section{Desarrollo}
+\subsection{Energía}
+El trabajo realizado por una partícula al moverse de un punto 1 al punto 2 se puede expresar por medio de la siguiente definición, la integral de un movimiento en una ruta se define como el producto escalar de la fuerza en la partícula y la ruta realizada: [REFERENCIA GOLDSTEIN/LIBRO OLGUIN]
+
+\begin{equation}\label{equ:trabajo}
+W_{1-2} = \int_1^2 \ f \cdot ds
+\end{equation}
+
+Observando la definición de trabajo en una ruta, se puede reescribir la ecuación \ref{equ:trabajo} para poder ser realizada en el tiempo. Para lograrlo, se incluye un diferencial de tiempo modificando al valor de la ruta, generando:
+
+\begin{equation}\label{equ:trabajo}
+W_{1-2} = \int_{t1}^{t2} \ f \cdot \frac{ds}{dt} \ dt = \int_{t1}^{t2} \ (f \cdot v) \ dt
+\end{equation}
+
+Esta ecuación define la potencia de la partícula como la derivada en el tiempo del trabajo.
+[REFERENCIA LIBRO OLGUIN]
+
+\begin{equation} \label{equ:potencia}
+P \triangleq \frac{d}{dt}W = f \cdot v = <f,v>
+\end{equation}
+
+En el caso de la PGS, se puede observar que la coordenada generalizada es la que realiza el movimiento y por lo tanto es donde se puede encontrar la potencia del sistema utilizando las velocidades generalizadas. Se redefine la ecuacion \ref{equ:potencia}:
+
+\begin{equation}
+P = f \cdot \dot{q}
+\end{equation}
+
+Y el tarbajo de la plataforma se obtiene como la integral de la ecuacion anterior.
+
+\begin{equation}\label{equ:trabajo-plat}
+W = \int f \cdot \dot{q}\ dt
+\end{equation}
+
+\section{Resultados}
+\subsection{Comparación energética}
+
+
+\end{document}
