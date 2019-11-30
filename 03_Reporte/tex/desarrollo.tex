@@ -1,117 +1,176 @@
-\section{Desarrollo}
+% \section{Desarrollo}
+\section{Parámetros de diseño}
 
 \subsection{Restricciones}
-La PGS al ser un robot de cadena cerrada obtiene limitaciones 
-derivadas de la naturaleza del robot así como restricciones 
-derivadas de los elementos que integran la PGS.\\
+El robot paralelo está restringido en su movimiento 
+al ser una cadena cerrada.
+A su vez, el diseño del mismo impone restricciones dimensionales 
+que deben ser tomadas en cuenta para su análisis.
+Estas restricciones surgen de los parámetros de diseño que 
+se seleccionaron para el modelo del robot y el simulador.
+La tabla \ref{tab: restricciones} muestra los 
+parámetros de diseño establecidos.
 
-INSERTAR IMAGEN DEL CAD\\
+\begin{figure}
+ \centering
+ \caption{Plataforma Gough-Cappel.}
+ \label{fig: cad}
+\end{figure}
 
-La PGS diseñada para el proyecto cuenta con los siguientes 
-parametros de diseño:
 
-\begin{table}[h]\label{tab:restricciones}
+\begin{table}[h]
 \centering
-\begin{tabular}{|ll|}
-\hline
-\multicolumn{2}{|l|}{Parametros diseño} \\ \hline
-Radio base & m ($r_b$)\\ \hline
-Radio plataforma & m ($r_a$)\\ \hline
-Separacion entre juntas (base) & m ($k_b$)\\ \hline
-Separacion entre juntas (plataforma) & m ($k_a$)\\ \hline
-Largo min actuador & m ($q_{min}$)\\ \hline
-Largo max actuador & m ($q_{max}$)\\ \hline
+\begin{tabular}{lc}
+
+\multicolumn{2}{c}{Parámetros de diseño} \\ \hline
+Radio de la base ($r_b$) & $0.44205 \ [m]$ \\ 
+Radio de la plataforma ($r_a$) & $0.36248 \ [m]$ \\ 
+Separación entre juntas en la base ($k_b$) & $0.7 \ [m]$ \\ 
+Separación entre juntas en la plataforma ($k_a$) & $0.2986 \ [m]$ \\ 
+Longitud mínima del actuador ($q_{min}$) & $1.28929 \ [m]$ \\ 
+Mongitud máxima del actuador ($q_{max}$) & \textbf medir \\ 
 \end{tabular}
-\caption{Restricciones dimensionales de la PGS}
+\caption{Restricciones dimensionales del robot paralelo.}
 \label{tab: restricciones}
 \end{table}
 
-Con los valores señalados previamente se determinan las restricciones 
-dimensionales de la PGS para el desarrollo de la cinemática de la PGS.\\
+Las restricciones presentes en la tabla \ref{tab: restricciones}
+son utilizados para definir la cinemática del robot paralelo.
+Los valores de $r_a$ y $r_b$ definen la 
+distancia radial en la que cada junta debe ser 
+posicionada respecto al centro de la plataforma y la base.
+Las juntas empleadas para el robot se muestran 
+en la figura \ref{fig: joints}
 
-Los primeros dos valores de la tabla \ref{tab: restricciones} señalan 
-la distancia radial en donde se deben de colocar las juntas de la 
-plataforma (elementos pasivos). Estas juntas son las siguientes:\\
+\begin{figure}[htb!]
+ \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+%         \includegraphics[width=\textwidth]{case03_r_theta}
+        \caption{Junta universal o cardán.}
+        \label{fig: junta universal}
+    \end{subfigure}
+    
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.4\textwidth}
+%         \includegraphics[width=\textwidth]{case03_d_r_d_theta}
+        \caption{Junta esférica.}
+        \label{fig: junta esferica}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+    %(or a blank line to force the subfigure onto a new line)
+    \caption{Juntas empleadas en la plataforma Gough-Cappel}\label{fig: joints}
+\end{figure}
 
-IMAGEN DE LA JUNTA CARDAN\\
+Las junta universales (figura \ref{fig: junta universal}) están
+instaladas en la base del robot. 
+La junta universal permite rotaciones en dos ejes.
+La configuración de las juntas determina el orden de las rotaciones.
+Para el robot diseñado se presenta una rotación en el eje y primero.
+Una rotación en el eje x ocurre despúes de la primer rotación.
+La orientación de las juntas establece que el eje y 
+del marco referencial local se oriente apunte al centro de la base.
 
-Una junta universal o Cardan en la base de la PGS donde se permite la 
-rotación en dos ejes, a fin del sistema propuesto las rotaciones en esta junta 
-se realizan en el orden de rotación en eje $y$ seguido de rotacion en eje $x$.\\
+Las juntas esféricas (figura \ref{fig: junta esferica}) conectan la 
+plataforma móvil con los actuadores prismáticos.
+Estas juntas permiten rotaciones en los tres ejes del marco referencial
+local.
+El orden de las rotaciones se asigna de la siguiente manera:
+primero una rotación en el eje z, seguido de la rotación del 
+marco referencial en el eje x, y finalmente el marco 
+referencial es rotado en y.
 
-IMAGEN DE LA JUNTA ESFERICA\\
+\subsection{Ángulos de desfase}
 
-Una junta esférica en la plataforma de la PGS donde se permite la rotación 
-en tres ejes, a fin del sistema propuesto las rotaciones en esta junta se 
-realizan en el orden de rotación en eje $z$, rotación en eje $x$ finalizando en 
-rotación en eje $y$.\\
+La ubicación ideal de las juntas en la base y la plataforma móvil 
+es en tres puntos ubicados sobre los radios $r_a$ y $r_b$, 
+a 120 grados de distancia angular de cada uno, 
+cada punto siendo la ubicación de dos juntas.
+Las restricciones del modelo real del robot paralelo no permiten esta
+ubicación, ya que está posición no considera las posibles obstrucciones
+que cada componente puede tener sobre los otros.\\
 
-La PGS ideal debe de tener el punto de unión de las juntas en el mismo lugar, este 
-punto se encuentra localizado en el punto generado por el radio y una separación angular 
-de 120° a lo largo del circulo formado por el radio. Sin 
-embargo debido a las características de las juntas, necesitan estar separadas para 
-realizar el seguimiento de movimiento sin generar conflictos o colisiones entre los 
-actuadores entre la juntas de la base y plataforma. Estos valores de separación se van 
-a utilizar para obtener el desfase angular con respecto al ángulo ideal de unión. Este 
-desfase se calcula de la siguiente manera. \\
+A manera de evitar estas obstrucciones y las posibles 
+colisiones que conllevarían, 
+las distancias $k_a$ y $k_b$ son parámetros de diseño.
+Estas distancias generan ángulos de desfase 
+$\alpha_a$ y $\alpha_b$ respecto al ángulo ideal de ubicación.
+Estos ángulos de desfase son calculados de la siguiente manera:
 
-\begin{equation} \label{equ:azi-a}
-\alpha_a = tan^{-1}\left(\frac{k_a}{2r_a}\right)
+\begin{equation} \label{eq: azi-a}
+\alpha_a = \arctan\left(\frac{k_a}{2r_a}\right)
 \end{equation}
-\begin{equation} \label{equ:azi-b}
-\alpha_b = tan^{-1}\left(\frac{k_b}{2r_b}\right)
+\begin{equation} \label{eq: azi-b}
+\alpha_b = \arctan\left(\frac{k_b}{2r_b}\right)
 \end{equation}
 
-Al sumar y restar el angulo de desfase $\alpha$ a los ángulos ideales se obtienen 
-los vectores de desfase angular $\Psi_b$ y $\Psi_a$. Utilizando $r_b$, $r_a$, 
-$\Psi_b$ y $\Psi_a$ se obtienen los puntos cartesianos de unión de la junta 
-con la plataforma y la base de la siguiente manera:
+Los ángulos de desfase permiten determinar las nuevas posiciones angulares 
+$\Psi$ de cada junta, tal que la distancia angular de cada par de juntas 
+respecto a su posición ideal sea $\pm \alpha$. 
+Determinando los valores de $\Psi_a$ y $\Psi_b$, es posible
+obtener los vectores de posición $\mathbf a_i$ y $\mathbf b_i$ 
+para el punto de unión de cada junta
+medido respecto a los marcos referenciales locales de 
+la base ($\Sigma_b$) y la plataforma móvil ($\Sigma_a$).
 
-\begin{equation} \label{equ:p_b}
-b_i = \begin{bmatrix}
+
+\begin{equation} \label{eq: p_b}
+\mathbf b_i = \begin{bmatrix}
 r_b\cos(\Psi_{bi})\\
 r_b\sen(\Psi_{bi})\\
 0\\
 \end{bmatrix}
 \end{equation}
-\begin{equation} \label{equ:p_a}
-a_i = \begin{bmatrix}
+
+\begin{equation} \label{eq: p_a}
+\mathbf a_i = \begin{bmatrix}
 r_a\cos(\Psi_{ai})\\
 r_a\sen(\Psi_{ai})\\
 0\\
 \end{bmatrix}
 \end{equation}
 
-\subsection{Cinemática de la PGS}
-Para la cinemática de la PGS es importante conocer la posición y orientación del 
-efector final, el cual es la plataforma en donde se conectan los actuadores. Se 
-define la posición de la plataforma como un vector $d = [x,y,z]^T$ y la orientación 
-la matriz como los ángulos medidos del referencial inercial en la forma de 
-$\theta_p = [\psi,\theta,\phi]^T$.
+\section{Cinemática}
 
-\subsubsection{Cinemática inversa de posición}
+La cinemática del robot paralelo es obtenida del conocimiento de una posición $\mathbf d$
+y una orientación $\mathbf \theta_p$ deseada del efector final.
+La posición de la plataforma móvil está dada por el vector $\mathbf p = [x \ y \ z]^T$
+La orientación es el vector $\mathbf \theta_p = [\psi \ \theta \ \phi]^T$, 
+cuyos elementos son los ángulos de la plataforma medidos respect al marco referencial inercial.
 
-\begin{figure}[ht]
+\begin{figure}[htb!]
     \centering
-    \import{./img/}{goughStewart.pdf_tex}
-    \caption{Diagrama de la plataforma Gough Stewart. REVISAR IMAGEN}
+%     \import{./img/}{goughStewart.pdf_tex}
+    \caption{Diagrama de la plataforma Gough-Cappel.}
     \label{fig: gough stewart diagram}
 \end{figure}
 
-Conociendo la posición y orientación de la PGS, se puede encontrar de manera sencilla 
-la cinemática inversa. Observando el modelo en la figura \ref{fig: gough stewart diagram} 
-buscando el valor de $p_i$ se puede formular lo siguiente:
+\subsection{Cinemática inversa de posición}
 
-\begin{equation} \label{equ:plat_grl}
-p_i = d + Ra_i = b_i + l_i
-\end{equation}
+La cinemática inversa del robot paralelo parte de la suma de vectores 
+mostrados en la figura \ref{fig: gough stewart diagram}.
+Se observa que el vector de posición $\mathbf p_i$ puede ser representado 
+por dos sumas equivalentes. 
+\begin{itemize}
+ \item La suma del vector de posición de la plataforma $\mathbf d$ 
+medido respecto al referencial inercial y el producto de 
+la matriz de rotación extrínseca $\mathbf R$ y el vector de posición 
+de la junta $\mathbf a_i$. 
+ \item La suma del vector de posición $\mathbf l_i$ medido respecto 
+ al referencial local de la junta y el vector de posición $\mathbf b_i$
+\end{itemize}
 
-Siendo $Ra_i$ el punto en donde se coloca la junta esferica de la plataforma, $b_i$ 
-el punto donde se coloca la junta Cardan,  $d$ la distancia entre el referencial 
-inercial y el local en la plataforma. Se define $R$ como la rotacion extrínseca formada 
-por los valores de $\theta_p$ con la siguiente forma:
-\begin{equation} \label{equ:Mrot-P}
-R = \begin{bmatrix}
+\begin{subequations} \label{eq: plat_grl}
+ \begin{align}
+    \mathbf p_i & = \mathbf d + \mathbf R\mathbf a_i \\
+    \mathbf p_i & = \mathbf b_i + \mathbf l_i
+ \end{align}
+\end{subequations}
+
+La matriz de rotación $\mathbf R$ se expresa de la siguiente manera:
+
+\begin{equation} \label{eq: Mrot-P}
+\mathbf R = \begin{bmatrix}
 C_\psi C_\theta & -S_\psi C_\phi + C_\psi S_\theta S_\phi & S_\psi S_\phi + C_\psi S_\theta C_\phi\\
 S_\psi C_\theta & C_\psi C_\phi + S_\psi S_\theta S_\phi & -C_\psi S_\phi + S_\psi S_\theta C_\phi\\
 -S_\theta & C_\theta S_\phi & C_\theta C_\phi\\
@@ -121,17 +180,17 @@ S_\psi C_\theta & C_\psi C_\phi + S_\psi S_\theta S_\phi & -C_\psi S_\phi + S_\p
 Los movimientos de la plataforma se realizan por medio de actuadores lineales controlados 
 por el largo del mismo. El largo del piston se define como la coordenada generalizada del 
 sistema $q_i$ el cual se obtiene por medio de la norma euclideana del vector de largo 
-$l_i$ obtenido al despejar $l_i$ de la ecuacion \ref{equ:plat_grl}.
-\begin{equation} \label{equ:coord_grl}
+$l_i$ obtenido al despejar $l_i$ de la ecuacion \ref{eq: plat_grl}.
+\begin{equation} \label{eq: coord_grl}
 q_i = \sqrt{<l_i,l_i>}
 \end{equation}
-\begin{equation} \label{equ:largo_act}
+\begin{equation} \label{eq: largo_act}
 l_i = d + Ra_i - b_i
 \end{equation}
 
-Utilizando las ecuaciones \ref{equ:coord_grl} y \ref{equ:largo_act} se encuentra el vector unitario como:
+Utilizando las ecuaciones \ref{eq: coord_grl} y \ref{eq: largo_act} se encuentra el vector unitario como:
 
-\begin{equation} \label{equ:vec_U}
+\begin{equation} \label{eq: vec_U}
 \lambda_i = \frac{l_i}{q_i}
 \end{equation}
 
@@ -212,14 +271,14 @@ deben de mantener las siguientes restricciones.
   \item El único valor activo de la cadena es $q_i = \theta_{3i}$.
 \end{itemize}
 
-Para encontrar los valores articulares de las juntas, se conoce el valor de $q_i$ y $\lambda_i$ de las ecuaciones \ref{equ:coord_grl} y \ref{equ:vec_U} de la cinemática inversa de la plataforma. El vector unitario $\lambda_i$ se encuentra a lo largo del eje $z$ del referencial $\sum_1$ y del referencial $\sum_4$. La cadena serial en orientación se puede escribir como:
+Para encontrar los valores articulares de las juntas, se conoce el valor de $q_i$ y $\lambda_i$ de las ecuaciones \ref{eq: coord_grl} y \ref{eq: vec_U} de la cinemática inversa de la plataforma. El vector unitario $\lambda_i$ se encuentra a lo largo del eje $z$ del referencial $\sum_1$ y del referencial $\sum_4$. La cadena serial en orientación se puede escribir como:
 
-\begin{equation} \label{equ:th_12-46}
+\begin{equation} \label{eq: th_12-46}
 R(\theta_i) = R(\psi_{bi}+\pi/2)R(\theta_{1i},\theta_{2i})R(\theta_{4i},\theta_{5i},\theta_{6i})R(\psi_{ai}-\pi/2)
 \end{equation}
 
 De la misma aseveración se puede definir
-\begin{equation} \label{equ:th_12}
+\begin{equation} \label{eq: th_12}
 \lambda_i^{(b_i)} = R^T_{z,\psi_{bi}+\pi/2} \lambda_i^{(0)} =R_1^2 \hat{k}
 \end{equation}
 
@@ -241,7 +300,7 @@ C_{\psi_{bi}+\pi/2} \lambda_{ix} + S_{\psi_{bi}+\pi/2} \lambda_{iy} \\
 \end{bmatrix}
 \end{equation}
 
-Al reemplazar en la ecuación \ref{equ:th_12} se obtiene:
+Al reemplazar en la ecuación \ref{eq: th_12} se obtiene:
 \begin{equation}
 \lambda_i^{(bi)} = \begin{bmatrix}
 S_{\theta_{1i}} C_{\theta_{2i}}\\
@@ -258,8 +317,8 @@ Y de esta igualación se obtiene que:
 \theta_{2i} = \arcsen\left(S_{\psi_{bi}+\pi/2} \lambda_{ix} - C_{\psi_{bi}+\pi/2} \lambda_{iy}\right)
 \end{equation}
 
-Los valores angulares de $\theta_{4i}$,$\theta_{5i}$ y $\theta_{6i}$ se obtienen del despeje de $R_4^6$ de la ecuación \ref{equ:th_12-46}:
-\begin{equation}\label{equ:resp_456}
+Los valores angulares de $\theta_{4i}$,$\theta_{5i}$ y $\theta_{6i}$ se obtienen del despeje de $R_4^6$ de la ecuación \ref{eq: th_12-46}:
+\begin{equation}\label{eq: resp_456}
 R(\theta_{4i,5i,6i})= R^T(\theta_{1i,2i})\ R^T(\psi_{bi}+\pi/2)\ R(\theta_i)\ R^T(\psi_{ai}-\pi/2)
 \end{equation}
 \begin{equation*}
@@ -267,11 +326,11 @@ R(\theta_i) = R(\theta_p)
 \end{equation*}
 
 Donde la matriz de rotación $R_4^6$ se define en los ejes $z$, $y$ y $x$ de la siguiente manera:
-\begin{equation}\label{equ:rot_456}
+\begin{equation}\label{eq: rot_456}
 Matriz Rotacion 4-6
 \end{equation}
 
-Al igualar la matriz de rotación de la ecuación \ref{equ:rot_456} con la matriz evaluada de la ecuación \ref{equ:resp_456} se encuentran las siguientes soluciones:
+Al igualar la matriz de rotación de la ecuación \ref{eq: rot_456} con la matriz evaluada de la ecuación \ref{eq: resp_456} se encuentran las siguientes soluciones:
 
 \begin{equation}
 \theta_{4i} = \arctan2 (-r_{12},r_{22})
@@ -284,7 +343,7 @@ Al igualar la matriz de rotación de la ecuación \ref{equ:rot_456} con la matri
 \end{equation}
 
 \subsubsection{Cinemática inversa de velocidad}
-La cinemática inversa de velocidad se puede obtener desarrollando la derivada de la ecuación \ref{equ:coord_grl}.
+La cinemática inversa de velocidad se puede obtener desarrollando la derivada de la ecuación \ref{eq: coord_grl}.
 
 \begin{equation}
 \frac{d}{dt}q_i = \frac{d}{dt}\sqrt{l_i^Tl_i} 
@@ -311,16 +370,16 @@ Desarrollamos la derivada de $q_i$:
 = v_p \cdot \lambda_i + [(Ra_i)\times]\lambda_i \cdot \omega
 \end{equation*}
 
-\begin{equation} \label{equ:jac_inv}
+\begin{equation} \label{eq: jac_inv}
 \dot{q} = [\lambda_i^T\ ,\ [(Ra_i)\times]\ \lambda_i^T] \begin{bmatrix}
 v_p\\
 \omega
 \end{bmatrix}
 \end{equation}
 
-Con la expresion de la ecuación \ref{equ:jac_inv} se encuentra que la ecuación que 
+Con la expresion de la ecuación \ref{eq: jac_inv} se encuentra que la ecuación que 
 corresponde a la forma
-\begin{equation} \label{equ:jac_g}
+\begin{equation} \label{eq: jac_g}
 \dot{q} = A(d,R) \nu_p
 \end{equation}
 
@@ -328,7 +387,7 @@ Donde la matriz $A$ es el jacobiano geométrico inverso $J_g^{(0)}$ de la plataf
 
 Al derivar la pose de la plataforma, se obtiene que el jacobiano geometrico es el que mapea los cambios de las coordenadas generalizadas en los cambios de la pose y se define como:
 
-\begin{equation} \label{equ:jac_a}
+\begin{equation} \label{eq: jac_a}
 \dot{z} = J_a(\cdot)\dot{q}
 \end{equation}
 
@@ -342,9 +401,9 @@ El operador cinemático de la plataforma que sigue el formato de ángulos de ala
 ecuacion de operador cinematico
 \end{equation}
 
-Al realizar la igualación de la ecuacion \ref{equ:jac_g} y \ref{equ:jac_a} se encuentra:
+Al realizar la igualación de la ecuacion \ref{eq: jac_g} y \ref{eq: jac_a} se encuentra:
 
-\begin{equation} \label{equ:q_twist}
+\begin{equation} \label{eq: q_twist}
 \dot{q} = A(d,R)^0J_z(\theta) \dot{z}
 \end{equation}
 
@@ -352,13 +411,13 @@ Al realizar la igualación de la ecuacion \ref{equ:jac_g} y \ref{equ:jac_a} se e
 
 Observando la transformación de Plücker la cual traslada y rota el \emph{twist} de un referencial padre a un hijo y tiene la siguiente forma:
 
-\begin{equation} \label{equ:plucker}
+\begin{equation} \label{eq: plucker}
 X(\cdot) = R^T(R_{i-1}^i)T(d_{i/i-1}^{i-1})
 \end{equation}
 
 Con la transformación de Plücker y conociendo las condiciones iniciales de la cadena serial de la plataforma se puede mapear de manera recursiva el \emph{twist} de la plataforma de manera recursiva. El movimiento de manera local $\nu_{i/i-1}^{i}$ depende unicamente de $\theta_i$ en cada referencial asignado y utilizando la condición \emph{screw} se puede definir $\nu_{i/i-1}^{i} = s_i \dot{\theta}_i$. Se define el calculo del \emph{twist} de manera recursiva de la siguiente manera:
 
-\begin{equation} \label{equ:tiwst_rec}
+\begin{equation} \label{eq: tiwst_rec}
 \nu_i = X_i(\theta_i)\nu_i + s_i\dot{\theta_i}
 \end{equation}
 
@@ -370,7 +429,7 @@ J_i(\theta_i) = X(\theta_i) J_{i-1} + S_i
 
 Donde $S_i$ es una matriz de ceros ($S_i \in R^{6\times n}$) en donde la columna $i$ de la junta debe de tener el vector $s_i$ correspondiente del movimiento. Al realizar la recursion, se encuentra que el jacobiano de inicio es una matriz nula $J_0 = 0$.
 
-La aceleración de la cadena serial puede encontrarse derivando la expresion de la ecuacion \ref{equ:tiwst_rec}.
+La aceleración de la cadena serial puede encontrarse derivando la expresion de la ecuacion \ref{eq: tiwst_rec}.
 
 \begin{equation}
 a_i = \frac{d}{dt} (X_i(\theta_i)\nu_i + s_i\dot{\theta_i})
@@ -396,7 +455,7 @@ a_i = X_i(\theta_i)a_{i-1} - \dot{\theta_i}\Omega(s_i)\nu_i
 
 Del modelo lagrangiano se observa que la dinámica del sistema se observa como:
 
-\begin{equation}\label{equ:lagrangiano_modelo}
+\begin{equation}\label{eq: lagrangiano_modelo}
 H(q)\ddot{q} + C(q,\dot{q})\dot{q} +g(q) - \tau_D = \tau_e
 \end{equation}
 
@@ -407,7 +466,7 @@ Y bajo los conceptos del BDA los términos inerciales y de gravedad adopta la si
 \end{equation}
 
 El cual utiliza los jacobianos locales para mapear las velocidades generalizadas locales al \emph{twist} en coordenadas locales de cada referencial asignado al igual que las fuerzas.
-\begin{equation} \label{equ:twist_loc}
+\begin{equation} \label{eq: twist_loc}
 \nu_i = J_i(q)\dot{q}
 \end{equation}
 \begin{equation}
@@ -415,7 +474,7 @@ F_i = M_i(\dot{\nu_i} - G_i) - \Omega^T(\nu_i)M_i\nu_i - F_{f_{i}}
 \end{equation}
 Las fuerzas del sistema utilizando la formulación de Kirchoff para cuerpos rígidos.[REFERENCIA A FORMULACION DE KIRCHOFF]
 
-Sin embargo para el desarrollo de la PGS la dinámica directa necesita de los valores del jacobiano y su derivada. Pero utilizando la ecuacion \ref{equ:q_twist} en la \ref{equ:twist_loc} se encuentra que:
+Sin embargo para el desarrollo de la PGS la dinámica directa necesita de los valores del jacobiano y su derivada. Pero utilizando la ecuacion \ref{eq: q_twist} en la \ref{eq: twist_loc} se encuentra que:
 \begin{equation}
 \nu_i = J_i(q) A(d,R) R(R) \nu_p = T_i(d,R) \nu_p
 \end{equation}
