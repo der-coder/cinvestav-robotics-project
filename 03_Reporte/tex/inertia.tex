@@ -1,0 +1,80 @@
+\section{Momentos de inercia}
+
+Los momentos de inercia del sistema fueron obtenidos
+empleando la herramienta de Solidworks. 
+Las propiedades de densidad de los componentes fueron asignados de acuerdo al material de manufactura\footnote{El motor se asume como una masa uniformemente distribuida.}
+El tensor de inercia de cada objeto fue medido respecto a su centro de masa.
+Empleando el teorema de ejes paralelos (\textbf REFERENCIA) se trasladó el efecto de los tensores de inercia necesarios al marco referencial local.
+A continuación se presentan los valores correspondientes a cada objeto de interés para la simulación.
+
+
+
+\subsection{Plataforma móvil}
+
+% Px = convertGramMM2toKgM2 * 7246289714.88;
+% Py = convertGramMM2toKgM2 * 7246289714.88;
+% Pz = convertGramMM2toKgM2 * 13887070726.86;
+% 
+% Ix = [1; 0; 0];
+% Iy = [0; 1; 0];
+% Iz = [0; 0; 1];
+
+\begin{table}[hb!]
+ \begin{center}
+\begin{tabular}{lclc}
+ $ I_x $ & $ [1 \ 0 \ 0]^T $ & $ P_x $ & 7246289714.88\\
+ $ I_y $ & $ [0 \ 1 \ 0]^T $ & $ P_y $ & 7246289714.88\\
+ $ I_z $ & $ [0 \ 0 \ 1]^T $ & $ P_z $ & 13887070726.86
+\end{tabular}
+\end{center}
+\caption{Datos de inercia de la plataforma móvil.}
+\end{table}
+
+
+\subsection{Base}
+
+% Px = convertGramMM2toKgM2 * 348997674.08;
+% Py = convertGramMM2toKgM2 * 349004086.28;
+% Pz = convertGramMM2toKgM2 * 696714510.70;
+% 
+% Ix = [0.73; -0.68; 0];
+% Iy = [0.68; 0.73; 0];
+% Iz = [0; 0; 1.0];
+
+\begin{table}[hb!]
+ \begin{center}
+\begin{tabular}{lclc}
+% \begin{multicolumn}{2}{c}{Vector} & \begin{multicolumn}{2}{c}{Inertia [$g/mm^2$]} \\
+ $ I_x $ & $ [1 \ 0 \ 0]^T $ & $ P_x $ & 348997674.08\\
+ $ I_y $ & $ [0 \ 1 \ 0]^T $ & $ P_y $ & 7246289714.88\\
+ $ I_z $ & $ [0 \ 0 \ 1]^T $ & $ P_z $ & 13887070726.86
+\end{tabular}
+\end{center}
+\caption{Datos de inercia de la plataforma móvil.}
+\end{table}
+
+\subsection{Actuador prismático con motor}
+\begin{table}[hb!]
+ \begin{center}
+\begin{tabular}{lclc}
+% \begin{multicolumn}{2}{c}{Vector} & \begin{multicolumn}{2}{c}{Inertia [$g/mm^2$]} \\
+ $ I_x $ & $ [1 \ 0 \ 0]^T $ & $ P_x $ & 7246289714.88\\
+ $ I_y $ & $ [0 \ 1 \ 0]^T $ & $ P_y $ & 7246289714.88\\
+ $ I_z $ & $ [0 \ 0 \ 1]^T $ & $ P_z $ & 13887070726.86
+\end{tabular}
+\end{center}
+\caption{Datos de inercia de la plataforma móvil.}
+\end{table}
+
+\subsection{Junta esférica con tornillo}
+\begin{table}[hb!]
+ \begin{center}
+\begin{tabular}{lclc}
+% \begin{multicolumn}{2}{c}{Vector} & \begin{multicolumn}{2}{c}{Inertia [$g/mm^2$]} \\
+ $ I_x $ & $ [1 \ 0 \ 0]^T $ & $ P_x $ & 7246289714.88\\
+ $ I_y $ & $ [0 \ 1 \ 0]^T $ & $ P_y $ & 7246289714.88\\
+ $ I_z $ & $ [0 \ 0 \ 1]^T $ & $ P_z $ & 13887070726.86
+\end{tabular}
+\end{center}
+\caption{Datos de inercia de la plataforma móvil.}
+\end{table}
