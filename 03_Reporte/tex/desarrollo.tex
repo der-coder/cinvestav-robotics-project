@@ -87,7 +87,7 @@ es en tres puntos ubicados sobre los radios $r_a$ y $r_b$,
 a 120 grados de distancia angular de cada uno, 
 cada punto siendo la ubicación de dos juntas.
 Las restricciones del modelo real del robot paralelo no permiten esta
-ubicación, ya que está posición no considera las posibles obstrucciones
+ubicación, ya que esta posición no considera las posibles obstrucciones
 que cada componente puede tener sobre los otros.\\
 
 A manera de evitar estas obstrucciones y las posibles 
@@ -107,7 +107,7 @@ Estos ángulos de desfase son calculados de la siguiente manera:
 Los ángulos de desfase permiten determinar las nuevas posiciones angulares 
 $\Psi$ de cada junta, tal que la distancia angular de cada par de juntas 
 respecto a su posición ideal sea $\pm \alpha$. 
-Determinando los valores de $\Psi_a$ y $\Psi_b$, es posible
+Determinando los valores de $\psi_a$ y $\psi_b$, es posible
 obtener los vectores de posición $\mathbf a_i$ y $\mathbf b_i$ 
 para el punto de unión de cada junta
 medido respecto a los marcos referenciales locales de 
@@ -116,8 +116,8 @@ la base ($\Sigma_b$) y la plataforma móvil ($\Sigma_a$).
 
 \begin{equation} \label{eq: p_b}
 \mathbf b_i = \begin{bmatrix}
-r_b\cos(\Psi_{bi})\\
-r_b\sen(\Psi_{bi})\\
+r_b\cos(\psi_{bi})\\
+r_b\sin(\psi_{bi})\\
 0\\
 \end{bmatrix}
 \end{equation}
@@ -125,7 +125,7 @@ r_b\sen(\Psi_{bi})\\
 \begin{equation} \label{eq: p_a}
 \mathbf a_i = \begin{bmatrix}
 r_a\cos(\Psi_{ai})\\
-r_a\sen(\Psi_{ai})\\
+r_a\sin(\Psi_{ai})\\
 0\\
 \end{bmatrix}
 \end{equation}
@@ -235,7 +235,7 @@ continuación:
  \begin{align}
 %   \sum_0^1 
   H_{i0} & = \begin{bmatrix}
-R_z(\Psi_{bi} + \pi/2) & b_i\\
+R_z(\Psi_{bi}) & b_i\\
 0 & 1
 \end{bmatrix} \\
 % \sum_1^2 
@@ -270,54 +270,70 @@ R_y(\theta_{6i}) & 0\\
 \end{bmatrix} \\
 % \sum_6^7
 H_{i7} & = \begin{bmatrix}
-R_z(\Psi_{ai} - \pi/2) & -Ra_i\\
+R_z(\Psi_{ai}) & -Ra_i\\
 0 & 1
 \end{bmatrix}
  \end{align}
 \end{subequations}
 
+\begin{equation}
+ \Psi_{bi}  = \psi_{bi} + \pi/2
+\end{equation}
+
+\begin{equation}
+ \Psi_{ai}  = \psi_{ai} - \pi/2
+\end{equation}
+
 \subsection{Pseudocinemática inversa}
 
 Habiendo asignado los referenciales a cada cadena serial
-se definen variables $\theta_{ij}$ que describen el estado
+se definen variables 
+$\boldsymbol \theta_i = [\theta_{1i} \ \theta_{2i} \dots \theta_{7i}]^T$ que describen el estado
 de la cadena serial en función de los ángulos de orientación
 y la coordenada generalizada $q_i$.
-
-
-
-Al asignar los referenciales a las cadenas paralelas, 
-se definen variables que dependen de 
-valores angulares así como del valor $q_i$. 
-Para el funcionamiento de esta metodología se 
-deben de mantener las siguientes restricciones.
-
+La metodología propuesta posee las siguientes restricciones:
 \begin{itemize}
-  \item Todas las cadenas paralelas deben converger en el mismo punto.
+  \item Todas las cadenas seriales deben converger en el mismo punto.
   \item Las cadenas al converger en el punto también 
   deben converger en orientación.
   \item El único valor activo de la cadena es $q_i = \theta_{3i}$.
 \end{itemize}
 
-Para encontrar los valores articulares de las juntas, 
-se conoce el valor de $q_i$ y $\lambda_i$ de las ecuaciones 
-\ref{eq: coord_grl} y \ref{eq: vec_U} de la 
-cinemática inversa de la plataforma. 
-El vector unitario $\lambda_i$ se encuentra a lo 
-largo del eje $z$ del referencial $\sum_1$ y del 
-referencial $\sum_4$. La cadena serial en orientación 
-se puede escribir como:
+Los valores $\theta_{1i} \ \theta_{2i} \dots \theta_{7i}$
+se obtienen de nuevas matrices de rotación $R_{i-1}^i$,
+la coordenadas generalizada $q_i$ y el vector unitario
+$\boldsymbol \lambda_i$.\\
+
+La matriz de rotación $R(\boldsymbol \theta_i)$ se expresa como el producto de las 
+matrices de rotación de la cadena serial.
 
 \begin{equation} \label{eq: th_12-46}
-R(\theta_i) = R(\psi_{bi}+\pi/2)R(\theta_{1i},\theta_{2i})R(\theta_{4i},\theta_{5i},\theta_{6i})R(\psi_{ai}-\pi/2)
+R(\boldsymbol \theta_i) = R(\Psi_{bi})R(\theta_{1i},\theta_{2i})R(\theta_{4i},\theta_{5i},\theta_{6i})R(\Psi_{ai})
 \end{equation}
 
-De la misma aseveración se puede definir
+El vector unitario $\boldsymbol \lambda_i$ está orientado
+de manera colinear con el eje z del referencial $\Sigma_1$. 
+El vector $\boldsymbol \lambda_i$ medido en el referencial inercial 
+% ($\boldsymbol \lambda_i^{(b_i)}$)
+se expresa de la siguiente manera:
+
 \begin{equation} \label{eq: th_12}
-\lambda_i^{(b_i)} = R^T_{z,\psi_{bi}+\pi/2} \lambda_i^{(0)} =R_1^2 \hat{k}
+\boldsymbol \lambda_i^{(b_i)} = R^T_{z,\Psi_{bi}} \boldsymbol \lambda_i^{(0)} = R_{1}^{2} \ \mathbf{\hat{k}}
 \end{equation}
 
-Como la configuración de $R_1^2$ es la matriz de rotación realizada en el eje $y$ seguido del eje $x$ se tiene la matriz de rotación:
-\begin{equation}
+% Para encontrar los valores articulares de las juntas, 
+% se conoce el valor de $q_i$ y $\lambda_i$ de las ecuaciones 
+% \ref{eq: coord_grl} y \ref{eq: vec_U} de la 
+% cinemática inversa de la plataforma. 
+% El vector unitario $\lambda_i$ se encuentra a lo 
+% largo del eje $z$ del referencial $\sum_1$ y del 
+% referencial $\sum_4$. La cadena serial en orientación 
+% se puede escribir como:
+
+La matriz de rotación $R_1^2$ describe la rotación en dos ejes.
+Primero une rotación en el eje y, seguido de una rotación en el eje x. 
+
+\begin{equation}\label{eq: R_1_2}
 R_1^2 = \begin{bmatrix}
 C_{\theta_{1i}} & S_{\theta_{1i}} S_{\theta_{2i}} & S_{\theta_{1i}} C_{\theta_{2i}}\\
 0 & C_{\theta_{2i}} & -S_{\theta_{2i}}\\
@@ -325,17 +341,21 @@ C_{\theta_{1i}} & S_{\theta_{1i}} S_{\theta_{2i}} & S_{\theta_{1i}} C_{\theta_{2
 \end{bmatrix}
 \end{equation}
 
-Y el valor de $\lambda_i^{bi}$ se define:
-\begin{equation}
-\lambda_i^{(bi)} = R^T_{z,\psi_bi+\pi/2} \lambda_i^{(0)} = \begin{bmatrix}
-C_{\psi_{bi}+\pi/2} \lambda_{ix} + S_{\psi_{bi}+\pi/2} \lambda_{iy} \\
--S_{\psi_{bi}+\pi/2} \lambda_{ix} + C_{\psi_{bi}+\pi/2} \lambda_{iy} \\
+Los componentes del vector $\lambda_i^{bi}$ se representan 
+de la siguiente manera:
+\begin{equation}\label{eq: lambda bi xyz}
+\boldsymbol \lambda_i^{(bi)} = R^T_{z,\Psi_{bi}} \lambda_i^{(0)} = \begin{bmatrix}
+C_{\Psi_{bi}} \lambda_{ix} + S_{\Psi_{bi}} \lambda_{iy} \\
+-S_{\Psi_{bi}} \lambda_{ix} + C_{\Psi_{bi}} \lambda_{iy} \\
 \lambda_{iz}
 \end{bmatrix}
 \end{equation}
 
-Al reemplazar en la ecuación \ref{eq: th_12} se obtiene:
-\begin{equation}
+Al evaluar \eqref{eq: R_1_2} en \eqref{eq: th_12} se obtiene el valor
+de $\boldsymbol \lambda_i^{(bi)}$ en función de las coordenadas
+$\theta_{1i}$ y $\theta_{2i}$.
+
+\begin{equation}\label{eq: lambda bi theta}
 \lambda_i^{(bi)} = \begin{bmatrix}
 S_{\theta_{1i}} C_{\theta_{2i}}\\
 -S_{\theta_{2i}}\\
@@ -343,17 +363,23 @@ C_{\theta_{1i}} C_{\theta_{2i}}
 \end{bmatrix}
 \end{equation}
 
-Y de esta igualación se obtiene que:
-\begin{equation}
-\theta_{1i} = \arctan\left(\frac{C_{\psi_{bi}+\pi/2} \lambda_{ix} + S_{\psi_{bi}+\pi/2} \lambda_{iy}}{\lambda_{iz}}\right)
-\end{equation}
-\begin{equation}
-\theta_{2i} = \arcsen\left(S_{\psi_{bi}+\pi/2} \lambda_{ix} - C_{\psi_{bi}+\pi/2} \lambda_{iy}\right)
-\end{equation}
+Se resuelven las ecuaciones \eqref{eq: lambda bi xyz} y 
+\eqref{eq: lambda bi theta} para determinar $\theta_{1i}$ y $\theta_{2i}$.
 
-Los valores angulares de $\theta_{4i}$,$\theta_{5i}$ y $\theta_{6i}$ se obtienen del despeje de $R_4^6$ de la ecuación \ref{eq: th_12-46}:
+\begin{subequations}
+ \begin{align}
+    \theta_{1i} &= \arctan \left(\frac{C_{\Psi_{bi}} \lambda_{ix} + S_{\Psi_{bi}} \lambda_{iy}}{\lambda_{iz}}\right)\\
+    \theta_{2i} &= \arcsin \left(S_{\Psi_{bi}} \lambda_{ix} - C_{\Psi_{bi}} \lambda_{iy}\right)
+ \end{align}
+\end{subequations}
+
+Los valores de 
+$\theta_{4i}$,$\theta_{5i}$ y $\theta_{6i}$ 
+se obtienen de la ecuación \eqref{eq: th_12-46} 
+al resolver para $R_4^6$.
+
 \begin{equation}\label{eq: resp_456}
-R(\theta_{4i,5i,6i})= R^T(\theta_{1i,2i})\ R^T(\psi_{bi}+\pi/2)\ R(\theta_i)\ R^T(\psi_{ai}-\pi/2)
+    R(\theta_{4i,5i,6i})= R^T(\theta_{1i,2i})\ R^T(\Psi_{bi})\ R(\theta_i)\ R^T(\Psi_{ai})
 \end{equation}
 \begin{equation*}
 R(\theta_i) = R(\theta_p)
