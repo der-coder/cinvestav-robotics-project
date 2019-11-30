@@ -140,6 +140,7 @@ cuyos elementos son los ángulos de la plataforma medidos respect al marco refer
 
 \begin{figure}[htb!]
     \centering
+    \import{./img/}{isometric.pdf_tex}
 %     \import{./img/}{goughStewart.pdf_tex}
     \caption{Diagrama de la plataforma Gough-Cappel.}
     \label{fig: gough stewart diagram}
@@ -610,6 +611,13 @@ se define como:
 \dot{\chi_i} = -\dot \theta_i \Omega(s_i) \chi_i
 \end{equation}
 
+\begin{equation}\label{eq: Omega}
+ \Omega(\mathbf a) = \begin{bmatrix}
+           [a_2 \times] & [a_1 \times] \\
+           0 & [a_2 \times]
+          \end{bmatrix}
+\end{equation}
+
 Substituyendo \eqref{eq: d plucker} 
 en \eqref{eq: d twist} se obtiene: 
 
@@ -627,31 +635,76 @@ a_i = \chi_i(\theta_i) a_{i-1} - \dot{\theta_i}\Omega(s_i)\chi \nu_i
 
 \section{Dinámica}
 
-Del modelo lagrangiano se observa que la dinámica del sistema se observa como:
+La dinámica del sistema se expresa mediante la ecuación 
+de Euler-Lagrange generalizada. 
+Esta ecuación relaciona la matriz de inercia $H(q)$,
+los efectos de Coriolis $C(q,\dot q)$, el vector de
+gravedad $g(q)$ y las fuerzas disipativas $\tau_D$ con 
+las fuerzas generalizadas $\tau_e$ aplicadas en el sistema.
 
 \begin{equation}\label{eq: lagrangiano_modelo}
 H(q)\ddot{q} + C(q,\dot{q})\dot{q} +g(q) - \tau_D = \tau_e
 \end{equation}
 
-Y bajo los conceptos del BDA los términos inerciales y de gravedad adopta la siguiente forma:
+Mediante la metodología de 
+análisis de descomposición de cuerpos 
+(BDA por sus siglas en inglés) \cite{olguin2019multibody} 
+es posible expresar
+el modelo dinámico del robot como la sumatoria 
+del producto de los Jacobianos locales 
+$J_i^T$ y el wrench $F_i$.
 
 \begin{equation}
 \Sigma_{i=1}^N J_i^T(q)F_i = \tau_e
 \end{equation}
 
-El cual utiliza los jacobianos locales para mapear las velocidades generalizadas locales al \emph{twist} en coordenadas locales de cada referencial asignado al igual que las fuerzas.
+La metodología BDA hace uso de Jacobianos locales $J_i(q)$
+para mapear las velocidades generalizadas locales 
+al twist del objeto.
+
 \begin{equation} \label{eq: twist_loc}
 \nu_i = J_i(q)\dot{q}
 \end{equation}
+
+El wrench $F_i$ puede ser expresado de la siguiente 
+manera empleando el operador $\Omega$, asumiendo que el 
+componente $\mathbf f$ del wrench $\mathbf F = [\mathbf f, \mathbf n]$ sea diferente de cero:
+
 \begin{equation}
 F_i = M_i(\dot{\nu_i} - G_i) - \Omega^T(\nu_i)M_i\nu_i - F_{f_{i}}
 \end{equation}
-Las fuerzas del sistema utilizando la formulación de Kirchoff para cuerpos rígidos.[REFERENCIA A FORMULACION DE KIRCHOFF]
 
-Sin embargo para el desarrollo de la PGS la dinámica directa necesita de los valores del jacobiano y su derivada. Pero utilizando la ecuacion \ref{eq: q_twist} en la \ref{eq: twist_loc} se encuentra que:
+\begin{equation}
+ M_j = \begin{bmatrix}
+        m_j I_3 & -m_j [\mathbf r_{cm_j} \times]\\
+        m_j [\mathbf r_{cm_j} \times] & I_{c_j} -m_j [\mathbf r_{cm_j} \times]^2
+       \end{bmatrix}
+\end{equation}
+
+
+Las fuerzas del sistema pueden ser expresadas en función de la 
+energía cinética $K$ mediante la 
+formulación de Kirchoff para cuerpos rígidos \cite{olguin20183d}.
+
+\begin{subequations}\label{eq: kirchoff}
+ \begin{align}
+  \dfrac{d}{dt} \dfrac{\partial K}{\partial \mathbf v} + \boldsymbol \omega \times \dfrac{\partial K}{\partial \mathbf v} &= \mathbf f^{(1)}\\
+  \dfrac{d}{dt} \dfrac{\partial K}{\partial \boldsymbol \omega} + \mathbf v \times \dfrac{\partial K}{\partial \mathbf v}  + \boldsymbol \omega \times \dfrac{\partial K}{\partial \boldsymbol \omega} &= \mathbf n^{(1)}
+ \end{align}
+\end{subequations}
+
+El desarrollo de la dinámica directa del robot paralelo
+requiere conocimiento del Jacobiano $J_i$ y su derivada.
+No obstante, posible plantear la formulación quasilagrangiana
+en función de la pose $z$, el twist $\nu$ y su derivada $\dot \nu$.
+Se comienza con la substitución de la ecuacion 
+\eqref{eq: q_twist} en la ecuación \eqref{eq: twist_loc}.
+
 \begin{equation}
 \nu_i = J_i(q) A(d,R) R(R) \nu_p = T_i(d,R) \nu_p
 \end{equation}
+
+
 
 Y permite general la formulación quasi-Lagrangiana la cual nos evita tener que utilizar las coordenadas y velocidades generalizadas del sistema para encontrar la dinámica. Este modelo se expresa de la siguiente manera:
 \begin{equation}
