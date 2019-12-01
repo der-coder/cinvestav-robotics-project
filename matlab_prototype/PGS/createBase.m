@@ -1,4 +1,4 @@
-function [mass, distanceCenterMass, inertiaTensorCenterMass, massTensor] = createPiston()
+function [mass, distanceCenterMass, inertiaTensorCenterMass, massTensor] = createBase()
 % Returns mass, inertia tensor, distance to center of mass from Sigma 1, and mass tensor for the piston
 
 mass = 0.001 * 5447.39; % mass converted to kilograms
