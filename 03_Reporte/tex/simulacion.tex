@@ -1,54 +1,16 @@
 \section{Simulador}
 
-
-El modelo cinemático desarrollado en la sección
- fue implementado en MATLAB
-para evaluar el comportamiento del sistema.
-Este simulador es capaz de calcular los cambios en 
-la dimensión de cada elemento de movimiento del sistema
-para lograr que la plataforma móvil 
-llegue a la posición deseada.
-
-El simulador cuenta con una interfaz gráfica que permite la 
-evaluación de coordenadas y orientación de la plataforma.
-Es posible especificar posiciones deseadas y 
-los parámetros de movimiento del robot como lo son la
-longitud de cada pistón y la dimensión de la base y 
-plataforma del sistema.
-
-\begin{figure}
- \centering
- \includegraphics[scale=0.2]{img/principal.png}
- % principal.png: 1812x922 px, 120dpi, 38.36x19.52 cm, bb=0 0 1087 553
- \caption{Interfaz gráfica del simulador.}
- \label{fig: GUI}
-\end{figure}
-
-
-El simulador determina si la posición y 
-orientación introducidas en la interfaz gráfica
-es realizable con los parámetros especificados para
-el robot. Para llegar a este resultado, el simulador realiza
-las siguientes instrucciones:
-
+Se implementó el modelo dinámico del robot paralelo en MATLAB y SIMULINK.
+Se crearon rutinas para realizar los diversos algoritmos necesarios para obtener la información del sistema.
 \begin{itemize}
- \item Obtener la posición de cada junta de la base,
- con respecto al centro de la base.
- \item Obtener la posición de cada junta de la
- plataforma móvil con respecto a la base y tomando
- en cuenta la posición deseada.
- \item Procesar las coordenadas de cada elemento para 
- obtener los vectores que representan cada pistón.
- \item Evaluar si la posición deseada excede las 
- limitaciones físicas del sistema como exceder la 
- extensión o compresión máxima de algún pistón.
- \item Enviar mensajes de error si es necesario.
- \item Graficar los datos obtenidos, en caso de ser una
- posición factible.
- \item Ejcutar instrucciones adicionales 
- de la interfaz gráfica.
+    \item Inicialización. Genera los datos de masa, inercia y geometría del sistema.
+    \item Controladores. En función de las coordenadas generalizadas determinan el valor de $\tau$ para introducir en la función principal.
+    \item Plataforma Gough-Cappel. En función del valor de $\tau$ determina el cambio en la pose y twist del sistema en cada intervalo de tiempo.
+    \item Pseudocinemática inversa. Dada una posición y orientación determina las coordenadas locales de cada cadena serial $\theta_i$.
+    \item Pseudocinemática inversa de velocidad. Dada la posición, orientación y twist calcula la transformación de Plücker, Jacobianos y $\dot \theta_i = J_{6i}^{-1}\nu_p$
+    \item Dinámica inversa por quasilagrangiano. Dada una pose, el twist y las fuerzas generalizadas invoca los algortimos de pseudocinemática inversa y determina $h_\nu$ y $\dot \nu_p = H_\nu^{-1}(\mathcal{R}^T A^T \tau - h_\nu)+G_p$
 \end{itemize}
 
-El simulador también es capaz de producir animaciones del 
-movimiento de la plataforma y exportarlas como 
-archivos MP4.
+En SIMULINK se implementaron las estrategias de control y el simulador operando en lazo cerrado. 
+La construcción del simulador en SIMULINK dió lugar a la implementación de nuevas rutinas para realizar las transformaciones necesarias de las coordenadas generalizadas, fuerzas generalizadas, twist y pose para el funcionamiento correcto del simulador.
+

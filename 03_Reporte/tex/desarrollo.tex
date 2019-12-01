@@ -11,7 +11,7 @@ se seleccionaron para el modelo del robot y el simulador.
 La tabla \ref{tab: restricciones} muestra los 
 parámetros de diseño establecidos.
 
-\begin{figure}
+\begin{figure}[htb!]
  \centering
  \includegraphics[width=8.5cm]{PGScrop.jpg}
  \caption{Plataforma Gough-Cappel.}
@@ -51,7 +51,6 @@ en la figura \ref{fig: joints}
         \caption{Junta universal o cardán.}
         \label{fig: junta universal}
     \end{subfigure}
-    
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.4\textwidth}
@@ -465,7 +464,7 @@ Se define de la siguiente manera \cite{olguin20183d}:
  \nu_p = \begin{bmatrix}
           v \\
           \omega
-       \end{bmatrix}
+      \end{bmatrix}
 \end{equation}
 
 Con \eqref{eq: def twist} es posible 
@@ -495,8 +494,6 @@ visto desde el referencial inercial.
  A^{-1} = J_g^{(0)}
 \end{equation}
 
-
-
 El Jacobiano geométrico mapea las velocidades 
 de las coordenadas generalizadas al twist de 
 la plataforma.
@@ -507,7 +504,6 @@ de la plataforma.
 \begin{equation} \label{eq: jac_a}
 \dot{z} = J_a(\cdot)\dot{q}
 \end{equation}
-
 
 De manera similar, la derivada de la pose $\dot z$
 y el twist de la plataforma están relacionados 
@@ -521,20 +517,19 @@ a través de un operador cinemático $J_z$.
  J_z = \begin{bmatrix}
         I_3 & 0\\
         0 & J_\theta
-       \end{bmatrix}
+      \end{bmatrix}
 \end{equation}
 
 Este operador cinemático se expresa respetando 
 el formato de alabeo, cabeceo y guiñada 
 \cite{olguin20183d}.
 
-%  TODO CONFIRM KINEMATIC OPERATOR MATRIX
 \begin{equation}\label{eq: kinematic operator}
  J_\theta = \dfrac{\partial \omega^{(0)}}{\partial \dot \theta}= \begin{bmatrix}
         C_\theta C_\psi & -S_\psi & 0\\
         C_\theta S_\psi & C_\psi & 0\\
         -S_\theta & 0 & 1
-       \end{bmatrix}
+      \end{bmatrix}
 \end{equation}
 
 Substituyendo \eqref{eq: kinematic operator mapping}
@@ -567,7 +562,7 @@ El operador se define de la siguiente manera \cite{olguin20183d}:
   \mathcal T(  d) & \triangleq   \begin{bmatrix}
                                         I_3 & -[  d \times]\\
                                         0 & I_3
-                                       \end{bmatrix}
+                                      \end{bmatrix}
  \end{align}
 \end{subequations}
 
@@ -631,15 +626,15 @@ como ejemplo.
 
 \begin{equation}\label{eq: Omega}
  \Omega(  j) = \begin{bmatrix}
-           [  j_2 \times] & [  j_1 \times] \\
-           0 & [  j_2 \times]
+          [  j_2 \times] & [  j_1 \times] \\
+          0 & [  j_2 \times]
           \end{bmatrix}
 \end{equation}
 
 Substituyendo \eqref{eq: d plucker} 
 en \eqref{eq: d twist} 
 y utilizando la propiedad del operador Omega
-($\Omega(  a)   a =0$)
+($\Omega(a) \ a = 0$)
 \cite{olguin2019stewart}
 se obtiene: 
 
@@ -707,7 +702,7 @@ El tensor de masas $M_i$ es un vector extendido que contiene en sus elementos al
  M_j = \begin{bmatrix}
         m_j I_3 & -m_j [  r_{cm_j} \times]\\
         m_j [  r_{cm_j} \times] & I_{c_j} -m_j [  r_{cm_j} \times]^2
-       \end{bmatrix}
+      \end{bmatrix}
 \end{equation}
 
 Mediante los Lagrangianos locales se puede mapear la derivada de las coordenadas generalizadas al twist local.
@@ -729,8 +724,8 @@ Se define nuevamente la matriz de inercia ahora en función del twist $H_\nu$ y 
  \begin{align}
   H_v(z) &= \sum_{i=1}^N T_i^T (z) M_i T_i(z) > 0\\
   h_v (z, \nu_p) &= \sum_{i=1}^N T_j^T (z) \begin{Bmatrix}
-                                           M_j (\dot T(z, \dot z)\nu_p -G_j) \\
-                                           - \Omega^T (\nu_j) M_j \nu_j - F_{e_j}
+                                          M_j (\dot T(z, \dot z)\nu_p -G_j) \\
+                                          - \Omega^T (\nu_j) M_j \nu_j - F_{e_j}
                                           \end{Bmatrix}
  \end{align}
 \end{subequations}
