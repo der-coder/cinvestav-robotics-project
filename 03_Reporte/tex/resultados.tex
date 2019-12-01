@@ -5,108 +5,144 @@ Las estrategias de control implementadas fueron probadas con dos casos de prueba
 
 El caso bajo una referencia estática se evaluó el tiempo de estabilización y el error en estado estable y en el caso de seguimiento de trayectorias se evaluó qué tan robusto es el sistema y el comportamiento del mismo fuera del punto de linealización.
 
-Los controles que fueron implementados 
+La trayectoria generada a seguir por la plataforma esta definida por las siguientes ecuaciones:
+
+\begin{equation}
+    P = \begin{bmatrix}
+    0.1 \cos (\omega t) \\
+    0.1 \sen (\omega t) \\
+    1.5
+    \end{bmatrix}
+\end{equation}
+
+\begin{equation}
+    \dot{P} = \begin{bmatrix}
+    -0.1 \omega \sen (\omega t) \\
+    0.1 \omega \cos (\omega t) \\
+    0
+    \end{bmatrix}
+\end{equation}
+
+En la simulación de la trayectoria no se contemplan movimientos en los ángulos de alabeo, cabeceo y guiñada.\\
+
+Los controles que fueron implementados generaron diferentes resultados de la plataforma al llegar a la estabilidad. Los resultados fueron los siguientes:
+
 \subsection{Control PD}
 
-\subsubsection{Bajo patrón de movimiento}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{posPD.png}
-    \caption{Posición del sistema - PD.}
+    \caption{Posición del sistema bajo un patrón de movimiento - PD.}
     \label{fig:PD position}
 \end{figure}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{errorPD.png}
-    \caption{Error del sistema - PD.}
+    \caption{Error del sistema bajo un patrón de movimiento- PD.}
     \label{fig:PD error}
 \end{figure}
 
-\subsubsection{Bajo una referencia estática}
 
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{posPDe.png}
-    \caption{Posición del sistema - PD.}
-    \label{fig:PD position}
+    \caption{Posición del sistema bajo una referencia estática- PD.}
+    \label{fig:PD positione}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{errorPDe.png}
-    \caption{Error del sistema - PD.}
-    \label{fig:PD error}
+    \caption{Error del sistema bajo una referencia estática - PD.}
+    \label{fig:PD errore}
 \end{figure}
 
+En las figuras \ref{fig:PD position} y \ref{fig:PD error} se observa el comportamiento de la plataforma bajo control PD para una trayectoria de movimiento. Observando la figura \ref{fig:PD error} se visualiza que existe un error que permanece a pesar que la plataforma sigue los puntos de la trayectoria generada.
+
+En las figuras \ref{fig:PD positione} y \ref{fig:PD errore} se observa el comportamiento de la plataforma bajo control PD para una referencia estática . Observando la figura \ref{fig:PD errore}  se visualiza que existe un error constante en los ejes X, Y y Z. Este error es muy similar al error del caso anterior, puesto que el control PD no tiene manera de corregir el error en el estado estable.
 
 \subsection{Control PD+G}
 
-\subsubsection{Bajo patrón de movimiento}
-
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{posPDpG.png}
-    \caption{Posición del sistema - PD+G.}
+    \caption{Posición del sistema bajo un patrón de movimiento - PD+G.}
     \label{fig:PDG position}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{errorPDpG.png}
-    \caption{Error del sistema - PD+G.}
+    \caption{Error del sistema bajo un patrón de movimiento - PD+G.}
     \label{fig:PDG error}
 \end{figure}
 
-\subsubsection{Bajo una referencia estática}
-
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{posPDpGe.png}
-    \caption{Posición del sistema - PD+G.}
-    \label{fig:PDG position}
+    \caption{Posición del sistema bajo una referencia estática - PD+G.}
+    \label{fig:PDG positione}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{errorPDpGe.png}
-    \caption{Error del sistema - PD+G.}
-    \label{fig:PDG error}
+    \caption{Error del sistema bajo una referencia estática - PD+G.}
+    \label{fig:PDG errore}
 \end{figure}
+
 
 
 \subsection{Control PID}
 
-\subsubsection{Bajo patrón de movimiento}
-
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{posPID.png}
-    \caption{Posición del sistema - PID.}
+    \caption{Posición del sistema bajo un patrón de movimiento - PID.}
     \label{fig:PID position}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{errorPID.png}
-    \caption{Error del sistema - PID.}
+    \caption{Error del sistema bajo un patrón de movimiento - PID.}
     \label{fig:PID error}
 \end{figure}
 
-\subsubsection{Bajo una referencia estática}
-
-\subsubsection{Bajo patrón de movimiento}
-
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{posPIDe.png}
-    \caption{Posición del sistema - PID.}
-    \label{fig:PID position}
+    \caption{Posición del sistema bajo una referencia estática - PID.}
+    \label{fig:PID positione}
 \end{figure}
 
-\begin{figure}[htb]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{errorPIDe.png}
-    \caption{Error del sistema - PID.}
-    \label{fig:PID error}
+    \caption{Error del sistema bajo una referencia estática - PID.}
+    \label{fig:PID errore}
+\end{figure}
+
+\subsection{Trabajo}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{energiamovsubplot.png}
+    \caption{Energía de los diferentes controles bajo patrón de movimiento}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{energiamov.png}
+    \caption{Comparación de energía en los diferente controles bajo un patrón de movimiento}
+    \label{fig:energiamov}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Energiaestatica.png}
+    \caption{Comparación de energía en los diferente controles bajo referencia constante}
+    \label{fig:energiamov}
 \end{figure}
