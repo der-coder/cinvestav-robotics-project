@@ -4,6 +4,14 @@ Se detallan las observaciones hechas sobre los eventos ocurridos y
 el análisis de las situaciones.
 
 \subsection{Entendimiento del problema}
+Primeramente quedó claro que la cinemática directa sería complicada, fundamentalmente por que existen múltiples poses para una misma configuración. La transformación de el espacio configuración al espacio de operación no es biyectiva.\\
+Al comienzo buscamos descartar soluciones, todas las que ubicaban la plataforma en el lado negativo del eje $z$, eso descartó bastantes soluciones pero aún restaban bastantes por descartar, posteriormente consideramos que cada pistón tenia un alcance en forma de esfera y que un par de ellos definiría una circunferencia en el espacio, con 3 circunferencias ya se podía limitar más el número de soluciones posibles, concluimos que no había forma directa de solucionar la cinemática directa y consideramos una solución numérica iterativa, idea que fue reforzada por los documentos de la clase hasta que adoptamos la metodología propuesta en las notas \cite{olguin2019}.\\
+La siguiente parte del problema vino del control, nos percatamos que distintos puntos de linealización tienen distintas vecindades en las que funcionan, dada la naturaleza del sistema y su punto de equilibrio.\\
+Posteriormente tuvimos el problema del realismo, al cambiar $\tau$ a $\tau_m$ al tener como decisión de diseño implementar los actuadores lineales con tornillos de paso 2mm y 4 hilos lo que nos daba una n de 250$\pi$ haciendo que la dinámica del motor predominara sobre la dinámica del sistema, además de que introducía limitaciones de diseño si el control requería $\tau$ con algún componente superior al par máximo proporcionado por el motor, se le limitaba al valor máximo de par especificado por el fabricante.\\
+finalmente decidimos trazar una trayectoria suave y lenta pero el punto inicial de dicha trayectoria en el espacio de trabajo requería un cambio grande de orientación, dicho punto inicial era lejano al punto de equilibrio del robot ya que se encontraba en sus límites de orientación, como resultado el error no convergía a cero, sino que diverge. Consideramos que este comportamiento puede ser evitado con un calculo iterativo de las constantes de control conforme el vector de $q_{real}$ se acerca a $q_{deseada}$; una resintonización dependiente del error entre $q_{real}$ y $q_{deseada}(t)$     
+
+
+
 
 
 \subsection{Simulador en lazo abierto}
@@ -32,7 +40,7 @@ las rutinas fueron capaces de
 presentar resultados confiables.
 A partir de este momento fue posible el desarrollo
 de las estrategias de control y 
-linearización del sistema.
+linealización del sistema.
 
 \subsection{Implementación de estrategias de control}
 
@@ -40,3 +48,16 @@ linearización del sistema.
 
 
 \subsection{Implementación de resortes de fin de carrera}
+La idea fundamental para implementar los finales de carrera viene de colisiones entre cuerpos, consideramos que sin importar la dureza de los materiales con los que estén hechos, al colisionar entre sí sufrirán una deformación no permanente; la magnitud de ésta deformación es inversamente proporcional a la dureza del material, lo que nos lleva a pensar que la forma de modelar el final de carrera involucra un resorte.\\
+También consideramos que las colisiones reales no son perfectamente elásticas, hay una perdida de energía lo que nos hizo incluir también un amortiguador en el modelo del final de carrera de los actuadores prismáticos.\\
+También consideramos que éstas fuerzas sólo existen cuando hay contacto entre 2 cuerpos, por tanto hay una condición de contacto bajo la cual el modelo del final de carrera afecta el comportamiento del sistema.\\
+ Por tanto, el modelo de final de carrera se plantea:
+ 
+ \begin{equation}
+     \tau_{i} = \begin{cases}
+     k_c\left( L_{min}-q_i\right) + b_c\left( L_{min}-q_i\right) & \text{si }  q_i < L_{min}\\
+     0 & \text{si }  L_{min} < q_i < L_{max}\\
+     k_c\left( L_{max}-q_i\right) + b_c\left( L_{max}-q_i\right) & \text{si }  q_i > Lmax
+     \end{cases}
+ \end{equation}
+ $k_C$ se define de tal forma que el efecto de la gravedad produzca una compresión de 0.1mm y $k_C$ de tal forma que el 40\% de la energía se pierda en un rebote.

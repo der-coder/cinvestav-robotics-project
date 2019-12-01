@@ -45,8 +45,9 @@ en la figura \ref{fig: joints}
 
 \begin{figure}[htb!]
  \centering
-    \begin{subfigure}[b]{0.4\textwidth}         
-    \includegraphics[width=\textwidth]{CARDAN.png}
+    \begin{subfigure}[b]{0.4\textwidth} 
+    \centering
+    \includegraphics[width=0.6\textwidth]{CARDAN.png}
         \caption{Junta universal o cardán.}
         \label{fig: junta universal}
     \end{subfigure}
@@ -54,7 +55,8 @@ en la figura \ref{fig: joints}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.4\textwidth}
-         \includegraphics[width=\textwidth]{BALL_JOINT.png}
+    \centering
+         \includegraphics[width=0.6\textwidth]{BALL_JOINT.png}
         \caption{Junta esférica.}
         \label{fig: junta esferica}
     \end{subfigure}
@@ -109,14 +111,14 @@ Los ángulos de desfase permiten determinar las nuevas posiciones angulares
 $\Psi$ de cada junta, tal que la distancia angular de cada par de juntas 
 respecto a su posición ideal sea $\pm \alpha$. 
 Determinando los valores de $\psi_a$ y $\psi_b$, es posible
-obtener los vectores de posición $\mathbf a_i$ y $\mathbf b_i$ 
+obtener los vectores de posición $  a_i$ y $  b_i$ 
 para el punto de unión de cada junta
 medido respecto a los marcos referenciales locales de 
 la base ($\Sigma_b$) y la plataforma móvil ($\Sigma_a$).
 
 
 \begin{equation} \label{eq: p_b}
-\mathbf b_i = \begin{bmatrix}
+  b_i = \begin{bmatrix}
 r_b\cos(\psi_{bi})\\
 r_b\sin(\psi_{bi})\\
 0\\
@@ -124,7 +126,7 @@ r_b\sin(\psi_{bi})\\
 \end{equation}
 
 \begin{equation} \label{eq: p_a}
-\mathbf a_i = \begin{bmatrix}
+  a_i = \begin{bmatrix}
 r_a\cos(\Psi_{ai})\\
 r_a\sin(\Psi_{ai})\\
 0\\
@@ -133,10 +135,10 @@ r_a\sin(\Psi_{ai})\\
 
 \section{Cinemática}
 
-La cinemática del robot paralelo es obtenida del conocimiento de una posición $\mathbf d$
-y una orientación $\mathbf \theta_p$ deseada del efector final.
-La posición de la plataforma móvil está dada por el vector $\mathbf p = [x \ y \ z]^T$
-La orientación es el vector $\boldsymbol \theta_p = [\psi \ \theta \ \phi]^T$, 
+La cinemática del robot paralelo es obtenida del conocimiento de una posición $  d$
+y una orientación $  \theta_p$ deseada del efector final.
+La posición de la plataforma móvil está dada por el vector $  p = [x \ y \ z]^T$
+La orientación es el vector $  \theta_p = [\psi \ \theta \ \phi]^T$, 
 cuyos elementos son los ángulos de la plataforma medidos respect al marco referencial inercial.
 
 \begin{figure}[htb!]
@@ -151,31 +153,31 @@ cuyos elementos son los ángulos de la plataforma medidos respect al marco refer
 
 La cinemática inversa del robot paralelo parte de la suma de vectores 
 mostrados en la figura \ref{fig: gough stewart diagram}.
-Se observa que el vector de posición $\mathbf p_i$ puede ser representado 
+Se observa que el vector de posición $  p_i$ puede ser representado 
 por dos sumas equivalentes. 
 \begin{itemize}
- \item La suma del vector de posición de la plataforma $\mathbf d$ 
+ \item La suma del vector de posición de la plataforma $  d$ 
 medido respecto al referencial inercial y el producto de 
-la matriz de rotación extrínseca $\mathbf R$ y el vector de posición 
-de la junta $\mathbf a_i$. 
- \item La suma del vector de posición $\mathbf l_i$ medido respecto 
- al referencial local de la junta y el vector de posición $\mathbf b_i$.
+la matriz de rotación extrínseca $  R$ y el vector de posición 
+de la junta $  a_i$. 
+ \item La suma del vector de posición $  l_i$ medido respecto 
+ al referencial local de la junta y el vector de posición $  b_i$.
 \end{itemize}
 
 \begin{subequations} \label{eq: plat_grl}
  \begin{align}
-    \mathbf p_i & = \mathbf d + \mathbf R\mathbf a_i \\
-    \mathbf p_i & = \mathbf b_i + \mathbf l_i
+      p_i & =   d +   R  a_i \\
+      p_i & =   b_i +   l_i
  \end{align}
 \end{subequations}
 
 
 Los elementos de la matriz de rotación 
-extrínseca $\mathbf R$ están en función del vector $\mathbf \theta_p$.
+extrínseca $  R$ están en función del vector $  \theta_p$.
 La matriz se representa de la siguiente manera:
 
 \begin{equation} \label{eq: Mrot-P}
-\mathbf R = \begin{bmatrix}
+  R = \begin{bmatrix}
 C_\psi C_\theta & -S_\psi C_\phi + C_\psi S_\theta S_\phi & S_\psi S_\phi + C_\psi S_\theta C_\phi\\
 S_\psi C_\theta & C_\psi C_\phi + S_\psi S_\theta S_\phi & -C_\psi S_\phi + S_\psi S_\theta C_\phi\\
 -S_\theta & C_\theta S_\phi & C_\theta C_\phi\\
@@ -183,41 +185,40 @@ S_\psi C_\theta & C_\psi C_\phi + S_\psi S_\theta S_\phi & -C_\psi S_\phi + S_\p
 \end{equation}
 
 El movimiento de la plataforma es determinado por el cambio de longitud
-de los actuadores prismáticos $||\mathbf l_i||$.
+de los actuadores prismáticos $||  l_i||$.
 Esta característica del sistema permite establecer
 a las longitudes de los actuadores como las coordenadas 
 generalizadas $q_i$ del sistema.
 Cada coordenada generaliza se define entonces como la norma euclidiana
-del vector $\mathbf l_i$ correspondiente.
-A su vez, el vector $\mathbf l_i$ se obtiene al resolver 
+del vector $  l_i$ correspondiente.
+A su vez, el vector $  l_i$ se obtiene al resolver 
 \eqref{eq: plat_grl}.
 
 \begin{equation} \label{eq: coord_grl}
-    q_i = ||\mathbf l_i||
+    q_i = ||  l_i||
 \end{equation}
 
 \begin{equation} \label{eq: l}
-    ||\mathbf l_i|| = \sqrt{<\mathbf l_i, \mathbf l_i>} 
+    ||  l_i|| = \sqrt{ \langle  l_i,   l_i \rangle} 
 \end{equation}
 
 \begin{equation} \label{eq: largo_act}
-\mathbf l_i = \mathbf d + \mathbf R \mathbf a_i - \mathbf b_i
+  l_i =   d +   R   a_i -   b_i
 \end{equation}
 
 Utilizando las ecuaciones \ref{eq: coord_grl} y 
 \ref{eq: largo_act} se obtiene el vector unitario 
-$\boldsymbol \lambda_i$.
+$  \lambda_i$.
 
 \begin{equation} \label{eq: vec_U}
-\boldsymbol \lambda_i = \frac{\mathbf l_i}{q_i}
+  \lambda_i = \frac{  l_i}{q_i}
 \end{equation}
 
 \subsection{Pseudocinemática directa}
 
 Para la obtención de la cinemática directas se propone la división de cada cadena paralela en 
 cadenas seriales partiendo del marco referencial inercial.
-A cada junta se asignan referenciales de movimiento rotacional  en sus
-respectivos ejes.
+A cada junta se asignan referenciales de movimiento rotacional  en sus respectivos ejes.
 Esto permite el cálculo de cada cadena serial mediante 
 transformaciones homogéneas (figura \ref{fig: cadena serial}).
 Esta propuesta permite obtener un resultado fiable a pesar de la 
@@ -291,7 +292,7 @@ R_z(\Psi_{ai}) & -Ra_i\\
 
 Habiendo asignado los referenciales a cada cadena serial
 se definen variables 
-$\boldsymbol \theta_i = [\theta_{1i} \ \theta_{2i} \dots \theta_{7i}]^T$ que describen el estado
+$  \theta_i = [\theta_{1i} \ \theta_{2i} \dots \theta_{7i}]^T$ que describen el estado
 de la cadena serial en función de los ángulos de orientación
 y la coordenada generalizada $q_i$.
 La metodología propuesta posee las siguientes restricciones:
@@ -305,37 +306,28 @@ La metodología propuesta posee las siguientes restricciones:
 Los valores $\theta_{1i} \ \theta_{2i} \dots \theta_{7i}$
 se obtienen de nuevas matrices de rotación $R_{i-1}^i$,
 la coordenadas generalizada $q_i$ y el vector unitario
-$\boldsymbol \lambda_i$.\\
+$  \lambda_i$.\\
 
-La matriz de rotación $R(\boldsymbol \theta_i)$ se expresa como el producto de las 
+La matriz de rotación $R(  \theta_i)$ se expresa como el producto de las 
 matrices de rotación de la cadena serial.
 
 \begin{equation}
-R(\boldsymbol \theta_i) = R(\boldsymbol \theta_p)
+R(  \theta_i) = R(  \theta_p)
 \end{equation}
 
 \begin{equation} \label{eq: th_12-46}
-R(\boldsymbol \theta_i) = R(\Psi_{bi})R(\theta_{1i},\theta_{2i})R(\theta_{4i},\theta_{5i},\theta_{6i})R(\Psi_{ai})
+R(  \theta_i) = R(\Psi_{bi})R(\theta_{1i},\theta_{2i})R(\theta_{4i},\theta_{5i},\theta_{6i})R(\Psi_{ai})
 \end{equation}
 
-El vector unitario $\boldsymbol \lambda_i$ está orientado
+El vector unitario $  \lambda_i$ está orientado
 de manera colinear con el eje z del referencial $\Sigma_1$. 
-El vector $\boldsymbol \lambda_i$ medido en el referencial inercial 
-% ($\boldsymbol \lambda_i^{(b_i)}$)
+El vector $  \lambda_i$ medido en el referencial inercial 
+% ($  \lambda_i^{(b_i)}$)
 se expresa de la siguiente manera:
 
 \begin{equation} \label{eq: th_12}
-\boldsymbol \lambda_i^{(b_i)} = R^T_{z,\Psi_{bi}} \boldsymbol \lambda_i^{(0)} = R_{1}^{2} \ \mathbf{\hat{k}}
+  \lambda_i^{(b_i)} = R^T_{z,\Psi_{bi}}   \lambda_i^{(0)} = R_{1}^{2} \  {\hat{k}}
 \end{equation}
-
-% Para encontrar los valores articulares de las juntas, 
-% se conoce el valor de $q_i$ y $\lambda_i$ de las ecuaciones 
-% \ref{eq: coord_grl} y \ref{eq: vec_U} de la 
-% cinemática inversa de la plataforma. 
-% El vector unitario $\lambda_i$ se encuentra a lo 
-% largo del eje $z$ del referencial $\sum_1$ y del 
-% referencial $\sum_4$. La cadena serial en orientación 
-% se puede escribir como:
 
 La matriz de rotación $R_1^2$ describe la rotación en dos ejes.
 Primero une rotación en el eje y, seguido de una rotación en el eje x. 
@@ -351,7 +343,7 @@ C_{\theta_{1i}} & S_{\theta_{1i}} S_{\theta_{2i}} & S_{\theta_{1i}} C_{\theta_{2
 Los componentes del vector $\lambda_i^{bi}$ se representan 
 de la siguiente manera:
 \begin{equation}\label{eq: lambda bi xyz}
-\boldsymbol \lambda_i^{(bi)} = R^T_{z,\Psi_{bi}} \lambda_i^{(0)} = \begin{bmatrix}
+  \lambda_i^{(bi)} = R^T_{z,\Psi_{bi}} \lambda_i^{(0)} = \begin{bmatrix}
 C_{\Psi_{bi}} \lambda_{ix} + S_{\Psi_{bi}} \lambda_{iy} \\
 -S_{\Psi_{bi}} \lambda_{ix} + C_{\Psi_{bi}} \lambda_{iy} \\
 \lambda_{iz}
@@ -359,7 +351,7 @@ C_{\Psi_{bi}} \lambda_{ix} + S_{\Psi_{bi}} \lambda_{iy} \\
 \end{equation}
 
 Al evaluar \eqref{eq: R_1_2} en \eqref{eq: th_12} se obtiene el valor
-de $\boldsymbol \lambda_i^{(bi)}$ en función de las coordenadas
+de $  \lambda_i^{(bi)}$ en función de las coordenadas
 $\theta_{1i}$ y $\theta_{2i}$.
 
 \begin{equation}\label{eq: lambda bi theta}
@@ -410,7 +402,7 @@ e &= C_{\theta{4i}} C_{\theta{5i}}\\
 f &= S_{\theta_{4i}} S_{\theta_{6i}} -C_{\theta{4i}} C_{\theta{6i}}\\
 g &= -C_{\theta{5i}} S_{\theta_{6i}}\\
 h &= S_{\theta_{5i}}\\ 
-i &= C_{\theta{5i}} C_{\theta{6i}}\\
+i &= C_{\theta{5i}} C_{\theta{6i}}
     \end{align}
 \end{subequations}
 
@@ -439,17 +431,17 @@ la ecuación \eqref{eq: coord_grl}.
 
 \begin{equation} \label{eq: d qi}
 \begin{split}
-\frac{d}{dt}q_i & = \frac{d}{dt}\sqrt{\mathbf l_i^T  \mathbf l_i}  \\
-\dot{q_i} & = \frac{1}{2q_i} (\mathbf{\dot l_i} \cdot \mathbf l_i + \mathbf l_i \cdot \mathbf{\dot l_i})\\
- &= \frac{1}{q_i} (\mathbf{\dot l_i} \cdot \mathbf l_i)
+\frac{d}{dt}q_i & = \frac{d}{dt}\sqrt{  l_i^T    l_i}  \\
+\dot{q_i} & = \frac{1}{2q_i} ( {\dot l_i} \cdot   l_i +   l_i \cdot  {\dot l_i})\\
+ &= \frac{1}{q_i} ( {\dot l_i} \cdot   l_i)
 \end{split}
 \end{equation}
 
-La derivada del vector $\mathbf l_i$ se obtiene derivando
+La derivada del vector $  l_i$ se obtiene derivando
 \eqref{eq: largo_act}.
 
 \begin{equation}\label{eq: d li}
- \mathbf{\dot l_i} = \mathbf{\dot d} + [\boldsymbol \omega \times] R\mathbf a_i
+  {\dot l_i} =  {\dot d} + [  \omega \times] R  a_i
 \end{equation}
 
 Substituyendo \eqref{eq: d li} en \eqref{eq: d qi} y 
@@ -459,10 +451,10 @@ y el twist  $\nu_p$ de la plataforma.
 
 \begin{equation}\label{eq: d q def}
  \begin{split}
-    \dot q  & =\frac{1}{q_i}(\mathbf{\dot{d}} + [\boldsymbol \omega \times] R \mathbf a_i)\cdot \mathbf l_i   \\
-    \dot q        & = \frac{1}{q_i}(\mathbf v_p - [(Ra_i)\times]\omega)\cdot l_i\\
-    \dot q        & = \frac{l_i}{q_i}\left( \mathbf v_p - [(Ra_i)\times]\omega \right) \\
-    \dot q        & =  \lambda_i \cdot \mathbf v_p - \lambda_i \cdot ([(Ra_i)\times] \omega)
+    \dot q  & =\frac{1}{q_i}( {\dot{d}} + [  \omega \times] R   a_i)\cdot   l_i   \\
+    \dot q        & = \frac{1}{q_i}(  v_p - [(Ra_i)\times]\omega)\cdot l_i\\
+    \dot q        & = \frac{l_i}{q_i}\left(   v_p - [(Ra_i)\times]\omega \right) \\
+    \dot q        & =  \lambda_i \cdot   v_p - \lambda_i \cdot ([(Ra_i)\times] \omega)
  \end{split}
 \end{equation}
 
@@ -471,8 +463,8 @@ Se define de la siguiente manera \cite{olguin20183d}:
 
 \begin{equation}\label{eq: def twist}
  \nu_p = \begin{bmatrix}
-        \mathbf v \\
-        \boldsymbol \omega
+          v \\
+          \omega
        \end{bmatrix}
 \end{equation}
 
@@ -572,8 +564,8 @@ El operador se define de la siguiente manera \cite{olguin20183d}:
                               R & 0\\
                               0 & R
                              \end{bmatrix}\\
-  \mathcal T(\mathbf d) & \triangleq   \begin{bmatrix}
-                                        I_3 & -[\mathbf d \times]\\
+  \mathcal T(  d) & \triangleq   \begin{bmatrix}
+                                        I_3 & -[  d \times]\\
                                         0 & I_3
                                        \end{bmatrix}
  \end{align}
@@ -590,7 +582,7 @@ es posible hacer un mapeo recursivo del twist
 de la plataforma.
 El movimiento local 
 $\nu_{i/i-1}^{i}$ depende solamente de 
-$\boldsymbol \theta_i$.
+$  \theta_i$.
 Considerando la condición \emph{screw}
 es posible definir 
 $\nu_{i/i-1}^{i} = s_i \dot{\theta}_i$.
@@ -602,7 +594,7 @@ de la siguiente manera:
 \end{equation}
 
 Extendiendo los conceptos de traslación y rotación al twist 
-$\boldsymbol \nu_i = J_i(\boldsymbol{\theta_i}) \boldsymbol{\dot \theta_i}$, 
+$  \nu_i = J_i( {\theta_i})  {\dot \theta_i}$, 
 es posible obtener el Jacobiano geométrico 
 de la cadena serial de manera recursiva. 
 
@@ -619,7 +611,7 @@ El Jacobiano inicial es una matriz nula $J_0 = 0$.
 \subsubsection{Aceleración}
 
 La aceleración de la cadena serial puede 
-encontrarse derivando el twist $\nu_i $ en la ecuación 
+encontrarse derivando el twist $\nu_i$ en la ecuación 
 \eqref{eq: tiwst_rec}.
 
 \begin{equation}\label{eq: d twist}
@@ -634,20 +626,20 @@ se define como:
 
 El operador $\Omega$ se define de la siguiente forma
 \cite{olguin2019multibody}, empleando la matriz 
-$\mathbf j = [\mathbf j_1 \ \mathbf j_2]^T$
+$  j = [  j_1 \   j_2]^T$
 como ejemplo.
 
 \begin{equation}\label{eq: Omega}
- \Omega(\mathbf j) = \begin{bmatrix}
-           [\mathbf j_2 \times] & [\mathbf j_1 \times] \\
-           0 & [\mathbf j_2 \times]
+ \Omega(  j) = \begin{bmatrix}
+           [  j_2 \times] & [  j_1 \times] \\
+           0 & [  j_2 \times]
           \end{bmatrix}
 \end{equation}
 
 Substituyendo \eqref{eq: d plucker} 
 en \eqref{eq: d twist} 
 y utilizando la propiedad del operador Omega
-($\Omega(\mathbf a) \mathbf a =0$)
+($\Omega(  a)   a =0$)
 \cite{olguin2019stewart}
 se obtiene: 
 
@@ -665,85 +657,74 @@ a_i = \chi_i(\theta_i) a_{i-1} - \dot{\theta_i}\Omega(s_i) \nu_i
 \section{Dinámica}
 
 La dinámica del sistema se expresa mediante la ecuación 
-de Euler-Lagrange generalizada. 
+de Euler-Lagrange generalizada empleando empleando la metodología 
+de análisis de descomposición de cuerpos (BDA) \cite{olguin2019multibody}. 
 Esta ecuación relaciona la matriz de inercia $H(q)$,
 los efectos de Coriolis $C(q,\dot q)$, el vector de
 gravedad $g(q)$ y las fuerzas disipativas $\tau_D$ con 
-las fuerzas generalizadas $\tau_e$ aplicadas en el sistema.
+las fuerzas generalizadas $\tau$ aplicadas en el sistema.
 
-\begin{equation}\label{eq: lagrangiano_modelo}
-H(q)\ddot{q} + C(q,\dot{q})\dot{q} +g(q) - \tau_D = \tau_e
-\end{equation}
+\begin{subequations}\label{eq: lagrangiano_modelo}
+\begin{align}
+    H(  q) {\ddot{q}} + C(  q, {\dot q})\dot{q}  +g(q) - \tau_D  = \tau \\
+    \sum_{i=1}^N J_i^T(q)F_i = \tau\\
+    H(  q)  = \sum_{j=1}^N J_j^T(  q) M_j J_j(  q)\\
+    C(  q,  {\dot q})  = \sum_{j=1}^N J_j^T(  q) \left ( M_j \dot J_j (  q) {\dot q} - \Omega^T(  \nu_j) M_j   \nu_j \right )\\
+    g(  q)  = - \sum_{j=1}^N J_j^T(  q) M_j   G_j\\
+    \tau_D  = \sum_{j=1}^N J_j^T(  q)   F_{f_{j}}
+\end{align}
+\end{subequations}
 
-Mediante la metodología de 
-análisis de descomposición de cuerpos 
-(BDA por sus siglas en inglés) \cite{olguin2019multibody} 
-es posible expresar
-el modelo dinámico del robot como la sumatoria 
-del producto de los Jacobianos locales 
-$J_i^T$ y el wrench $F_i$.
 
-\begin{equation}
-\sum_{i=1}^N J_i^T(q)F_i = \tau_e
-\end{equation}
+La formulación Lagrangiana de la dinámica directa del sistema requiere 
+la obtención de los Jacobianos del sistema y sus derivadas.
+Este cálculo agrega una complejidad considerable a la obtención
+de una solución.
 
-La metodología BDA hace uso de Jacobianos locales $J_i(q)$
-para mapear las velocidades generalizadas locales 
-al twist del objeto.
+Mediante la formulación de Kirchoff \cite{olguin20183d}
+es posible expresar la dinámica del sistema de una manera alternativa. 
+Partiendo de la energía cinética del sistema es posible expresar
+a las fuerzas y momentos del sistema en función de $v$ y $\omega$.
+Esta nueva formulación es denominada \emph{formulación quasilagrangiana}.
 
-\begin{equation} \label{eq: twist_loc}
-\nu_i = J_i(q)\dot{q}
-\end{equation}
+\begin{subequations}\label{eq: kirchoff}
+ \begin{align}
+  \dfrac{d}{dt} \dfrac{\partial K}{\partial   v} +   \omega \times \dfrac{\partial K}{\partial   v} &=   f^{(1)}\\
+  \dfrac{d}{dt} \dfrac{\partial K}{\partial   \omega} +   v \times \dfrac{\partial K}{\partial   v}  +   \omega \times \dfrac{\partial K}{\partial   \omega} &=   n^{(1)}
+ \end{align}
+\end{subequations}
 
-El wrench $F_i$ puede ser expresado de la siguiente 
-manera empleando el operador $\Omega$, asumiendo que el 
-componente $\mathbf f$ del wrench $\mathbf F = [\mathbf f, \mathbf n]$ sea diferente de cero:
+El wrench $F_i$ puede ser expresado con  una nueva formulación.
+Esta nueva formulación expresa el wrench en función del twist y su derivada.
 
 \begin{equation}
 F_i = M_i(\dot{\nu_i} - G_i) - \Omega^T(\nu_i)M_i\nu_i - F_{f_{i}}
 \end{equation}
 
+El tensor de masas $M_i$ es un vector extendido que contiene en sus elementos al tensor de inercia $I_{c_j}$, la masa $m$ y el vector de distancia al centro de masa desde el marco referencial.
+
 \begin{equation}
  M_j = \begin{bmatrix}
-        m_j I_3 & -m_j [\mathbf r_{cm_j} \times]\\
-        m_j [\mathbf r_{cm_j} \times] & I_{c_j} -m_j [\mathbf r_{cm_j} \times]^2
+        m_j I_3 & -m_j [  r_{cm_j} \times]\\
+        m_j [  r_{cm_j} \times] & I_{c_j} -m_j [  r_{cm_j} \times]^2
        \end{bmatrix}
 \end{equation}
 
+Mediante los Lagrangianos locales se puede mapear la derivada de las coordenadas generalizadas al twist local.
 
-Las fuerzas del sistema pueden ser expresadas en función de la 
-energía cinética $K$ mediante la 
-formulación de Kirchoff para cuerpos rígidos \cite{olguin20183d}.
+\begin{equation} \label{eq: twist_loc}
+\nu_i = J_i(q)\dot{q}
+\end{equation}
 
-\begin{subequations}\label{eq: kirchoff}
- \begin{align}
-  \dfrac{d}{dt} \dfrac{\partial K}{\partial \mathbf v} + \boldsymbol \omega \times \dfrac{\partial K}{\partial \mathbf v} &= \mathbf f^{(1)}\\
-  \dfrac{d}{dt} \dfrac{\partial K}{\partial \boldsymbol \omega} + \mathbf v \times \dfrac{\partial K}{\partial \mathbf v}  + \boldsymbol \omega \times \dfrac{\partial K}{\partial \boldsymbol \omega} &= \mathbf n^{(1)}
- \end{align}
-\end{subequations}
-
-El desarrollo de la dinámica directa del robot paralelo
-requiere conocimiento del Jacobiano $J_i$ y su derivada.
-Es posible plantear la formulación quasilagrangiana
-en función de la pose $z$, el twist $\nu$ y su derivada $\dot \nu$.
-Se comienza con la substitución de la ecuacion 
+Para la formulación quasilagrangiana se comienza con la substitución de la ecuación 
 \eqref{eq: q_twist} en la ecuación \eqref{eq: twist_loc}.
 
 \begin{equation}
 \nu_i = J_i(q) A(z) R(R) \nu_p = T_i(z) \nu_p
 \end{equation}
 
-La formulación quasilagrangiana queda expresada de la 
-siguiente manera:
+Se define nuevamente la matriz de inercia ahora en función del twist $H_\nu$ y los términos no lineales son agrupados en $h_\nu$.
 
-\begin{equation}\label{eq: quasi lagrangian}
-  H_v(z)\dot{\nu_p}+h_v(z,\nu_p) = R^T(R) A^T(z)\tau
-\end{equation}
-
-
-En donde el modelo dinámico depende de los valores de la pose y \emph{twist} de la plataforma la cual no necesita de las coordenadas y velocidades generalizadas. Volviendo este modelo independiente a la cinemática directa de la plataforma del modelo Lagrangiano.
-
-Se define:
 \begin{subequations}
  \begin{align}
   H_v(z) &= \sum_{i=1}^N T_i^T (z) M_i T_i(z) > 0\\
@@ -753,6 +734,12 @@ Se define:
                                           \end{Bmatrix}
  \end{align}
 \end{subequations}
+La formulación quasilagrangiana queda expresada de la 
+siguiente manera:
+
+\begin{equation}\label{eq: quasi lagrangian}
+  H_v(z)\dot{\nu_p}+h_v(z,\nu_p) = R^T(R) A^T(z)\tau
+\end{equation}
 
 Resolviendo la ecuación \eqref{eq: quasi lagrangian}
 para $h(z,\nu_p)$ y agregando el vector de 
@@ -762,39 +749,42 @@ se obtiene la siguiente expresión para $h(z,\nu_p)$.
 
 \begin{subequations}
 \begin{align}
- h_v(z,\nu_p) = & \sum_{i=1}^N T_i^T(z)  \left( M_i \Theta  - \Omega^T(\nu_i)M_i\nu_i - F_{e_i} \right)\\
+ h_v(z,\nu_p) & =  \sum_{i=1}^N T_i^T(z)  \left( M_i \Theta  - \Omega^T(\nu_i)M_i\nu_i - F_{e_i} \right)\\
  \Theta & = \left(\dot T_i (z,\dot z) - G_i \right)
 \end{align}
 \end{subequations}
 
+Este nuevo modelo dinámico depende de únicamente de valores de la pose y \emph{twist} de la plataforma.
+Esta formulación vuelve independiente al modelo de la cinemática directa del modelo Lagrangiano debido a no depender de las coordenadas y velocidades generalizadas.
 
 \subsection{Energía}
-El trabajo realizado por una partícula al moverse de un punto 1 al punto 2 se puede expresar por medio de la siguiente definición, la integral de un movimiento en una ruta se define como el producto escalar de la fuerza en la partícula y la ruta realizada: [REFERENCIA GOLDSTEIN/LIBRO OLGUIN]
+
+El trabajo de una partícula que se traslada de un punto 1 a un punto 2 se define como la integral de la fuerza aplicada $f$ a lo largo de su trayectoria \cite{olguin20183d}.
 
 \begin{equation}\label{equ:trabajo 1}
 W_{1-2} = \int_1^2 \ f \cdot ds
 \end{equation}
 
-Observando la definición de trabajo en una ruta, se puede reescribir la ecuación \ref{equ:trabajo 1} para poder ser realizada en el tiempo. Para lograrlo, se incluye un diferencial de tiempo modificando al valor de la ruta, generando:
+Observando la definición de trabajo en una ruta, se puede reescribir la ecuación \eqref{equ:trabajo 1} para poder ser realizada en el tiempo.
 
 \begin{equation}\label{equ:trabajo}
 W_{1-2} = \int_{t1}^{t2} \ f \cdot \frac{ds}{dt} \ dt = \int_{t1}^{t2} \ (f \cdot v) \ dt
 \end{equation}
 
-Esta ecuación define la potencia de la partícula como la derivada en el tiempo del trabajo.
-[REFERENCIA LIBRO OLGUIN]
+El producto de la fuerza y el vector de velocidad $v$ en la ecuación \eqref{equ:trabajo} es la definición de potencia.
 
 \begin{equation} \label{equ:potencia}
-P \triangleq \frac{d}{dt}W = f \cdot v = <f,v>
+P \triangleq \frac{d}{dt}W = f \cdot v = \langle f,v \rangle
 \end{equation}
 
-En el caso de la PGS, se puede observar que la coordenada generalizada es la que realiza el movimiento y por lo tanto es donde se puede encontrar la potencia del sistema utilizando las velocidades generalizadas. Se redefine la ecuacion \ref{equ:potencia}:
+Para el robot paralelo la potencia es obtenida de las velocidades generalizadas.
+Substituyendo $\dot q$ en \eqref{equ:potencia}:
 
-\begin{equation}
+\begin{equation}\label{eq: power gough}
 P = f \cdot \dot{q}
 \end{equation}
 
-Y el tarbajo de la plataforma se obtiene como la integral de la ecuacion anterior.
+El trabajo realizado se obtiene al integrar la ecuación \eqref{eq: power gough}.
 
 \begin{equation}\label{equ:trabajo-plat}
 W = \int f \cdot \dot{q}\ dt
