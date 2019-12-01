@@ -8,10 +8,37 @@ La posibilidad de simplificar las cadenas cerradas a manera de representarlas co
 
 
 \subsection{Neftali Jonatán González}
+El consumo energético resultó ser algo semejante a lo que suponía. La acción integral agrega algo de fuerza extra para eliminar una perturbación constante.
+Ya que realiza una sumatoria del error, (ya sea positivo o negativo) debe tener un período en el que el error es negativo para poder contrarrestar la suma de los errores positivos al comienzo de la trayectoria.
+En caso de que el valor de referencia tenga coordenadas mayores al punto inicial, este comportamiento particular produce sobreimpulsos y por tanto un gasto extra de energía. 
+Esto último debido al sobreimpulso y a la fuerza extra para poder contrarrestar la perturbación constante.
+
+Por otra parte, el control con compensación de gravedad pretende alterar las fuerzas generalizadas a los valores requeridos para llegar al punto de referencia sin sobreimpulso.
+La eliminación de sobreimpulso (o sobretiro) se debe a la acción derivativa, que se encarga de disminuir la velocidad conforme se acerca el sistema al punto de referencia.
+El problema de la compensación de gravedad es que solo considera la parte lineal del sistema, por tanto solamente se aproxima a la referencia. Es incapaz de alcanzarla.\\
+
+En cuanto al PD, hace converger las variables hasta que $k_p\left(error\right) = $perturbación constante.
+
+Además, era notorio que el sistema tiene puntos en los que la linealización tiene un espacio efectivo mayor que otros, puntos que yo llamo, "de mayor estabilidad" en general.
+Los puntos que se encuentren verticalmente alineados al centro de la base del robot son más estables.
+También había puntos más bajos que presentaban mayor estabilidad, ésto puede ser porque la restricción del final de carrera crea un punto de equilibrio.
+
 
 \subsection{Enrique Benavides Téllez}
-Ya habiendo terminado el proyecto, puedo decir que logramos llegar al objetivo principal del proyecto. La comparación del desempeño
+Ya habiendo terminado el proyecto, se puede decir que se logró llegar al objetivo principal del proyecto: la comparación del desempeño y gasto energético con diferentes leyes de control en el robot. 
+Con los resultados obtenidos se encontró que así como una ley de control permite tener un mejor desempeño del robot, también aumenta la energía necesaria para ese desempeño.
+Bajo el concepto de "mejor desempeño igual a mayor energía consumida", la estrategia de control ya depende de la aplicación del robot. 
+Si se necesita que el robot mantenga alto desempeño, precisión en posición y velocidad, va a ser necesario que el consumo energético sea mayor.
+En caso de no necesitar tales niveles de desempeño el consumo se puede reducir manteniendo errores en el desempeño.
 
+Cada nueva versión del proyecto fue debida a errores en el algoritmo para obtener los valores de la plataforma. 
+Se observó que existen cada vez más elementos; los cuales generan cambios en la plataforma. 
+Lo mas problemático es que todos estos elementos suelen tener impacto también en los términos no lineales; 
+los cuales generan errores en el estado transitorio de la plataforma y errores cuando se quiere llegar a una referencia muy lejos del punto de linealización.
+
+Algo realmente interesante del sistema, es que al agregar la matriz diagonal de momentos de inercia polar del motor multiplicado por su relación al cuadrado, el sistema deja de tener un comportamiento dominado por la plataforma. 
+Ahora es dominado por los motores.
+Aún con esto, los controles implementados mantuvieron su comportamiento. El PD con un error estacionario, el PD + G con el error estacionario menor al PD y el PID sin error estacionario pero con una estado transitorio que genera sobretiro.
 
 \subsection{Isaac Ayala Lozano}
 El objetivo del proyecto fue alcanzado. 
