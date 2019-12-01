@@ -516,29 +516,6 @@ de la plataforma.
 \dot{z} = J_a(\cdot)\dot{q}
 \end{equation}
 
-El Jacobiano analítico está relacionado con el Jacobiano
-geométrico a través de un operador $\Phi(\cdot)$ {olguin2019}.
-
-\begin{equation}\label{eq: jacobian conversion}
- J_a = \Phi^{+} J_g^{(0)}
-\end{equation}
-
-\begin{equation}
- \Phi = \begin{bmatrix}
-         I & 0\\
-         0 & J_v
-        \end{bmatrix}
-\end{equation}
-
-\begin{equation}
- J_v = \dfrac{1}{2} [[r_{1i}\times] \dfrac{\partial r_{1i}}{\partial \theta} +[r_{2i}\times] \dfrac{\partial r_{2i}}{\partial \theta}+[r_{3i}\times] \dfrac{\partial r_{3i}}{\partial \theta}]
-\end{equation}
-
-Donde $r_{ij}$ corresponde a la 
-i-ésima columna del producto de 
-las transformaciones homogéneas
-de la cadena serial 
-$H_i = [r_{1i}, \ r_{2i},\ r_{3i},\ r_{4i}]$.
 
 De manera similar, la derivada de la pose $\dot z$
 y el twist de la plataforma están relacionados 
@@ -548,12 +525,20 @@ a través de un operador cinemático $J_z$.
 \nu_p^{(0)} = J_z\dot{z}
 \end{equation}
 
+\begin{equation}
+ J_z = \begin{bmatrix}
+        I_3 & 0\\
+        0 & J_\theta
+       \end{bmatrix}
+\end{equation}
+
 Este operador cinemático se expresa respetando 
-el formato de alabeo, cabeceo y guiñada \cite{olguin20183d}.
+el formato de alabeo, cabeceo y guiñada 
+\cite{olguin20183d}.
 
 %  TODO CONFIRM KINEMATIC OPERATOR MATRIX
 \begin{equation}\label{eq: kinematic operator}
- J_z = \begin{bmatrix}
+ J_\theta = \dfrac{\partial \omega^{(0)}}{\partial \dot \theta}= \begin{bmatrix}
         C_\theta C_\psi & -S_\psi & 0\\
         C_\theta S_\psi & C_\psi & 0\\
         -S_\theta & 0 & 1
@@ -576,7 +561,8 @@ la derivada de la pose de la plataforma.
 Se introduce el operador $\chi$, 
 también conocido como transformación de Plücker.
 Este operador hace un mapeo de vectores 
-espaciales de movimiento de un marco referencial hijo.
+espaciales de movimiento de un marco referencial padre a un 
+marco referencial hijo.
 El operador se define de la siguiente manera \cite{olguin20183d}:
 
 \begin{subequations}
@@ -627,7 +613,7 @@ J_i(\theta_i) = \chi(\theta_i) J_{i-1} + S_i
 Donde $S_i$ es una matriz de ceros 
 ($S_i \in R^{6\times n}$) excepto la columna 
 \emph{i} que contiene al vector $s_i$ correspondiente 
-del movimiento.\\
+al movimiento en el referencial actual $i$.\\
 El Jacobiano inicial es una matriz nula $J_0 = 0$.
 
 \subsubsection{Aceleración}
@@ -637,7 +623,7 @@ encontrarse derivando el twist $\nu_i $ en la ecuación
 \eqref{eq: tiwst_rec}.
 
 \begin{equation}\label{eq: d twist}
-a_i = \frac{d}{dt} (\chi_i(\theta_i)\nu_i + s_i\dot{\theta_i})
+\dfrac{d}{dt} \nu_i = \frac{d}{dt} (\chi_i(\theta_i)\nu_i + s_i\dot{\theta_i})
 \end{equation}
 
 La derivada de la transformación de Plücker 
@@ -646,26 +632,34 @@ se define como:
 \dot{\chi_i} = -\dot \theta_i \Omega(s_i) \chi_i
 \end{equation}
 
+El operador $\Omega$ se define de la siguiente forma
+\cite{olguin2019multibody}, empleando la matriz 
+$\mathbf j = [\mathbf j_1 \ \mathbf j_2]^T$
+como ejemplo.
+
 \begin{equation}\label{eq: Omega}
- \Omega(\mathbf a) = \begin{bmatrix}
-           [a_2 \times] & [a_1 \times] \\
-           0 & [a_2 \times]
+ \Omega(\mathbf j) = \begin{bmatrix}
+           [\mathbf j_2 \times] & [\mathbf j_1 \times] \\
+           0 & [\mathbf j_2 \times]
           \end{bmatrix}
 \end{equation}
 
 Substituyendo \eqref{eq: d plucker} 
-en \eqref{eq: d twist} se obtiene: 
+en \eqref{eq: d twist} 
+y utilizando la propiedad del operador Omega
+($\Omega(\mathbf a) \mathbf a =0$)
+\cite{olguin2019stewart}
+se obtiene: 
 
 \begin{equation}\label{eq: acceleration}
-a_i = \chi_i(\theta_i)\dot{\nu}_i - \dot \theta_i \Omega(s_i)\chi_i \nu_i+ s_i\ddot{\theta_i}
+\dot \nu_i = \chi_i(\theta_i)\dot{\nu}_i - \dot \theta_i \Omega(s_i) \nu_i+ s_i\ddot{\theta_i}
 \end{equation}
 
 Dado el valor inicial de la aceleración 
-$a_0 = G_0$ 
-la ecuación \eqref{eq: acceleration} 
+$a_0 = G_0$ la ecuación \eqref{eq: acceleration} 
 puede ser expresada como:
 \begin{equation}
-a_i = \chi_i(\theta_i) a_{i-1} - \dot{\theta_i}\Omega(s_i)\chi \nu_i
+a_i = \chi_i(\theta_i) a_{i-1} - \dot{\theta_i}\Omega(s_i) \nu_i
 \end{equation}
 
 \section{Dinámica}
@@ -777,11 +771,11 @@ se obtiene la siguiente expresión para $h(z,\nu_p)$.
 \subsection{Energía}
 El trabajo realizado por una partícula al moverse de un punto 1 al punto 2 se puede expresar por medio de la siguiente definición, la integral de un movimiento en una ruta se define como el producto escalar de la fuerza en la partícula y la ruta realizada: [REFERENCIA GOLDSTEIN/LIBRO OLGUIN]
 
-\begin{equation}\label{equ:trabajo}
+\begin{equation}\label{equ:trabajo 1}
 W_{1-2} = \int_1^2 \ f \cdot ds
 \end{equation}
 
-Observando la definición de trabajo en una ruta, se puede reescribir la ecuación \ref{equ:trabajo} para poder ser realizada en el tiempo. Para lograrlo, se incluye un diferencial de tiempo modificando al valor de la ruta, generando:
+Observando la definición de trabajo en una ruta, se puede reescribir la ecuación \ref{equ:trabajo 1} para poder ser realizada en el tiempo. Para lograrlo, se incluye un diferencial de tiempo modificando al valor de la ruta, generando:
 
 \begin{equation}\label{equ:trabajo}
 W_{1-2} = \int_{t1}^{t2} \ f \cdot \frac{ds}{dt} \ dt = \int_{t1}^{t2} \ (f \cdot v) \ dt
