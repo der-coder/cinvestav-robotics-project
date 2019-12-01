@@ -1,148 +1,69 @@
-\chapter{Interfaz gráfica}
+\chapter{Guía de uso}
 
-% \section{Introducción}
-% El paquete GSP incluye una interfaz
-% gráfica creada en MATLAB para facilitar
-% la simulación de movimientos.
-% Esta interfaz ya viene inccluida con el 
-% código del simulador.
-% 
-% Para acceder a ella, es necesario navegar
-% a la carpeta que contiene el código fuente 
-% del simulador. 
-% Dentro de esta carpeta, se encuentra un archivo llamado 
-% `Sim1.m`. 
-% Este archivo contiene la interfaz gráfica.
+\section{Características del robot}
+El simulador está programado para operar con una 
+plataforma Gough-Cappel con los siguientes parámetros:
 
-\section{Inicialización}
+\begin{table}[htb!]
+\centering
+\begin{tabular}{lc}
 
-Existen dos maneras de ejectuar 
-la interfaz gráfica desde MATLAB.
-\begin{itemize}
- \item Ejecutar a través del entorno GUIDE para poder
- inicializar los valores precargados.
- \item Ejecutar directamente en MATLAB 
- sin precargar valores.
-\end{itemize}
-
-Ambas opciones pueden realizarse desde la ventana de 
-\emph{Current Folder} en la ventana principal de MATLAB.
-Estando ya en el directorio que contiene el código fuente,
-como se muestra en la figura \ref{fig: start GUI}, 
-es posible inicializar la interfaz.
-
-\begin{figure}[h!]
- \centering
- \includegraphics[scale=0.6]{img/GUI_start_click.PNG}
- \caption{Menú Current Folder.}
- \label{fig: start GUI}
-\end{figure}
-
-
-Para acceder al entorno GUIDE: 
-\begin{itemize}
- \item  Seleccione el archivo \textbf{Sim1.fig} y haga clic secundario para 
-acceder a las opciones del archivo. 
-\item Elija la opción \textbf{Abrir en GUIDE}. 
-MATLAB inicializará el entorno GUIDE inmediatamente. 
-\item Desde la ventana mostrada en la 
-figura \ref{fig: GUIDE} seleccione el menú 
-\textbf{Herramientas} y oprima la opción \textbf{ejecutar}.
-La interfaz gráfica será inicializada con los valores
-precargados en el código fuente.
-\end{itemize}
-
-
-\begin{figure}[h]
- \centering
- \includegraphics[scale=0.4]{img/GUI_GUIDE_window.PNG}
- \caption{Entorno GUIDE.}
- \label{fig: GUIDE}
-\end{figure}
-
-
-Para iniciar la interfaz gráfica sin los valores 
-precargados, haga doble clic en el archivo desde la 
-ventana de \textbf{Current Folder}.
-
-
-% \pagebreak
-% \section{Guía de uso}
-% 
-% La interfaz gráfica del paquete GSP está diseñada para
-% permitir al usuario evaluar la factibilidad de 
-% alcanzar la posición deseada del robot de acuerdo a 
-% las limitaciones del sistema. 
-% Con la interfaz es posible realizar lo siguiente:
-% \begin{itemize}
-%  \item Actualizar los parámetros del simulador para que
-%  concuerden con los valores del robot real.
-%  \item Especificar la posición deseada y su orientación.
-%  \item Validar la factibilidad del movimiento.
-%  \item Visualizar tres animaciones precargadas de movimientos.
-% \end{itemize}
-
-\section{Partes de la interfaz}
-
-\begin{figure}[ht]
- \centering
- \includegraphics[scale=0.3]{img/gui_labels.PNG}
- \caption{Elementos de la interfaz gráfica.}
- \label{fig: GUI explained}
-\end{figure}
-
-\subsection{Parámetros de la plataforma}
-El cuadro \textbf{A} de la figura 
-\ref{fig: GUI explained} señala las tres cajas de entrada
-de datos. El usuario puede actualizar estos valores a su conveniencia.
-
-
-\subsection{Tabla de posicionamiento}
-Contenida en el cuadro \textbf{B} de la figura \ref{fig: GUI explained}.
-La posición y orientación deseadas pueden ser especificadas aquí.
-
-
-\subsection{Validación}
-El botón \textbf{Validar} es empleado para evaluar la factibilidad del
-movimiento. 
-Si es posible, el cuadro \textbf{C} será actualizado. 
-De lo contrario arrojará un mensaje de error al usuario. 
-Vea el capítulo \ref{chapter: troubleshooting} para más información.
-
-\subsection{Animación}
-Los controles incluidos en el cuadro \textbf{D} detallan las
-opciones para generar animaciones basado en los parámetros del robot
-y la posición deseada.
-
-
-
-\section{Caso ejemplo}
-La interfaz gráfica ya incluye un conjunto de 
-demostraciones precargadas en la interfaz. 
-Estas pueden ser accesadas al inicializar la interfaz
-mediante el entorno GUIDE.
-
-El robot está precargado con la siguiente 
-configuración mostrada en la trabla \ref{tab: example}.
-Accionand el botón \textbf{Actualizar}, los valores 
-serán cargados en el simulador y el usuario 
-podrá inicializar las animaciones disponibles en el paquete.
-
-\begin{table}[h]
-\begin{center}
-\begin{tabular}{llcccc}
- & & Posición & & Orientación & \\
-Radio de la base & 1 m. &  [x] & 0 m. &  [x] & 0\\
-Radio de la plataforma & 0.61805 m. &  [y] & 0 m. &  [y] & 0\\
-Longitud mínima del cilindro & 1 m. &  [z] & 1 m. &  [z] & 0
+\multicolumn{2}{c}{Parámetros de diseño} \\ \hline
+Radio de la base ($r_b$) & $0.44205 \ [m]$ \\ 
+Radio de la plataforma ($r_a$) & $0.36248 \ [m]$ \\ 
+Separación entre juntas en la base ($k_b$) & $0.7 \ [m]$ \\ 
+Separación entre juntas en la plataforma ($k_a$) & $0.2986 \ [m]$ \\ 
+Longitud mínima del actuador ($q_{min}$) & $1.28929 \ [m]$ \\ 
+Mangitud máxima del actuador ($q_{max}$) &  $2.19 \ [m]$ \\ 
 \end{tabular}
-\end{center}
-\caption{Parámetros del caso ejemplo.}
-\label{tab: example}
+\caption{Restricciones dimensionales del robot paralelo.}
+\label{tab: restricciones}
 \end{table}
 
+\begin{figure}[htb!]
+\centering
+ \includegraphics[scale=0.3]{PGScrop.jpg}
+ \caption{Robot del simulador.}
+\end{figure}
 
 
+\section{Uso del simulador}
+Se incluyen tres esquemas de control para simular el robot.
+Estos archivos son llamados PGS\_PD, PGS\_PDpG y PGS\_PID respectivamente.
+Cualquiera de estos esquemas puede ser empleado como plantilla
+para la implementación de nuevas estrategias de control.
+
+Para utilizar los esquemas es necesario abrir los archivos slx 
+desde la interfaz de MATLAB.
+También es importante agregar la carpeta de \textbf{funciones}
+al \text{Path} de MATLAB 
+(clic derecho en la carpeta y seleccionar Add to Path).
+
+A continuación se presenta uno de los esquemas incluidos.
+
+\begin{figure}[htb!]
+\centering
+ \includegraphics[scale=0.3]{PD.png}
+ \caption{Esquema de control en SIMULINK.}
+\end{figure}
+
+Para iniciar la simulación es necesario 
+presionar el botón de iniciar (Run) 
+en la interfaz de SIMULINK.
+El usuario es capaz de cambiar el tiempo de 
+simulación desde la opción de Stop Time.
+
+Una vez concluido el tiempo de simulación es 
+posible observar los resultados con los 
+Scopes incluidos en el programa.
+Es posible observar la pose de la plataforma móvil
+a través del tiempo y el cambio de las longitudes de los pistones.
+
+\begin{figure}[htb!]
+ \centering
+ \includegraphics[scale=0.3]{plots.png}
+ \caption{Resultados del simulador.}
+\end{figure}
 
 
 
