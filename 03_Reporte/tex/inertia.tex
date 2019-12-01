@@ -23,20 +23,21 @@ sistema internacional.
 \end{equation*}
 
 \subsection{Plataforma móvil}
-\includegraphics[width=8cm]{plat_D.JPG}
 
-% Px = convertGramMM2toKgM2 * 7246289714.88;
-% Py = convertGramMM2toKgM2 * 7246289714.88;
-% Pz = convertGramMM2toKgM2 * 13887070726.86;
-% 
-% Ix = [1; 0; 0];
-% Iy = [0; 1; 0];
-% Iz = [0; 0; 1];
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=8cm]{plat_D.JPG}
+    \caption{Plataforma móvil.}
+    \label{fig: cad platform}
+\end{figure}
 
 \begin{table}[hb!]
  \begin{center}
 \begin{tabular}{lclc}
+ Masa & $  115.53766 \ [kg]$ & $r_{cm}$ &  $[0; 0; 0.11145]^T \ [m]$ \\
+ \hline
  & & & $[g/mm^2]$\\
+ \hline
  $ I_x $ & $ [1 \ 0 \ 0]^T $ & $ P_x $ & 7246289714.88\\
  $ I_y $ & $ [0 \ 1 \ 0]^T $ & $ P_y $ & 7246289714.88\\
  $ I_z $ & $ [0 \ 0 \ 1]^T $ & $ P_z $ & 13887070726.86
@@ -48,7 +49,12 @@ sistema internacional.
 
 
 \subsection{Base}
-\includegraphics[width=8cm]{BASE.png}
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=8cm]{BASE.png}
+    \caption{Base del robot.}
+    \label{fig: cad base}
+\end{figure}
 % Px = convertGramMM2toKgM2 * 348997674.08;
 % Py = convertGramMM2toKgM2 * 349004086.28;
 % Pz = convertGramMM2toKgM2 * 696714510.70;
@@ -60,8 +66,10 @@ sistema internacional.
 \begin{table}[hb!]
  \begin{center}
 \begin{tabular}{lclc}
-% \begin{multicolumn}{2}{c}{Vector} & \begin{multicolumn}{2}{c}{Inertia [$g/mm^2$]} \\
+ Masa & $ 5.44739\ [kg]$ & $r_{cm}$ &  $[0; 0; 0.00048]^T \ [m]$ \\
+ \hline
  & & & $[g/mm^2]$\\
+ \hline
  $ I_x $ & $ [0.73\ -0.68\ 0]^T $ & $ P_x $ & 348997674.08\\
  $ I_y $ & $ [0.68\ 0.73\ 0]^T $ & $ P_y $ & 349004086.28\\
  $ I_z $ & $ [0 \ 0 \ 1]^T $ & $ P_z $ & 696714510.70
@@ -72,7 +80,14 @@ sistema internacional.
 \end{table}
 
 \subsection{Actuador prismático con motor}
-\includegraphics[width=8cm]{ACTUATOR.JPG}
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=8cm]{ACTUATOR.JPG}
+    \caption{Actuador prismático.}
+    \label{fig: cad motor}
+\end{figure}
+
 \begin{table}[hb!]
  \begin{center}
 \begin{tabular}{lclc}
@@ -87,8 +102,10 @@ sistema internacional.
 % Iz = [1; 0; 0];
 
 
-% \begin{multicolumn}{2}{c}{Vector} & \begin{multicolumn}{2}{c}{Inertia [$g/mm^2$]} \\
+ Masa & $ 5.48131 \ [kg]$ & $r_{cm}$ & $[0; 0; 0.47139]^T \ [m]$ \\
+ \hline
  & & & $[g/mm^2]$\\
+ \hline
  $ I_x $ & $ [0 \ 0 \ 1]^T $ & $ P_x $ & 2079848.97\\
  $ I_y $ & $ [0 \ -1 \ 0]^T $ & $ P_y $ & 703671034.55\\
  $ I_z $ & $ [1 \ 0 \ 0]^T $ & $ P_z $ & 703687095.26
@@ -98,8 +115,15 @@ sistema internacional.
 \label{tab: inertia table motor}
 \end{table}
 
-\subsection{Junta esférica con tornillo}
-\includegraphics[width=8cm]{vastago_D.JPG}
+\subsection{Vástago con junta esférica}
+
+\begin{figure}[htb!]
+    \centering
+    \includegraphics[width=8cm]{vastago_D.JPG}
+    \caption{Vástago con junta esférica.}
+    \label{fig:my_label}
+\end{figure}
+
 \begin{table}[hb!]
  \begin{center}
 \begin{tabular}{lclc}
@@ -113,13 +137,15 @@ sistema internacional.
 % Iy = [0.71; -0.71; 0];
 % Iz = [0.71; 0.71; 0];
 
-% \begin{multicolumn}{2}{c}{Vector} & \begin{multicolumn}{2}{c}{Inertia [$g/mm^2$]} \\
+ Masa & $ 2.25414\ [kg]$ & $r_{cm}$ & $[0.00001; 0; -0.53696]^T \ [m]$  \\
+ \hline
  & & & $[g/mm^2]$\\
+ \hline
  $ I_x $ & $ [0 \ 0 \ 1]^T $ & $ P_x $ & 297124.48\\
  $ I_y $ & $ [0.71 \ -0.71 \ 0]^T $ & $ P_y $ & 205340128.62\\
  $ I_z $ & $ [0.71 \ 0.71 \ 0]^T $ & $ P_z $ & 205340128.62
 \end{tabular}
 \end{center}
-\caption{Datos de inercia de la junta esférica con tornillo.}
+\caption{Datos de inercia del vástago con junta esférica.}
 \label{tab: inertia table joint}
 \end{table}
