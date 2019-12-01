@@ -1,7 +1,37 @@
 \section{Conclusiones}
+Al haber finalizado el proyecto, se comprobó por medio de los diferentes controles aplicados al sistema que el consumo energético aumentó al reducir el error a su convergencia en cero. 
+Se observó que al agregar la parte integral al controlador PD la energía consumida aumentó. Sin embargo la precisión del sistema también aumentó, este incremento ocasionó que el sistema genere un sobretiro tanto en posiciones como en energía.
+
+En el aspecto de modelado de la dinámica del sistema, la implementación de la metodología BDA para solucionar los múltiples obstáculos demostró ser una opción efectiva.
+La posibilidad de simplificar las cadenas cerradas a manera de representarlas como cadenas seriales abiertas permite emplear más herramientas para obtener una solución al problema.
+
+
 
 \subsection{Neftali Jonatán González}
 
-\subsection{Enrique Benavidez Téllez}
+\subsection{Enrique Benavides Téllez}
+Ya habiendo terminado el proyecto, puedo decir que logramos llegar al objetivo principal del proyecto. La comparación del desempeño
+
 
 \subsection{Isaac Ayala Lozano}
+El objetivo del proyecto fue alcanzado. 
+Fue posible observar y comparar el comportamiento del sistema 
+en diferentes. 
+Comenzando por el simulador implementado sin los datos del modelo realizado en Solidworks, se pudo observar que el simulador era capaz de generar resultados.
+Esto en sí fue un paso impresionante ya que todos nosotros carecíamos de la certeza para asumir que se pudiera llegar a un simulador funcional.
+
+Cada nueva iteración del modelo agregó un nuevo reto y un nuevo nivel de complejidad. 
+La adición de los detalles del robot diseñado alteraron el comportamiento completo del sistema. 
+El simulador ya era capaz de producir resultados confiables, como el caso de caída libre.
+Inmediatamente después, la introducción de limitaciones de diseño como el torque máximo que cada motor es capaz de producir y la condición de fin de carrera
+cambiaron nuevamente la naturaleza del simulador.
+
+Las estrategias de control también fueron evolucionando. 
+Partiendo de la linealización del sistema, cada control requirió ser sintonizado.
+También surgió la necesidad de crear nuevas rutinas para proveer al controlador con la nueva información que requería para producir la respuesta deseada.
+
+La respuesta del sistema a cada estrategia de control fue similar a lo que el equipo asumió inicialmente debido al conocimiento que cada integrante tiene sobre teoría de control.
+El control PD presentó un error en estado estable sin importar las ganancias asignadas.
+El control PID alteró el comportamiento del sistema al introducir un sobretiro en su recorrido antes de estabilizarse.
+El control PD+G fue un nuevo tema para mí, así que solamente se pudo asumir sería una mejora sobre el control PD sin conocer cuál sería dicha mejora.
+

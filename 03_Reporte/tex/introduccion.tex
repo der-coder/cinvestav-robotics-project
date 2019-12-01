@@ -6,7 +6,7 @@ móvil con una base mediante cardanes en un extremo de los actuadores y por
 juntas esféricas o cardanes en el extremo contrario. 
 
 Conocido en la literatura como la 
-plataforma Gough-Stewart, su origen se remonta a mediados del sigo XIX.
+plataforma Gough-Stewart, su origen se remonta a mediados del siglo XX.
 Su invención está documentada en 1954 por Eric Gough 
 \cite{gough} en Inglaterra como una máquina para 
 evaluar la respuesta de llantas de aviones a diferentes 
@@ -47,3 +47,9 @@ plataforma Gough Stewart (figura \ref{fig: stewart robot}).
     \caption{Iteraciones del robot paralelo.}\label{fig: parallel robots}
 \end{figure}
 
+La plataforma Gough-Cappel presenta un reto interesante desde el punto de vista de modelado matemático.
+Al ser un robot paralelo, las estrategias comúnmente utilizadas en robots seriales no son capaces de llegar a una solución.
+Además, la implementación de estrategias de control para realizar una tarea específica requiere la existencia de un modelo de la dinámica del robot.
+
+Se presentan los resultados de la implementación de tres diferentes estrategias de control para un modelo de la dinámica del robot implementado en MATLAB+SIMULINK.
+Se incluyen también los detalles de diseño y la metodología utilizada en la etapa de modelado matemático del sistema.

@@ -4,11 +4,32 @@ Se detallan las observaciones hechas sobre los eventos ocurridos y
 el análisis de las situaciones.
 
 \subsection{Entendimiento del problema}
-Primeramente quedó claro que la cinemática directa sería complicada, fundamentalmente por que existen múltiples poses para una misma configuración. La transformación de el espacio configuración al espacio de operación no es biyectiva.\\
-Al comienzo buscamos descartar soluciones, todas las que ubicaban la plataforma en el lado negativo del eje $z$, eso descartó bastantes soluciones pero aún restaban bastantes por descartar, posteriormente consideramos que cada pistón tenia un alcance en forma de esfera y que un par de ellos definiría una circunferencia en el espacio, con 3 circunferencias ya se podía limitar más el número de soluciones posibles, concluimos que no había forma directa de solucionar la cinemática directa y consideramos una solución numérica iterativa, idea que fue reforzada por los documentos de la clase hasta que adoptamos la metodología propuesta en las notas \cite{olguin2019}.\\
-La siguiente parte del problema vino del control, nos percatamos que distintos puntos de linealización tienen distintas vecindades en las que funcionan, dada la naturaleza del sistema y su punto de equilibrio.\\
-Posteriormente tuvimos el problema del realismo, al cambiar $\tau$ a $\tau_m$ al tener como decisión de diseño implementar los actuadores lineales con tornillos de paso 2mm y 4 hilos lo que nos daba una n de 250$\pi$ haciendo que la dinámica del motor predominara sobre la dinámica del sistema, además de que introducía limitaciones de diseño si el control requería $\tau$ con algún componente superior al par máximo proporcionado por el motor, se le limitaba al valor máximo de par especificado por el fabricante.\\
-finalmente decidimos trazar una trayectoria suave y lenta pero el punto inicial de dicha trayectoria en el espacio de trabajo requería un cambio grande de orientación, dicho punto inicial era lejano al punto de equilibrio del robot ya que se encontraba en sus límites de orientación, como resultado el error no convergía a cero, sino que diverge. Consideramos que este comportamiento puede ser evitado con un calculo iterativo de las constantes de control conforme el vector de $q_{real}$ se acerca a $q_{deseada}$; una resintonización dependiente del error entre $q_{real}$ y $q_{deseada}(t)$     
+Primeramente, quedó claro que la cinemática directa sería complicada. Existen múltiples poses para una misma configuración. 
+La transformación del espacio configuración al espacio de operación no es biyectiva.\\
+
+Al comienzo se buscó descartar soluciones: todas las que ubicaban la plataforma en el lado negativo del eje $z$. 
+Esto descartó una cantidad considerable de soluciones, pero aún restaban bastantes.
+Posteriormente se consideró que cada pistón tenía un alcance en forma de esfera.
+Un par de ellos definiría una circunferencia en el espacio, con 3 circunferencias ya se podía limitar más el número de soluciones posibles.
+Se concluyó que no era posible obtener una solución analítica al problema de la cinemática directa.
+Se consideró una estrategia para obtener una solución numérica iterativa, idea que fue reforzada por los documentos de la clase hasta que se adoptó la metodología propuesta en  \cite{olguin2019}.\\
+
+El siguiente reto del proyecto sucedió en el área de control.
+Se identificaron múltiples puntos de linealización.
+Cada uno de ellos tiene distintas vecindades en las que la linealización puede operar, dada la naturaleza del sistema y su punto de equilibrio.\\
+
+Una vez definido un punto de linealización para linearizar el sistema
+se enfrentó el problema de limitaciones físicas impuestas por el diseño del robot.
+El valor máximo de $\tau$ fue restringido al valor $\tau_m$ del motor seleccionado \cite{motor}. Esta restricción alteró considerablemente la dinámica del sistema completo. El consumo energético incrementó 125 veces el gasto original.
+La decisión de implementar los actuadores lineales con tornillos de paso 2 mm y 4 hilos produjo una relación $n = 250 \pi$.
+Esto hizo que la dinámica del motor predominara sobre la dinámica del sistema. 
+Además, las estrategias de control debieron de ser modificadas para limitar el valor $\tau$ dentro del sistema al valor $\tau_m$.
+
+Finalmente, se tomó la decisión de implementar un seguimiento de trayectoria suave basado en el movimiento de un satélite de órbita baja.
+Fue posible generar la trayectoria de puntos, pero el sistema fue incapaz de seguirla.
+Esto se debe a que los puntos están por fuera de la región en que la linealización del sistema se realizó. 
+El sistema fue incapaz de reducir el error de posición debido a la lejanía de cada ubicación.
+Se asume que este comportamiento puede ser evitado con un cálculo dinámico de las constantes de control conforme el vector de $q_{real}$ se acerca a $q_{deseada}$: una resintonización dependiente del error entre $q_{real}$ y $q_{deseada}(t)$     .
 
 
 
@@ -43,22 +64,43 @@ de las estrategias de control y
 linealización del sistema.
 
 \subsection{Implementación de estrategias de control}
+Las estrategias de control utilizadas fueron PD, PD +G y PID. 
+Los tres esquemas requirieron del cálculo de las ganancias $k_p$, $k_d$ y $k_i$. 
+Estas tres constantes se obtuvieron de linealizar el sistema en una pose específica. 
+La linealización del sistema es posible de realizar al tomar los valores lineales de la matriz $H(q)$, los cuales se encuentran en la diagonal de la matriz.
 
+En las pruebas de movimiento siguiendo un patrón y de referencia estática se encontró que cuando la plataforma comienza a alejarse de este punto, el estado transitorio suele tener perturbaciones.
+Si se encuentra lo suficientemente lejos, el control no converge a cero.
+Los controladores generan movimientos que alejan la plataforma de la referencia y terminan descontrolando el sistema.
 
-
+Se esperaba que al aplicar el control, la plataforma fuera controlable en todo momento. 
+Después de las clases y observar que los términos 
+no lineales agregan perturbaciones en el sistema.
+Por lo tanto solamente es posible controlar el robot en un espacio alrededor del punto donde se linealizó el sistema.
 
 
 \subsection{Implementación de resortes de fin de carrera}
-La idea fundamental para implementar los finales de carrera viene de colisiones entre cuerpos, consideramos que sin importar la dureza de los materiales con los que estén hechos, al colisionar entre sí sufrirán una deformación no permanente; la magnitud de ésta deformación es inversamente proporcional a la dureza del material, lo que nos lleva a pensar que la forma de modelar el final de carrera involucra un resorte.\\
-También consideramos que las colisiones reales no son perfectamente elásticas, hay una perdida de energía lo que nos hizo incluir también un amortiguador en el modelo del final de carrera de los actuadores prismáticos.\\
-También consideramos que éstas fuerzas sólo existen cuando hay contacto entre 2 cuerpos, por tanto hay una condición de contacto bajo la cual el modelo del final de carrera afecta el comportamiento del sistema.\\
- Por tanto, el modelo de final de carrera se plantea:
+La idea fundamental para implementar los finales de carrera viene de colisiones entre cuerpos.
+Se considera que sin importar la dureza de los materiales con los que estén hechos, los componentes sufrirán una deformación no permanente al colisionar.
+La magnitud de esta deformación es inversamente proporcional a la dureza del material. 
+Esta suposición llevó a la idea de modelar el final de carrera involucrando un resorte.\\
+
+De manera similar, se consideran colisiones que no son perfectamente elásticas. 
+Por ello, habrá una pérdida de energía en el sistema.
+Debido a esto se incluyó un amortiguador en el modelo del final de carrera de los actuadores prismáticos.\\
+
+Finalmente, se consideró que éstas fuerzas solamente se presentan durante el contacto de dos cuerpos. 
+Al modelo de fin de carrera se introdujo una condición de contacto que determina cuándo el efecto de fin de carrera afectará al sistema.
+
+
+El modelo de final de carrera se plantea de la siguiente:
  
  \begin{equation}
      \tau_{i} = \begin{cases}
-     k_c\left( L_{min}-q_i\right) + b_c\left( L_{min}-q_i\right) & \text{si }  q_i < L_{min}\\
-     0 & \text{si }  L_{min} < q_i < L_{max}\\
-     k_c\left( L_{max}-q_i\right) + b_c\left( L_{max}-q_i\right) & \text{si }  q_i > Lmax
+     k_c\left( L_{min}-q_i\right) + b_c\left( L_{min}-q_i\right) &   q_i < L_{min}\\
+     0 &   L_{min} < q_i < L_{max}\\
+     k_c\left( L_{max}-q_i\right) + b_c\left( L_{max}-q_i\right) &   q_i > L_{max}
      \end{cases}
  \end{equation}
+ 
  $k_C$ se define de tal forma que el efecto de la gravedad produzca una compresión de 0.1mm y $k_C$ de tal forma que el 40\% de la energía se pierda en un rebote.
