@@ -17,9 +17,10 @@ El tensor de inercia se obtiene de la combinación lineal
 de los componentes $P_x$, $P_y$ y $P_z$ y los vectores $ I_x$, $ I_y$, e $ I_z$.
 Se realiza también la conversión adecuada de unidades al
 sistema internacional.
+A continuación se muestra el pseudocógigo para generar el tensor.
 
 \begin{equation*}
- I = abs(P_x  I_x) + abs(P_y I_y) +abs(P_z I_z)
+ I = diag(abs(P_x  I_x) + abs(P_y I_y) +abs(P_z I_z))
 \end{equation*}
 
 \begin{figure}[htb!]
